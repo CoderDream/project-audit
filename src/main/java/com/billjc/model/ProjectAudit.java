@@ -1,0 +1,78 @@
+package com.billjc.model;
+
+import java.util.Date;
+
+public class ProjectAudit {
+	private String id;
+
+	/**
+	 * 
+	 */
+	private Integer auditTypeId;
+
+	private Integer auditState;
+
+	private String auditWorkId;
+
+	private String auditContent;
+
+	private Date auditDate;
+
+	private String projectId;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id == null ? null : id.trim();
+	}
+
+	public Integer getAuditTypeId() {
+		return auditTypeId;
+	}
+
+	public void setAuditTypeId(Integer auditTypeId) {
+		this.auditTypeId = auditTypeId;
+	}
+
+	public Integer getAuditState() {
+		return auditState;
+	}
+
+	public void setAuditState(Integer auditState) {
+		this.auditState = auditState;
+	}
+
+	public String getAuditWorkId() {
+		return auditWorkId;
+	}
+
+	public void setAuditWorkId(String auditWorkId) {
+		this.auditWorkId = auditWorkId == null ? null : auditWorkId.trim();
+	}
+
+	public String getAuditContent() {
+		return auditContent;
+	}
+
+	public void setAuditContent(String auditContent) {
+		this.auditContent = auditContent == null ? null : auditContent.trim();
+	}
+
+	public Date getAuditDate() {
+		return auditDate;
+	}
+
+	public void setAuditDate(Date auditDate) {
+		this.auditDate = auditDate;
+	}
+
+	public String getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(String projectId) {
+		this.projectId = projectId == null ? null : projectId.trim();
+	}
+}

@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.billjc.dao.ProjectMapper">
+	<resultMap id="BaseResultMap" type="com.billjc.model.Project">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ParentID" property="parentid" jdbcType="VARCHAR" />
+		<result column="ProjectNo" property="projectno" jdbcType="VARCHAR" />
+		<result column="ProjectName" property="projectName" jdbcType="VARCHAR" />
+		<result column="ProjectMgr_WorkID" property="projectmgrWorkId"
+			jdbcType="VARCHAR" />
+		<result column="ProjectMgr_Name" property="projectmgrName"
+			jdbcType="VARCHAR" />
+		<result column="Company" property="company" jdbcType="VARCHAR" />
+		<result column="DepartmentID" property="departmentid" jdbcType="VARCHAR" />
+		<result column="DepartmentName" property="departmentname"
+			jdbcType="VARCHAR" />
+		<result column="ProjectType" property="projecttype" jdbcType="VARCHAR" />
+		<result column="ProjectSubType" property="projectsubtype"
+			jdbcType="VARCHAR" />
+		<result column="ProjectStartDate" property="projectstartdate"
+			jdbcType="TIMESTAMP" />
+		<result column="ProjectEndDate" property="projectenddate"
+			jdbcType="TIMESTAMP" />
+		<result column="CustomerNo" property="customerno" jdbcType="VARCHAR" />
+		<result column="CustomerName" property="customername" jdbcType="VARCHAR" />
+		<result column="CustomerDep" property="customerdep" jdbcType="VARCHAR" />
+		<result column="ProductFamilyName" property="productfamilyname"
+			jdbcType="VARCHAR" />
+		<result column="ProductName" property="productname" jdbcType="VARCHAR" />
+		<result column="Technology" property="technology" jdbcType="VARCHAR" />
+		<result column="DeliveryType" property="deliverytype" jdbcType="VARCHAR" />
+		<result column="CustomerPM" property="customerpm" jdbcType="VARCHAR" />
+		<result column="BU_Manager" property="buManager" jdbcType="VARCHAR" />
+		<result column="PersonTotal" property="persontotal" jdbcType="INTEGER" />
+		<result column="CooperationType" property="cooperationtype"
+			jdbcType="VARCHAR" />
+		<result column="OBDORPPC" property="obdorppc" jdbcType="VARCHAR" />
+		<result column="WIP" property="wip" jdbcType="DECIMAL" />
+		<result column="stock" property="stock" jdbcType="DECIMAL" />
+		<result column="ProState" property="prostate" jdbcType="VARCHAR" />
+		<result column="isJump" property="isjump" jdbcType="VARCHAR" />
+		<result column="ProComputerTime" property="procomputertime"
+			jdbcType="TIMESTAMP" />
+		<result column="CreateWorkID" property="createworkId" jdbcType="VARCHAR" />
+		<result column="BU_Manager_WorkID" property="buManagerWorkId"
+			jdbcType="VARCHAR" />
+		<result column="BU_Manager_Name" property="buManagerName"
+			jdbcType="VARCHAR" />
+		<result column="Pro_ThreeDepartmentID" property="proThreedepartmentid"
+			jdbcType="VARCHAR" />
+		<result column="Pro_ThreeDepartmentName" property="proThreedepartmentname"
+			jdbcType="VARCHAR" />
+		<result column="Pro_FourDepartmentID" property="proFourdepartmentid"
+			jdbcType="VARCHAR" />
+		<result column="Pro_FourDepartmentName" property="proFourdepartmentname"
+			jdbcType="VARCHAR" />
+		<result column="ClientProductPM" property="clientproductpm"
+			jdbcType="VARCHAR" />
+		<result column="ClientProjectPM" property="clientprojectpm"
+			jdbcType="VARCHAR" />
+		<result column="BJCProductPMWork_ID" property="bjcproductpmWorkId"
+			jdbcType="VARCHAR" />
+		<result column="BJCProductPMName" property="bjcproductpmname"
+			jdbcType="VARCHAR" />
+		<result column="QAWork_ID" property="qaworkId" jdbcType="VARCHAR" />
+		<result column="QAName" property="qaname" jdbcType="VARCHAR" />
+		<result column="ProjectType2" property="projecttype2" jdbcType="VARCHAR" />
+		<result column="ProjectTechnosphere" property="projecttechnosphere"
+			jdbcType="VARCHAR" />
+		<result column="ProjectStartDateTime" property="projectstartdatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="ProjectEndDateTime" property="projectenddatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="DeliveryAddress" property="deliveryaddress"
+			jdbcType="VARCHAR" />
+		<result column="ISQASupport" property="isqasupport" jdbcType="VARCHAR" />
+		<result column="WorkEvaluate" property="workevaluate" jdbcType="VARCHAR" />
+		<result column="ProStatePPC" property="prostateppc" jdbcType="VARCHAR" />
+		<result column="isJumpPPC" property="isjumpppc" jdbcType="VARCHAR" />
+		<result column="BudgetCustomerNO" property="budgetcustomerno"
+			jdbcType="VARCHAR" />
+		<result column="BudgetCustomerName" property="budgetcustomername"
+			jdbcType="VARCHAR" />
+		<result column="OEProjectNO" property="oeprojectno" jdbcType="VARCHAR" />
+		<result column="OEProjectName" property="oeprojectName"
+			jdbcType="VARCHAR" />
+		<result column="EntryDate" property="entrydate" jdbcType="TIMESTAMP" />
+		<result column="BeProduct" property="beproduct" jdbcType="VARCHAR" />
+		<result column="BeProductName" property="beproductname"
+			jdbcType="VARCHAR" />
+		<result column="IsOtherplace" property="isotherplace" jdbcType="VARCHAR" />
+		<result column="TeamSize" property="teamsize" jdbcType="VARCHAR" />
+		<result column="CalendarID" property="calendarid" jdbcType="INTEGER" />
+		<result column="CalendarName" property="calendarname" jdbcType="VARCHAR" />
+		<result column="CreateName" property="createname" jdbcType="VARCHAR" />
+		<result column="CreateDate" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="DeliveryCity" property="deliverycity" jdbcType="VARCHAR" />
+		<result column="DeliveryCityID" property="deliverycityid"
+			jdbcType="INTEGER" />
+		<result column="AreaType" property="areatype" jdbcType="VARCHAR" />
+		<result column="IsSite" property="issite" jdbcType="VARCHAR" />
+		<result column="IsFinish" property="isfinish" jdbcType="BIT" />
+		<result column="EndName" property="endname" jdbcType="VARCHAR" />
+		<result column="IsOrder" property="isorder" jdbcType="VARCHAR" />
+		<result column="OrderDate" property="orderdate" jdbcType="TIMESTAMP" />
+		<result column="OrderMoney" property="ordermoney" jdbcType="DECIMAL" />
+		<result column="ApplicationDate" property="applicationdate"
+			jdbcType="TIMESTAMP" />
+		<result column="ProjectTypes" property="projecttypes" jdbcType="VARCHAR" />
+		<result column="ContractNo" property="contractno" jdbcType="VARCHAR" />
+		<result column="ContractName" property="contractname" jdbcType="VARCHAR" />
+		<result column="ReadyType" property="readytype" jdbcType="VARCHAR" />
+		<result column="FirstCustomNo" property="firstcustomno"
+			jdbcType="VARCHAR" />
+		<result column="FirstCustomName" property="firstcustomname"
+			jdbcType="VARCHAR" />
+		<result column="SecondCustomNo" property="secondcustomno"
+			jdbcType="VARCHAR" />
+		<result column="SecondCustomName" property="secondcustomname"
+			jdbcType="VARCHAR" />
+		<result column="ThirdCustomNo" property="thirdcustomno"
+			jdbcType="VARCHAR" />
+		<result column="ThirdCustomName" property="thirdcustomname"
+			jdbcType="VARCHAR" />
+		<result column="LevelName" property="levelname" jdbcType="VARCHAR" />
+		<result column="IsOld" property="isold" jdbcType="INTEGER" />
+		<result column="IsContinue" property="iscontinue" jdbcType="INTEGER" />
+		<result column="ProjectNewNo" property="projectnewno" jdbcType="VARCHAR" />
+		<result column="BaseType" property="basetype" jdbcType="VARCHAR" />
+		<result column="OverTimePayTimes" property="overtimepaytimes"
+			jdbcType="DECIMAL" />
+		<result column="PDRC" property="pdrc" jdbcType="DECIMAL" />
+		<result column="PlanIncome" property="planincome" jdbcType="DECIMAL" />
+		<result column="PlanCost" property="plancost" jdbcType="DECIMAL" />
+		<result column="SubcontractorIncome" property="subcontractorincome"
+			jdbcType="DECIMAL" />
+		<result column="SubcontractorCost" property="subcontractorcost"
+			jdbcType="DECIMAL" />
+		<result column="IsTestProject" property="istestproject"
+			jdbcType="INTEGER" />
+		<result column="PD_DepartID" property="pdDepartId" jdbcType="VARCHAR" />
+		<result column="PD_DepartName" property="pdDepartName"
+			jdbcType="VARCHAR" />
+		<result column="MajorIncome" property="majorincome" jdbcType="DECIMAL" />
+		<result column="MajorCost" property="majorcost" jdbcType="DECIMAL" />
+		<result column="PassThroughIncome" property="passthroughincome"
+			jdbcType="DECIMAL" />
+		<result column="PassThroughCost" property="passthroughcost"
+			jdbcType="DECIMAL" />
+		<result column="TravelIncome" property="travelincome" jdbcType="DECIMAL" />
+		<result column="TravelCost" property="travelcost" jdbcType="DECIMAL" />
+		<result column="AdvanceIncome" property="advanceincome"
+			jdbcType="DECIMAL" />
+		<result column="AdvanceCost" property="advancecost" jdbcType="DECIMAL" />
+		<result column="SubsidyIncome" property="subsidyincome"
+			jdbcType="DECIMAL" />
+		<result column="SubsidyCost" property="subsidycost" jdbcType="DECIMAL" />
+		<result column="AttachIncome" property="attachincome" jdbcType="DECIMAL" />
+		<result column="AttachCost" property="attachcost" jdbcType="DECIMAL" />
+		<result column="InnerSubContractTotalCost" property="innersubcontracttotalcost"
+			jdbcType="DECIMAL" />
+		<result column="InnerSubContractCount" property="innersubcontractcount"
+			jdbcType="INTEGER" />
+		<result column="OEProList" property="oeprolist" jdbcType="CLOB" />
+		<result column="DemandRange" property="demandrange" jdbcType="CLOB" />
+		<result column="ProjectAK" property="projectak" jdbcType="CLOB" />
+		<result column="ProjectDescr" property="projectdescr" jdbcType="CLOB" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, ParentID, ProjectNo, ProjectName, ProjectMgr_WorkID,
+		ProjectMgr_Name,
+		Company,
+		DepartmentID, DepartmentName, ProjectType,
+		ProjectSubType, ProjectStartDate,
+		ProjectEndDate,
+		CustomerNo,
+		CustomerName, CustomerDep, ProductFamilyName, ProductName,
+		Technology,
+		DeliveryType, CustomerPM, BU_Manager, PersonTotal, CooperationType,
+		OBDORPPC, WIP,
+		stock, ProState, isJump, ProComputerTime, CreateWorkID,
+		BU_Manager_WorkID, BU_Manager_Name,
+		Pro_ThreeDepartmentID,
+		Pro_ThreeDepartmentName, Pro_FourDepartmentID,
+		Pro_FourDepartmentName,
+		ClientProductPM, ClientProjectPM, BJCProductPMWork_ID,
+		BJCProductPMName, QAWork_ID,
+		QAName, ProjectType2, ProjectTechnosphere,
+		ProjectStartDateTime,
+		ProjectEndDateTime,
+		DeliveryAddress, ISQASupport,
+		WorkEvaluate, ProStatePPC, isJumpPPC, BudgetCustomerNO,
+		BudgetCustomerName, OEProjectNO, OEProjectName, EntryDate, BeProduct,
+		BeProductName,
+		IsOtherplace, TeamSize, CalendarID, CalendarName,
+		CreateName, CreateDate,
+		DeliveryCity,
+		DeliveryCityID, AreaType, IsSite,
+		IsFinish, EndName, IsOrder, OrderDate, OrderMoney,
+		ApplicationDate,
+		ProjectTypes, ContractNo, ContractName, ReadyType,
+		FirstCustomNo,
+		FirstCustomName, SecondCustomNo, SecondCustomName, ThirdCustomNo,
+		ThirdCustomName,
+		LevelName, IsOld, IsContinue, ProjectNewNo, BaseType,
+		OverTimePayTimes, PDRC, PlanIncome,
+		PlanCost, SubcontractorIncome,
+		SubcontractorCost, IsTestProject, PD_DepartID,
+		PD_DepartName,
+		MajorIncome, MajorCost, PassThroughIncome, PassThroughCost,
+		TravelIncome,
+		TravelCost,
+		AdvanceIncome, AdvanceCost, SubsidyIncome,
+		SubsidyCost, AttachIncome, AttachCost,
+		InnerSubContractTotalCost,
+		InnerSubContractCount,
+		OEProList, DemandRange, ProjectAK, ProjectDescr
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Project
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectByParams" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Project
+		where
+		ProjectName LIKE '%${param1}%' AND
+		ProjectMgr_WorkID = #{param2}
+	</select>
+
+	<select id="selectByQueryCondition" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from Project
+		where
+		(IsFinish != 1
+		OR IsFinish IS NULL)
+		AND ProjectStartDateTime IS NOT NULL
+		AND ProjectStartDateTime > N'2017-2-1'
+		AND
+		(ProjectName LIKE '%${param1}%')
+		<!-- OR
+		(ProjectNewNo LIKE '%${param1}%')
+		 -->
+	</select>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.billjc.model.Project">
+		update Project
+		<set>
+			<if test="parentid != null">
+				ParentID = #{parentid,jdbcType=VARCHAR},
+			</if>
+			<if test="projectno != null">
+				ProjectNo = #{projectno,jdbcType=VARCHAR},
+			</if>
+			<if test="projectName != null">
+				ProjectName = #{projectName,jdbcType=VARCHAR},
+			</if>
+			<if test="projectmgrWorkId != null">
+				ProjectMgr_WorkID = #{projectmgrWorkId,jdbcType=VARCHAR},
+			</if>
+			<if test="projectmgrName != null">
+				ProjectMgr_Name = #{projectmgrName,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				Company = #{company,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentid != null">
+				DepartmentID = #{departmentid,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentname != null">
+				DepartmentName = #{departmentname,jdbcType=VARCHAR},
+			</if>
+			<if test="projecttype != null">
+				ProjectType = #{projecttype,jdbcType=VARCHAR},
+			</if>
+			<if test="projectsubtype != null">
+				ProjectSubType = #{projectsubtype,jdbcType=VARCHAR},
+			</if>
+			<if test="projectstartdate != null">
+				ProjectStartDate =
+				#{projectstartdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="projectenddate != null">
+				ProjectEndDate = #{projectenddate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="customerno != null">
+				CustomerNo = #{customerno,jdbcType=VARCHAR},
+			</if>
+			<if test="customername != null">
+				CustomerName = #{customername,jdbcType=VARCHAR},
+			</if>
+			<if test="customerdep != null">
+				CustomerDep = #{customerdep,jdbcType=VARCHAR},
+			</if>
+			<if test="productfamilyname != null">
+				ProductFamilyName =
+				#{productfamilyname,jdbcType=VARCHAR},
+			</if>
+			<if test="productname != null">
+				ProductName = #{productname,jdbcType=VARCHAR},
+			</if>
+			<if test="technology != null">
+				Technology = #{technology,jdbcType=VARCHAR},
+			</if>
+			<if test="deliverytype != null">
+				DeliveryType = #{deliverytype,jdbcType=VARCHAR},
+			</if>
+			<if test="customerpm != null">
+				CustomerPM = #{customerpm,jdbcType=VARCHAR},
+			</if>
+			<if test="buManager != null">
+				BU_Manager = #{buManager,jdbcType=VARCHAR},
+			</if>
+			<if test="persontotal != null">
+				PersonTotal = #{persontotal,jdbcType=INTEGER},
+			</if>
+			<if test="cooperationtype != null">
+				CooperationType = #{cooperationtype,jdbcType=VARCHAR},
+			</if>
+			<if test="obdorppc != null">
+				OBDORPPC = #{obdorppc,jdbcType=VARCHAR},
+			</if>
+			<if test="wip != null">
+				WIP = #{wip,jdbcType=DECIMAL},
+			</if>
+			<if test="stock != null">
+				stock = #{stock,jdbcType=DECIMAL},
+			</if>
+			<if test="prostate != null">
+				ProState = #{prostate,jdbcType=VARCHAR},
+			</if>
+			<if test="isjump != null">
+				isJump = #{isjump,jdbcType=VARCHAR},
+			</if>
+			<if test="procomputertime != null">
+				ProComputerTime = #{procomputertime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createworkId != null">
+				CreateWorkID = #{createworkId,jdbcType=VARCHAR},
+			</if>
+			<if test="buManagerWorkId != null">
+				BU_Manager_WorkID = #{buManagerWorkId,jdbcType=VARCHAR},
+			</if>
+			<if test="buManagerName != null">
+				BU_Manager_Name = #{buManagerName,jdbcType=VARCHAR},
+			</if>
+			<if test="proThreedepartmentid != null">
+				Pro_ThreeDepartmentID =
+				#{proThreedepartmentid,jdbcType=VARCHAR},
+			</if>
+			<if test="proThreedepartmentname != null">
+				Pro_ThreeDepartmentName =
+				#{proThreedepartmentname,jdbcType=VARCHAR},
+			</if>
+			<if test="proFourdepartmentid != null">
+				Pro_FourDepartmentID =
+				#{proFourdepartmentid,jdbcType=VARCHAR},
+			</if>
+			<if test="proFourdepartmentname != null">
+				Pro_FourDepartmentName =
+				#{proFourdepartmentname,jdbcType=VARCHAR},
+			</if>
+			<if test="clientproductpm != null">
+				ClientProductPM = #{clientproductpm,jdbcType=VARCHAR},
+			</if>
+			<if test="clientprojectpm != null">
+				ClientProjectPM = #{clientprojectpm,jdbcType=VARCHAR},
+			</if>
+			<if test="bjcproductpmWorkId != null">
+				BJCProductPMWork_ID =
+				#{bjcproductpmWorkId,jdbcType=VARCHAR},
+			</if>
+			<if test="bjcproductpmname != null">
+				BJCProductPMName = #{bjcproductpmname,jdbcType=VARCHAR},
+			</if>
+			<if test="qaworkId != null">
+				QAWork_ID = #{qaworkId,jdbcType=VARCHAR},
+			</if>
+			<if test="qaname != null">
+				QAName = #{qaname,jdbcType=VARCHAR},
+			</if>
+			<if test="projecttype2 != null">
+				ProjectType2 = #{projecttype2,jdbcType=VARCHAR},
+			</if>
+			<if test="projecttechnosphere != null">
+				ProjectTechnosphere =
+				#{projecttechnosphere,jdbcType=VARCHAR},
+			</if>
+			<if test="projectstartdatetime != null">
+				ProjectStartDateTime =
+				#{projectstartdatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="projectenddatetime != null">
+				ProjectEndDateTime =
+				#{projectenddatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deliveryaddress != null">
+				DeliveryAddress = #{deliveryaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="isqasupport != null">
+				ISQASupport = #{isqasupport,jdbcType=VARCHAR},
+			</if>
+			<if test="workevaluate != null">
+				WorkEvaluate = #{workevaluate,jdbcType=VARCHAR},
+			</if>
+			<if test="prostateppc != null">
+				ProStatePPC = #{prostateppc,jdbcType=VARCHAR},
+			</if>
+			<if test="isjumpppc != null">
+				isJumpPPC = #{isjumpppc,jdbcType=VARCHAR},
+			</if>
+			<if test="budgetcustomerno != null">
+				BudgetCustomerNO = #{budgetcustomerno,jdbcType=VARCHAR},
+			</if>
+			<if test="budgetcustomername != null">
+				BudgetCustomerName =
+				#{budgetcustomername,jdbcType=VARCHAR},
+			</if>
+			<if test="oeprojectno != null">
+				OEProjectNO = #{oeprojectno,jdbcType=VARCHAR},
+			</if>
+			<if test="oeprojectName != null">
+				OEProjectName = #{oeprojectName,jdbcType=VARCHAR},
+			</if>
+			<if test="entrydate != null">
+				EntryDate = #{entrydate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="beproduct != null">
+				BeProduct = #{beproduct,jdbcType=VARCHAR},
+			</if>
+			<if test="beproductname != null">
+				BeProductName = #{beproductname,jdbcType=VARCHAR},
+			</if>
+			<if test="isotherplace != null">
+				IsOtherplace = #{isotherplace,jdbcType=VARCHAR},
+			</if>
+			<if test="teamsize != null">
+				TeamSize = #{teamsize,jdbcType=VARCHAR},
+			</if>
+			<if test="calendarid != null">
+				CalendarID = #{calendarid,jdbcType=INTEGER},
+			</if>
+			<if test="calendarname != null">
+				CalendarName = #{calendarname,jdbcType=VARCHAR},
+			</if>
+			<if test="createname != null">
+				CreateName = #{createname,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CreateDate = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deliverycity != null">
+				DeliveryCity = #{deliverycity,jdbcType=VARCHAR},
+			</if>
+			<if test="deliverycityid != null">
+				DeliveryCityID = #{deliverycityid,jdbcType=INTEGER},
+			</if>
+			<if test="areatype != null">
+				AreaType = #{areatype,jdbcType=VARCHAR},
+			</if>
+			<if test="issite != null">
+				IsSite = #{issite,jdbcType=VARCHAR},
+			</if>
+			<if test="isfinish != null">
+				IsFinish = #{isfinish,jdbcType=BIT},
+			</if>
+			<if test="endname != null">
+				EndName = #{endname,jdbcType=VARCHAR},
+			</if>
+			<if test="isorder != null">
+				IsOrder = #{isorder,jdbcType=VARCHAR},
+			</if>
+			<if test="orderdate != null">
+				OrderDate = #{orderdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="ordermoney != null">
+				OrderMoney = #{ordermoney,jdbcType=DECIMAL},
+			</if>
+			<if test="applicationdate != null">
+				ApplicationDate = #{applicationdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="projecttypes != null">
+				ProjectTypes = #{projecttypes,jdbcType=VARCHAR},
+			</if>
+			<if test="contractno != null">
+				ContractNo = #{contractno,jdbcType=VARCHAR},
+			</if>
+			<if test="contractname != null">
+				ContractName = #{contractname,jdbcType=VARCHAR},
+			</if>
+			<if test="readytype != null">
+				ReadyType = #{readytype,jdbcType=VARCHAR},
+			</if>
+			<if test="firstcustomno != null">
+				FirstCustomNo = #{firstcustomno,jdbcType=VARCHAR},
+			</if>
+			<if test="firstcustomname != null">
+				FirstCustomName = #{firstcustomname,jdbcType=VARCHAR},
+			</if>
+			<if test="secondcustomno != null">
+				SecondCustomNo = #{secondcustomno,jdbcType=VARCHAR},
+			</if>
+			<if test="secondcustomname != null">
+				SecondCustomName = #{secondcustomname,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdcustomno != null">
+				ThirdCustomNo = #{thirdcustomno,jdbcType=VARCHAR},
+			</if>
+			<if test="thirdcustomname != null">
+				ThirdCustomName = #{thirdcustomname,jdbcType=VARCHAR},
+			</if>
+			<if test="levelname != null">
+				LevelName = #{levelname,jdbcType=VARCHAR},
+			</if>
+			<if test="isold != null">
+				IsOld = #{isold,jdbcType=INTEGER},
+			</if>
+			<if test="iscontinue != null">
+				IsContinue = #{iscontinue,jdbcType=INTEGER},
+			</if>
+			<if test="projectnewno != null">
+				ProjectNewNo = #{projectnewno,jdbcType=VARCHAR},
+			</if>
+			<if test="basetype != null">
+				BaseType = #{basetype,jdbcType=VARCHAR},
+			</if>
+			<if test="overtimepaytimes != null">
+				OverTimePayTimes = #{overtimepaytimes,jdbcType=DECIMAL},
+			</if>
+			<if test="pdrc != null">
+				PDRC = #{pdrc,jdbcType=DECIMAL},
+			</if>
+			<if test="planincome != null">
+				PlanIncome = #{planincome,jdbcType=DECIMAL},
+			</if>
+			<if test="plancost != null">
+				PlanCost = #{plancost,jdbcType=DECIMAL},
+			</if>
+			<if test="subcontractorincome != null">
+				SubcontractorIncome =
+				#{subcontractorincome,jdbcType=DECIMAL},
+			</if>
+			<if test="subcontractorcost != null">
+				SubcontractorCost =
+				#{subcontractorcost,jdbcType=DECIMAL},
+			</if>
+			<if test="istestproject != null">
+				IsTestProject = #{istestproject,jdbcType=INTEGER},
+			</if>
+			<if test="pdDepartId != null">
+				PD_DepartID = #{pdDepartId,jdbcType=VARCHAR},
+			</if>
+			<if test="pdDepartName != null">
+				PD_DepartName = #{pdDepartName,jdbcType=VARCHAR},
+			</if>
+			<if test="majorincome != null">
+				MajorIncome = #{majorincome,jdbcType=DECIMAL},
+			</if>
+			<if test="majorcost != null">
+				MajorCost = #{majorcost,jdbcType=DECIMAL},
+			</if>
+			<if test="passthroughincome != null">
+				PassThroughIncome =
+				#{passthroughincome,jdbcType=DECIMAL},
+			</if>
+			<if test="passthroughcost != null">
+				PassThroughCost = #{passthroughcost,jdbcType=DECIMAL},
+			</if>
+			<if test="travelincome != null">
+				TravelIncome = #{travelincome,jdbcType=DECIMAL},
+			</if>
+			<if test="travelcost != null">
+				TravelCost = #{travelcost,jdbcType=DECIMAL},
+			</if>
+			<if test="advanceincome != null">
+				AdvanceIncome = #{advanceincome,jdbcType=DECIMAL},
+			</if>
+			<if test="advancecost != null">
+				AdvanceCost = #{advancecost,jdbcType=DECIMAL},
+			</if>
+			<if test="subsidyincome != null">
+				SubsidyIncome = #{subsidyincome,jdbcType=DECIMAL},
+			</if>
+			<if test="subsidycost != null">
+				SubsidyCost = #{subsidycost,jdbcType=DECIMAL},
+			</if>
+			<if test="attachincome != null">
+				AttachIncome = #{attachincome,jdbcType=DECIMAL},
+			</if>
+			<if test="attachcost != null">
+				AttachCost = #{attachcost,jdbcType=DECIMAL},
+			</if>
+			<if test="innersubcontracttotalcost != null">
+				InnerSubContractTotalCost =
+				#{innersubcontracttotalcost,jdbcType=DECIMAL},
+			</if>
+			<if test="innersubcontractcount != null">
+				InnerSubContractCount =
+				#{innersubcontractcount,jdbcType=INTEGER},
+			</if>
+			<if test="oeprolist != null">
+				OEProList = #{oeprolist,jdbcType=CLOB},
+			</if>
+			<if test="demandrange != null">
+				DemandRange = #{demandrange,jdbcType=CLOB},
+			</if>
+			<if test="projectak != null">
+				ProjectAK = #{projectak,jdbcType=CLOB},
+			</if>
+			<if test="projectdescr != null">
+				ProjectDescr = #{projectdescr,jdbcType=CLOB},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.billjc.model.Project">
+		update
+		Project
+		set ParentID = #{parentid,jdbcType=VARCHAR},
+		ProjectNo =
+		#{projectno,jdbcType=VARCHAR},
+		ProjectName =
+		#{projectName,jdbcType=VARCHAR},
+		ProjectMgr_WorkID =
+		#{projectmgrWorkId,jdbcType=VARCHAR},
+		ProjectMgr_Name =
+		#{projectmgrName,jdbcType=VARCHAR},
+		Company =
+		#{company,jdbcType=VARCHAR},
+		DepartmentID =
+		#{departmentid,jdbcType=VARCHAR},
+		DepartmentName =
+		#{departmentname,jdbcType=VARCHAR},
+		ProjectType =
+		#{projecttype,jdbcType=VARCHAR},
+		ProjectSubType =
+		#{projectsubtype,jdbcType=VARCHAR},
+		ProjectStartDate =
+		#{projectstartdate,jdbcType=TIMESTAMP},
+		ProjectEndDate =
+		#{projectenddate,jdbcType=TIMESTAMP},
+		CustomerNo =
+		#{customerno,jdbcType=VARCHAR},
+		CustomerName =
+		#{customername,jdbcType=VARCHAR},
+		CustomerDep =
+		#{customerdep,jdbcType=VARCHAR},
+		ProductFamilyName =
+		#{productfamilyname,jdbcType=VARCHAR},
+		ProductName =
+		#{productname,jdbcType=VARCHAR},
+		Technology =
+		#{technology,jdbcType=VARCHAR},
+		DeliveryType =
+		#{deliverytype,jdbcType=VARCHAR},
+		CustomerPM =
+		#{customerpm,jdbcType=VARCHAR},
+		BU_Manager =
+		#{buManager,jdbcType=VARCHAR},
+		PersonTotal =
+		#{persontotal,jdbcType=INTEGER},
+		CooperationType =
+		#{cooperationtype,jdbcType=VARCHAR},
+		OBDORPPC =
+		#{obdorppc,jdbcType=VARCHAR},
+		WIP = #{wip,jdbcType=DECIMAL},
+		stock =
+		#{stock,jdbcType=DECIMAL},
+		ProState = #{prostate,jdbcType=VARCHAR},
+		isJump = #{isjump,jdbcType=VARCHAR},
+		ProComputerTime =
+		#{procomputertime,jdbcType=TIMESTAMP},
+		CreateWorkID =
+		#{createworkId,jdbcType=VARCHAR},
+		BU_Manager_WorkID =
+		#{buManagerWorkId,jdbcType=VARCHAR},
+		BU_Manager_Name =
+		#{buManagerName,jdbcType=VARCHAR},
+		Pro_ThreeDepartmentID =
+		#{proThreedepartmentid,jdbcType=VARCHAR},
+		Pro_ThreeDepartmentName =
+		#{proThreedepartmentname,jdbcType=VARCHAR},
+		Pro_FourDepartmentID =
+		#{proFourdepartmentid,jdbcType=VARCHAR},
+		Pro_FourDepartmentName =
+		#{proFourdepartmentname,jdbcType=VARCHAR},
+		ClientProductPM =
+		#{clientproductpm,jdbcType=VARCHAR},
+		ClientProjectPM =
+		#{clientprojectpm,jdbcType=VARCHAR},
+		BJCProductPMWork_ID =
+		#{bjcproductpmWorkId,jdbcType=VARCHAR},
+		BJCProductPMName =
+		#{bjcproductpmname,jdbcType=VARCHAR},
+		QAWork_ID =
+		#{qaworkId,jdbcType=VARCHAR},
+		QAName = #{qaname,jdbcType=VARCHAR},
+		ProjectType2 = #{projecttype2,jdbcType=VARCHAR},
+		ProjectTechnosphere =
+		#{projecttechnosphere,jdbcType=VARCHAR},
+		ProjectStartDateTime =
+		#{projectstartdatetime,jdbcType=TIMESTAMP},
+		ProjectEndDateTime =
+		#{projectenddatetime,jdbcType=TIMESTAMP},
+		DeliveryAddress =
+		#{deliveryaddress,jdbcType=VARCHAR},
+		ISQASupport =
+		#{isqasupport,jdbcType=VARCHAR},
+		WorkEvaluate =
+		#{workevaluate,jdbcType=VARCHAR},
+		ProStatePPC =
+		#{prostateppc,jdbcType=VARCHAR},
+		isJumpPPC =
+		#{isjumpppc,jdbcType=VARCHAR},
+		BudgetCustomerNO =
+		#{budgetcustomerno,jdbcType=VARCHAR},
+		BudgetCustomerName =
+		#{budgetcustomername,jdbcType=VARCHAR},
+		OEProjectNO =
+		#{oeprojectno,jdbcType=VARCHAR},
+		OEProjectName =
+		#{oeprojectName,jdbcType=VARCHAR},
+		EntryDate =
+		#{entrydate,jdbcType=TIMESTAMP},
+		BeProduct =
+		#{beproduct,jdbcType=VARCHAR},
+		BeProductName =
+		#{beproductname,jdbcType=VARCHAR},
+		IsOtherplace =
+		#{isotherplace,jdbcType=VARCHAR},
+		TeamSize =
+		#{teamsize,jdbcType=VARCHAR},
+		CalendarID =
+		#{calendarid,jdbcType=INTEGER},
+		CalendarName =
+		#{calendarname,jdbcType=VARCHAR},
+		CreateName =
+		#{createname,jdbcType=VARCHAR},
+		CreateDate =
+		#{createDate,jdbcType=TIMESTAMP},
+		DeliveryCity =
+		#{deliverycity,jdbcType=VARCHAR},
+		DeliveryCityID =
+		#{deliverycityid,jdbcType=INTEGER},
+		AreaType =
+		#{areatype,jdbcType=VARCHAR},
+		IsSite = #{issite,jdbcType=VARCHAR},
+		IsFinish = #{isfinish,jdbcType=BIT},
+		EndName =
+		#{endname,jdbcType=VARCHAR},
+		IsOrder = #{isorder,jdbcType=VARCHAR},
+		OrderDate = #{orderdate,jdbcType=TIMESTAMP},
+		OrderMoney =
+		#{ordermoney,jdbcType=DECIMAL},
+		ApplicationDate =
+		#{applicationdate,jdbcType=TIMESTAMP},
+		ProjectTypes =
+		#{projecttypes,jdbcType=VARCHAR},
+		ContractNo =
+		#{contractno,jdbcType=VARCHAR},
+		ContractName =
+		#{contractname,jdbcType=VARCHAR},
+		ReadyType =
+		#{readytype,jdbcType=VARCHAR},
+		FirstCustomNo =
+		#{firstcustomno,jdbcType=VARCHAR},
+		FirstCustomName =
+		#{firstcustomname,jdbcType=VARCHAR},
+		SecondCustomNo =
+		#{secondcustomno,jdbcType=VARCHAR},
+		SecondCustomName =
+		#{secondcustomname,jdbcType=VARCHAR},
+		ThirdCustomNo =
+		#{thirdcustomno,jdbcType=VARCHAR},
+		ThirdCustomName =
+		#{thirdcustomname,jdbcType=VARCHAR},
+		LevelName =
+		#{levelname,jdbcType=VARCHAR},
+		IsOld = #{isold,jdbcType=INTEGER},
+		IsContinue = #{iscontinue,jdbcType=INTEGER},
+		ProjectNewNo =
+		#{projectnewno,jdbcType=VARCHAR},
+		BaseType =
+		#{basetype,jdbcType=VARCHAR},
+		OverTimePayTimes =
+		#{overtimepaytimes,jdbcType=DECIMAL},
+		PDRC = #{pdrc,jdbcType=DECIMAL},
+		PlanIncome = #{planincome,jdbcType=DECIMAL},
+		PlanCost =
+		#{plancost,jdbcType=DECIMAL},
+		SubcontractorIncome =
+		#{subcontractorincome,jdbcType=DECIMAL},
+		SubcontractorCost =
+		#{subcontractorcost,jdbcType=DECIMAL},
+		IsTestProject =
+		#{istestproject,jdbcType=INTEGER},
+		PD_DepartID =
+		#{pdDepartId,jdbcType=VARCHAR},
+		PD_DepartName =
+		#{pdDepartName,jdbcType=VARCHAR},
+		MajorIncome =
+		#{majorincome,jdbcType=DECIMAL},
+		MajorCost =
+		#{majorcost,jdbcType=DECIMAL},
+		PassThroughIncome =
+		#{passthroughincome,jdbcType=DECIMAL},
+		PassThroughCost =
+		#{passthroughcost,jdbcType=DECIMAL},
+		TravelIncome =
+		#{travelincome,jdbcType=DECIMAL},
+		TravelCost =
+		#{travelcost,jdbcType=DECIMAL},
+		AdvanceIncome =
+		#{advanceincome,jdbcType=DECIMAL},
+		AdvanceCost =
+		#{advancecost,jdbcType=DECIMAL},
+		SubsidyIncome =
+		#{subsidyincome,jdbcType=DECIMAL},
+		SubsidyCost =
+		#{subsidycost,jdbcType=DECIMAL},
+		AttachIncome =
+		#{attachincome,jdbcType=DECIMAL},
+		AttachCost =
+		#{attachcost,jdbcType=DECIMAL},
+		InnerSubContractTotalCost =
+		#{innersubcontracttotalcost,jdbcType=DECIMAL},
+		InnerSubContractCount =
+		#{innersubcontractcount,jdbcType=INTEGER},
+		OEProList =
+		#{oeprolist,jdbcType=CLOB},
+		DemandRange = #{demandrange,jdbcType=CLOB},
+		ProjectAK = #{projectak,jdbcType=CLOB},
+		ProjectDescr =
+		#{projectdescr,jdbcType=CLOB}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.billjc.model.Project">
+		update
+		Project
+		set ParentID = #{parentid,jdbcType=VARCHAR},
+		ProjectNo =
+		#{projectno,jdbcType=VARCHAR},
+		ProjectName =
+		#{projectName,jdbcType=VARCHAR},
+		ProjectMgr_WorkID =
+		#{projectmgrWorkId,jdbcType=VARCHAR},
+		ProjectMgr_Name =
+		#{projectmgrName,jdbcType=VARCHAR},
+		Company =
+		#{company,jdbcType=VARCHAR},
+		DepartmentID =
+		#{departmentid,jdbcType=VARCHAR},
+		DepartmentName =
+		#{departmentname,jdbcType=VARCHAR},
+		ProjectType =
+		#{projecttype,jdbcType=VARCHAR},
+		ProjectSubType =
+		#{projectsubtype,jdbcType=VARCHAR},
+		ProjectStartDate =
+		#{projectstartdate,jdbcType=TIMESTAMP},
+		ProjectEndDate =
+		#{projectenddate,jdbcType=TIMESTAMP},
+		CustomerNo =
+		#{customerno,jdbcType=VARCHAR},
+		CustomerName =
+		#{customername,jdbcType=VARCHAR},
+		CustomerDep =
+		#{customerdep,jdbcType=VARCHAR},
+		ProductFamilyName =
+		#{productfamilyname,jdbcType=VARCHAR},
+		ProductName =
+		#{productname,jdbcType=VARCHAR},
+		Technology =
+		#{technology,jdbcType=VARCHAR},
+		DeliveryType =
+		#{deliverytype,jdbcType=VARCHAR},
+		CustomerPM =
+		#{customerpm,jdbcType=VARCHAR},
+		BU_Manager =
+		#{buManager,jdbcType=VARCHAR},
+		PersonTotal =
+		#{persontotal,jdbcType=INTEGER},
+		CooperationType =
+		#{cooperationtype,jdbcType=VARCHAR},
+		OBDORPPC =
+		#{obdorppc,jdbcType=VARCHAR},
+		WIP = #{wip,jdbcType=DECIMAL},
+		stock =
+		#{stock,jdbcType=DECIMAL},
+		ProState = #{prostate,jdbcType=VARCHAR},
+		isJump = #{isjump,jdbcType=VARCHAR},
+		ProComputerTime =
+		#{procomputertime,jdbcType=TIMESTAMP},
+		CreateWorkID =
+		#{createworkId,jdbcType=VARCHAR},
+		BU_Manager_WorkID =
+		#{buManagerWorkId,jdbcType=VARCHAR},
+		BU_Manager_Name =
+		#{buManagerName,jdbcType=VARCHAR},
+		Pro_ThreeDepartmentID =
+		#{proThreedepartmentid,jdbcType=VARCHAR},
+		Pro_ThreeDepartmentName =
+		#{proThreedepartmentname,jdbcType=VARCHAR},
+		Pro_FourDepartmentID =
+		#{proFourdepartmentid,jdbcType=VARCHAR},
+		Pro_FourDepartmentName =
+		#{proFourdepartmentname,jdbcType=VARCHAR},
+		ClientProductPM =
+		#{clientproductpm,jdbcType=VARCHAR},
+		ClientProjectPM =
+		#{clientprojectpm,jdbcType=VARCHAR},
+		BJCProductPMWork_ID =
+		#{bjcproductpmWorkId,jdbcType=VARCHAR},
+		BJCProductPMName =
+		#{bjcproductpmname,jdbcType=VARCHAR},
+		QAWork_ID =
+		#{qaworkId,jdbcType=VARCHAR},
+		QAName = #{qaname,jdbcType=VARCHAR},
+		ProjectType2 = #{projecttype2,jdbcType=VARCHAR},
+		ProjectTechnosphere =
+		#{projecttechnosphere,jdbcType=VARCHAR},
+		ProjectStartDateTime =
+		#{projectstartdatetime,jdbcType=TIMESTAMP},
+		ProjectEndDateTime =
+		#{projectenddatetime,jdbcType=TIMESTAMP},
+		DeliveryAddress =
+		#{deliveryaddress,jdbcType=VARCHAR},
+		ISQASupport =
+		#{isqasupport,jdbcType=VARCHAR},
+		WorkEvaluate =
+		#{workevaluate,jdbcType=VARCHAR},
+		ProStatePPC =
+		#{prostateppc,jdbcType=VARCHAR},
+		isJumpPPC =
+		#{isjumpppc,jdbcType=VARCHAR},
+		BudgetCustomerNO =
+		#{budgetcustomerno,jdbcType=VARCHAR},
+		BudgetCustomerName =
+		#{budgetcustomername,jdbcType=VARCHAR},
+		OEProjectNO =
+		#{oeprojectno,jdbcType=VARCHAR},
+		OEProjectName =
+		#{oeprojectName,jdbcType=VARCHAR},
+		EntryDate =
+		#{entrydate,jdbcType=TIMESTAMP},
+		BeProduct =
+		#{beproduct,jdbcType=VARCHAR},
+		BeProductName =
+		#{beproductname,jdbcType=VARCHAR},
+		IsOtherplace =
+		#{isotherplace,jdbcType=VARCHAR},
+		TeamSize =
+		#{teamsize,jdbcType=VARCHAR},
+		CalendarID =
+		#{calendarid,jdbcType=INTEGER},
+		CalendarName =
+		#{calendarname,jdbcType=VARCHAR},
+		CreateName =
+		#{createname,jdbcType=VARCHAR},
+		CreateDate =
+		#{createDate,jdbcType=TIMESTAMP},
+		DeliveryCity =
+		#{deliverycity,jdbcType=VARCHAR},
+		DeliveryCityID =
+		#{deliverycityid,jdbcType=INTEGER},
+		AreaType =
+		#{areatype,jdbcType=VARCHAR},
+		IsSite = #{issite,jdbcType=VARCHAR},
+		IsFinish = #{isfinish,jdbcType=BIT},
+		EndName =
+		#{endname,jdbcType=VARCHAR},
+		IsOrder = #{isorder,jdbcType=VARCHAR},
+		OrderDate = #{orderdate,jdbcType=TIMESTAMP},
+		OrderMoney =
+		#{ordermoney,jdbcType=DECIMAL},
+		ApplicationDate =
+		#{applicationdate,jdbcType=TIMESTAMP},
+		ProjectTypes =
+		#{projecttypes,jdbcType=VARCHAR},
+		ContractNo =
+		#{contractno,jdbcType=VARCHAR},
+		ContractName =
+		#{contractname,jdbcType=VARCHAR},
+		ReadyType =
+		#{readytype,jdbcType=VARCHAR},
+		FirstCustomNo =
+		#{firstcustomno,jdbcType=VARCHAR},
+		FirstCustomName =
+		#{firstcustomname,jdbcType=VARCHAR},
+		SecondCustomNo =
+		#{secondcustomno,jdbcType=VARCHAR},
+		SecondCustomName =
+		#{secondcustomname,jdbcType=VARCHAR},
+		ThirdCustomNo =
+		#{thirdcustomno,jdbcType=VARCHAR},
+		ThirdCustomName =
+		#{thirdcustomname,jdbcType=VARCHAR},
+		LevelName =
+		#{levelname,jdbcType=VARCHAR},
+		IsOld = #{isold,jdbcType=INTEGER},
+		IsContinue = #{iscontinue,jdbcType=INTEGER},
+		ProjectNewNo =
+		#{projectnewno,jdbcType=VARCHAR},
+		BaseType =
+		#{basetype,jdbcType=VARCHAR},
+		OverTimePayTimes =
+		#{overtimepaytimes,jdbcType=DECIMAL},
+		PDRC = #{pdrc,jdbcType=DECIMAL},
+		PlanIncome = #{planincome,jdbcType=DECIMAL},
+		PlanCost =
+		#{plancost,jdbcType=DECIMAL},
+		SubcontractorIncome =
+		#{subcontractorincome,jdbcType=DECIMAL},
+		SubcontractorCost =
+		#{subcontractorcost,jdbcType=DECIMAL},
+		IsTestProject =
+		#{istestproject,jdbcType=INTEGER},
+		PD_DepartID =
+		#{pdDepartId,jdbcType=VARCHAR},
+		PD_DepartName =
+		#{pdDepartName,jdbcType=VARCHAR},
+		MajorIncome =
+		#{majorincome,jdbcType=DECIMAL},
+		MajorCost =
+		#{majorcost,jdbcType=DECIMAL},
+		PassThroughIncome =
+		#{passthroughincome,jdbcType=DECIMAL},
+		PassThroughCost =
+		#{passthroughcost,jdbcType=DECIMAL},
+		TravelIncome =
+		#{travelincome,jdbcType=DECIMAL},
+		TravelCost =
+		#{travelcost,jdbcType=DECIMAL},
+		AdvanceIncome =
+		#{advanceincome,jdbcType=DECIMAL},
+		AdvanceCost =
+		#{advancecost,jdbcType=DECIMAL},
+		SubsidyIncome =
+		#{subsidyincome,jdbcType=DECIMAL},
+		SubsidyCost =
+		#{subsidycost,jdbcType=DECIMAL},
+		AttachIncome =
+		#{attachincome,jdbcType=DECIMAL},
+		AttachCost =
+		#{attachcost,jdbcType=DECIMAL},
+		InnerSubContractTotalCost =
+		#{innersubcontracttotalcost,jdbcType=DECIMAL},
+		InnerSubContractCount =
+		#{innersubcontractcount,jdbcType=INTEGER}
+		where ID =
+		#{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

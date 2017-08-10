@@ -1,0 +1,91 @@
+.pdrc-btnrow {
+	display: flex;
+	width: 100%;
+}
+
+.pdrc-btnrow>div {
+	flex: 1;
+}
+
+.ui-listview>li.pdrc-li>a.ui-btn {
+	display: flex;
+	flex: 1;
+}
+
+.ui-listview>li.pdrc-li.ui-li-static {
+	display: flex;
+}
+
+.pdrc-span {
+	flex: 1;
+	display: flex; /** 充满 */
+	justify-content: flex-end;
+}
+
+.pdrc-span>span {
+	/**
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;.*/
+	padding-left: 1em;
+	word-break: normal;
+	width: auto;
+	display: block;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+
+.pdrc-canedit {
+	display: flex !important;
+	
+}
+
+.pdrc-cannotedit {
+	display: flex !important;
+	padding-right: 16px;
+}
+
+li>a.ui-btn.pdrc-cannotedit:active, li>a.ui-btn.pdrc-cannotedit:hover {
+	background-color: #f6f6f6;
+}
+
+li.pdrc-line>a.ui-btn, li.pdrc-line>a.ui-btn.pdrc-cannotedit:active, li.pdrc-line>a.ui-btn.pdrc-cannotedit:hover
+	{
+	background-color: #fff;
+}
+
+.pdrc-cannotedit:after {
+	display: none !important;
+}
+
+.pdrc-listpanel:first-child {
+	margin-top: 0em;
+}
+
+.pdrc-listpanel {
+	margin-top: 0.6em;
+}
+
+.pdrc-title-span-left {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	flex: 1;
+	margin-right: 1em;
+}
+
+.pdrc-title-span-right {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.ui-listview>.ui-li-static.pdrc-li-label {
+	display: flex;
+}
+
+.ui-listview>.ui-li-static.pdrc-li-label>span:first-child {
+	flex: 1;
+}
+.pdrc-iconPlus:after{
+	    background-image: url("data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2014%2014%22%20style%3D%22enable-background%3Anew%200%200%2014%2014%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20fill%3D%22%23FFF%22%20points%3D%2214%2C5%209%2C5%209%2C0%205%2C0%205%2C5%200%2C5%200%2C9%205%2C9%205%2C14%209%2C14%209%2C9%2014%2C9%20%22%2F%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3Cg%3E%3C%2Fg%3E%3C%2Fsvg%3E") !important;
+}

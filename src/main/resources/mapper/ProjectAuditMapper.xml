@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.billjc.dao.ProjectAuditMapper">
+	<resultMap id="BaseResultMap" type="com.billjc.model.ProjectAudit">
+		<id column="ID" jdbcType="CHAR" property="id" />
+		<result column="Audit_Type_Id" jdbcType="INTEGER" property="auditTypeId" />
+		<result column="Audit_State" jdbcType="INTEGER" property="auditState" />
+		<result column="Audit_Work_Id" jdbcType="VARCHAR" property="auditWorkId" />
+		<result column="Audit_Content" jdbcType="VARCHAR" property="auditContent" />
+		<result column="Audit_Date" jdbcType="TIMESTAMP" property="auditDate" />
+		<result column="Project_Id" jdbcType="VARCHAR" property="projectId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, Audit_Type_Id, Audit_State, Audit_Work_Id, Audit_Content,
+		Audit_Date,
+		Project_Id
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ProjectAudit
+		where ID = #{id,jdbcType=CHAR}
+	</select>
+	<select id="selectByAuditWorkId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ProjectAudit
+		where Audit_Work_Id =
+		#{auditWorkId,jdbcType=CHAR}
+	</select>
+	<select id="selectByProjectId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ProjectAudit
+		where Project_Id = #{projectId,jdbcType=CHAR}
+		ORDER BY Audit_Type_Id, Audit_Work_Id;
+	</select>
+	<select id="selectByAuditTypeIds" parameterType="java.util.List"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from ProjectAudit
+		where Audit_Type_Id in
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	<resultMap id="AuditTypeIdResultMap" type="java.lang.Integer">
+		<result column="Audit_Type_Id" property="auditTypeId"/>
+	</resultMap>
+	<select id="selectAuditTypeIdsByParams" parameterType="java.lang.String"
+		resultMap="AuditTypeIdResultMap">
+		SELECT
+		pa.Audit_Type_Id Audit_Type_Id		
+		FROM
+		ProjectAudit pa,
+		Dictionary d
+		WHERE
+		pa.Project_Id = '${param1}'
+		AND pa.Audit_Work_Id =
+		'${param2}'
+		AND pa.Audit_Type_Id = d.ID
+		AND d.Type = '${param3}';
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		ProjectAudit
+		where ID = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.billjc.model.ProjectAudit">
+		insert into ProjectAudit
+		(ID, Audit_Type_Id, Audit_State,
+		Audit_Work_Id, Audit_Content, Audit_Date,
+		Project_Id)
+		values (#{id,jdbcType=CHAR}, #{auditTypeId,jdbcType=INTEGER},
+		#{auditState,jdbcType=INTEGER},
+		#{auditWorkId,jdbcType=VARCHAR},
+		#{auditContent,jdbcType=VARCHAR}, #{auditDate,jdbcType=TIMESTAMP},
+		#{projectId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.billjc.model.ProjectAudit">
+		insert into ProjectAudit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="auditTypeId != null">
+				Audit_Type_Id,
+			</if>
+			<if test="auditState != null">
+				Audit_State,
+			</if>
+			<if test="auditWorkId != null">
+				Audit_Work_Id,
+			</if>
+			<if test="auditContent != null">
+				Audit_Content,
+			</if>
+			<if test="auditDate != null">
+				Audit_Date,
+			</if>
+			<if test="projectId != null">
+				Project_Id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="auditTypeId != null">
+				#{auditTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="auditState != null">
+				#{auditState,jdbcType=INTEGER},
+			</if>
+			<if test="auditWorkId != null">
+				#{auditWorkId,jdbcType=VARCHAR},
+			</if>
+			<if test="auditContent != null">
+				#{auditContent,jdbcType=VARCHAR},
+			</if>
+			<if test="auditDate != null">
+				#{auditDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="projectId != null">
+				#{projectId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.billjc.model.ProjectAudit">
+		update ProjectAudit
+		<set>
+			<if test="auditTypeId != null">
+				Audit_Type_Id = #{auditTypeId,jdbcType=INTEGER},
+			</if>
+			<if test="auditState != null">
+				Audit_State = #{auditState,jdbcType=INTEGER},
+			</if>
+			<if test="auditWorkId != null">
+				Audit_Work_Id = #{auditWorkId,jdbcType=VARCHAR},
+			</if>
+			<if test="auditContent != null">
+				Audit_Content = #{auditContent,jdbcType=VARCHAR},
+			</if>
+			<if test="auditDate != null">
+				Audit_Date = #{auditDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="projectId != null">
+				Project_Id = #{projectId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.billjc.model.ProjectAudit">
+		update
+		ProjectAudit
+		set Audit_Type_Id = #{auditTypeId,jdbcType=INTEGER},
+		Audit_State = #{auditState,jdbcType=INTEGER},
+		Audit_Work_Id =
+		#{auditWorkId,jdbcType=VARCHAR},
+		Audit_Content =
+		#{auditContent,jdbcType=VARCHAR},
+		Audit_Date =
+		#{auditDate,jdbcType=TIMESTAMP},
+		Project_Id =
+		#{projectId,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+</mapper>
