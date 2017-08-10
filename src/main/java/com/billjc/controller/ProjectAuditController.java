@@ -181,6 +181,8 @@ public class ProjectAuditController extends BaseController {
 	@RequestMapping("/audit")
 	public ModelAndView projectAudit(String projectId, HttpSession session) {
 		logger.debug("auditTypeId {}", projectId);
+		
+	// 根据不同的角色，进入不同的页面
 		ModelAndView mav = new ModelAndView("audit/audit");
 		List<ProjectAuditView> projectAuditViewList = projectAuditService.selectByProjectId(projectId);
 		if (null != projectAuditViewList) {
@@ -188,6 +190,7 @@ public class ProjectAuditController extends BaseController {
 		} else {
 			mav.addObject("projectAuditView", new ProjectAuditView());
 		}
+		
 		setProjectAuditPower(session, mav);
 		return mav;
 	}
