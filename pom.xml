@@ -191,9 +191,6 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.35</version>
 		</dependency>
-
-
-
 	</dependencies>
 	<build>
 		<finalName>project-audit</finalName>
