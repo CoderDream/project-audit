@@ -43,7 +43,7 @@ public class IndexController {
 		// 解密workId
 		String decodeWorkId = QEncodeUtil.decrypt(workId);
 		setProfilePower(session, mav, decodeWorkId);
-		return "index";
+		return "index2";
 	}
 
 	@RequestMapping("/login2")
