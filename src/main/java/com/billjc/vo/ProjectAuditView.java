@@ -20,9 +20,9 @@ public class ProjectAuditView {
 
 	private String auditContent;
 
-	private Date auditDate;
+	private Date auditCreateDate;
 
-	private String auditDateString;
+	private String auditCreateDateString;
 
 	private String projectId;
 
@@ -111,20 +111,20 @@ public class ProjectAuditView {
 		this.auditContent = auditContent;
 	}
 
-	public Date getAuditDate() {
-		return auditDate;
+	public Date getAuditCreateDate() {
+		return auditCreateDate;
 	}
 
-	public void setAuditDate(Date auditDate) {
-		this.auditDate = auditDate;
+	public void setAuditCreateDate(Date auditCreateDate) {
+		this.auditCreateDate = auditCreateDate;
 	}
 
-	public String getAuditDateString() {
-		return auditDateString;
+	public String getAuditCreateDateString() {
+		return auditCreateDateString;
 	}
 
-	public void setAuditDateString(String auditDateString) {
-		this.auditDateString = auditDateString;
+	public void setAuditCreateDateString(String auditCreateDateString) {
+		this.auditCreateDateString = auditCreateDateString;
 	}
 
 	public String getProjectId() {
@@ -211,7 +211,8 @@ public class ProjectAuditView {
 	public String toString() {
 		return "ProjectAuditView [id=" + id + ", auditTypeId=" + auditTypeId + ", auditName=" + auditName + ", auditState=" + auditState
 				+ ", auditStateString=" + auditStateString + ", auditWorkId=" + auditWorkId + ", auditStaffName=" + auditStaffName + ", auditContent="
-				+ auditContent + ", auditDate=" + auditDate + ", auditDateString=" + auditDateString + ", projectId=" + projectId + ", projectName="
+						+ auditContent + ", auditCreateDate=" + auditCreateDate + ", auditCreateDateString="
+						+ auditCreateDateString + ", projectId=" + projectId + ", projectName="
 				+ projectName + ", projectStartDateString=" + projectStartDateString + ", projectEndDateString=" + projectEndDateString
 				+ ", projectStateString=" + projectStateString + ", reasonableObjectives=" + reasonableObjectives + ", operationStandards="
 				+ operationStandards + ", accurateDatas=" + accurateDatas + "]";

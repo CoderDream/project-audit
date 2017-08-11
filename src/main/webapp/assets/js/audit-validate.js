@@ -17,12 +17,12 @@ $(function() {
 
 			auditContent : { // 
 				required : true, // 必填，这里可以是一个匿名方法
-				rangelength : [ 1, 50 ], // 长度5-10之间
+				rangelength : [ 1, 100 ], // 长度1-100之间
 			}, // 任务描述必填
 		},
 		messages : { // 对应上面的错误信息
 			auditTypeId : "审计科目不能为空",
-			auditContent : "评价内容不能为空",
+			auditContent : "评价内容不能为空，且不能超过100个字符！",
 		},
 
 		/* 重写错误显示消息方法,以alert方式弹出错误消息 */  

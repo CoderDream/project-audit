@@ -157,8 +157,8 @@ public class ProjectAuditImpl implements ProjectAuditService {
 		}
 
 		projectAuditView
-				.setAuditDateString(projectAuditView.getAuditDate() == null ? ""
-						: sf.format(projectAuditView.getAuditDate()));
+				.setAuditCreateDateString(projectAuditView.getAuditCreateDate() == null ? ""
+						: sf.format(projectAuditView.getAuditCreateDate()));
 
 		// 设置项目名称
 		Project project = projectService
@@ -295,8 +295,8 @@ public class ProjectAuditImpl implements ProjectAuditService {
 		if (null == id || "".equals(id.trim())) {
 			id = UUID.randomUUID().toString();
 			projectAudit.setId(id);
-			Date auditDate = new Date();
-			projectAudit.setAuditDate(auditDate);
+			Date auditCreateDate = new Date();
+			projectAudit.setAuditCreateDate(auditCreateDate);
 			result = projectAuditMapper.insertSelective(projectAudit);
 		} else {
 			result = projectAuditMapper

@@ -31,8 +31,7 @@ public class IndexController {
 	public String login2() {
 		return "login2";
 	}
-	
-	
+
 	@RequestMapping("/alert")
 	public String alert() {
 		return "alert";
@@ -66,8 +65,11 @@ public class IndexController {
 	 * 这里模拟登陆，所以不需要把workId放到Session中
 	 * 
 	 * @param session
+	 *            缓存
 	 * @param mav
+	 *            模型和视图
 	 * @param workId
+	 *            员工号
 	 */
 	private void setProfilePower(HttpSession session, ModelAndView mav, String workId) {
 		logger.debug("setPower", mav);

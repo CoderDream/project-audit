@@ -27,6 +27,7 @@ import com.billjc.service.ProjectAuditService;
 import com.billjc.service.ProjectService;
 import com.billjc.util.Constants;
 import com.billjc.util.PowerUtil;
+import com.billjc.util.PropertiesUtil;
 import com.billjc.util.QEncodeUtil;
 import com.billjc.vo.ProjectAuditView;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,11 +57,15 @@ public class ProjectAuditController extends BaseController {
 	 * 通过项目信息查询
 	 * 
 	 * @param model
-	 * @return
-	 * @throws Exception
+	 *            页面传过来的模型对象
+	 * @param workId
+	 *            加密过的员工号
+	 * @param session
+	 *            缓存
+	 * @return 模型视图对象
 	 */
 	@RequestMapping("/query-by-project")
-	public ModelAndView queryByProject(ModelMap model, String workId, HttpSession session) throws Exception {
+	public ModelAndView queryByProject(ModelMap model, String workId, HttpSession session) {
 		logger.debug("queryBySkill encodeWorkId {}", workId);
 		// 解密workId
 		workId = QEncodeUtil.decrypt(workId);
@@ -68,7 +73,7 @@ public class ProjectAuditController extends BaseController {
 		session.setAttribute("workId", workId);
 		ModelAndView mav = new ModelAndView("/audit/query-by-project");
 		List<Integer> resourceIds = setProjectAuditPower(session, mav);
-		if (null == resourceIds || !resourceIds.contains(new Integer(85))) {
+		if (null == resourceIds || !hasPower(Constants.AUDIT_VIEW, resourceIds)) {
 			mav = new ModelAndView("error");
 		}
 		SimpleDateFormat sf = new SimpleDateFormat(Constants.COMPLEX_DATE_FORMAT2);
@@ -77,14 +82,37 @@ public class ProjectAuditController extends BaseController {
 	}
 
 	/**
+	 * @param powerName
+	 *            权限名称
+	 * @param resourceIds
+	 *            权限ID列表
+	 * @return 是否存在此权限
+	 */
+	private boolean hasPower(String powerName, List<Integer> resourceIds) {
+
+		for (Integer integer : resourceIds) {
+			String power = PropertiesUtil.getProperty(integer.toString());
+			if (null != power && power.equals(powerName)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * 通过审计科目查询
 	 * 
 	 * @param model
-	 * @return
-	 * @throws Exception
+	 *            页面传过来的模型对象
+	 * @param workId
+	 *            加密过的员工号
+	 * @param session
+	 *            缓存
+	 * @return 模型视图对象
 	 */
 	@RequestMapping("/query-by-audititem")
-	public ModelAndView queryByAudititem(ModelMap model, String workId, HttpSession session) throws Exception {
+	public ModelAndView queryByAudititem(ModelMap model, String workId, HttpSession session) {
 		logger.debug("queryByAudititem encodeWorkId {}", workId);
 		// 解密workId
 		workId = QEncodeUtil.decrypt(workId);
@@ -108,8 +136,11 @@ public class ProjectAuditController extends BaseController {
 	 * 通过审计科目查询项目审计列表
 	 * 
 	 * @param queryCondition
+	 *            查询条件
 	 * @param workId
+	 *            加密过的员工号
 	 * @param session
+	 *            缓存
 	 * @return 模型视图对象
 	 */
 	@SuppressWarnings("unchecked")
@@ -142,15 +173,14 @@ public class ProjectAuditController extends BaseController {
 	/**
 	 * 我发起的项目审计列表
 	 * 
-	 * @param model
-	 * @param conditionType
 	 * @param workId
+	 *            加密过的员工号
 	 * @param session
-	 * @return
-	 * @throws Exception
+	 *            缓存
+	 * @return 模型和视图
 	 */
 	@RequestMapping("/my-audit")
-	public ModelAndView myAudit(String workId, HttpSession session) throws Exception {
+	public ModelAndView myAudit(String workId, HttpSession session) {
 		logger.debug("myAudit encodeWorkId {}", workId);
 		// 解密workId
 		workId = QEncodeUtil.decrypt(workId);
@@ -164,7 +194,7 @@ public class ProjectAuditController extends BaseController {
 		mav.addObject("projectAuditViewList", projectAuditViewList);
 
 		List<Integer> resourceIds = setProjectAuditPower(session, mav);
-		if (null == resourceIds || !resourceIds.contains(new Integer(81))) {
+		if (null == resourceIds || !hasPower(Constants.AUDIT_ALL, resourceIds)) {
 			mav = new ModelAndView("error");
 		}
 		SimpleDateFormat sf = new SimpleDateFormat(Constants.COMPLEX_DATE_FORMAT2);
@@ -175,14 +205,17 @@ public class ProjectAuditController extends BaseController {
 	/**
 	 * 根据项目ID查询项目审计信息
 	 * 
-	 * @param workId
-	 * @return
+	 * @param projectId
+	 *            项目编号
+	 * @param session
+	 *            缓存
+	 * @return 模型和视图
 	 */
 	@RequestMapping("/audit")
 	public ModelAndView projectAudit(String projectId, HttpSession session) {
 		logger.debug("auditTypeId {}", projectId);
-		
-	// 根据不同的角色，进入不同的页面
+
+		// 根据不同的角色，进入不同的页面 TODO
 		ModelAndView mav = new ModelAndView("audit/audit");
 		List<ProjectAuditView> projectAuditViewList = projectAuditService.selectByProjectId(projectId);
 		if (null != projectAuditViewList) {
@@ -190,7 +223,7 @@ public class ProjectAuditController extends BaseController {
 		} else {
 			mav.addObject("projectAuditView", new ProjectAuditView());
 		}
-		
+
 		setProjectAuditPower(session, mav);
 		return mav;
 	}
@@ -199,13 +232,18 @@ public class ProjectAuditController extends BaseController {
 	 * 进入审计科目编辑页面（新增、修改、删除）
 	 * 
 	 * @param auditType
+	 *            审计科目类别
 	 * @param projectId
+	 *            项目编号
 	 * @param projectAuditTypeId
+	 *            项目审查类别编号
 	 * @param session
-	 * @return
+	 *            缓存
+	 * @return 模型和视图
 	 */
 	@RequestMapping("/audit-update")
-	public ModelAndView projectAuditUpdate(String auditType, String projectId, String projectAuditTypeId, HttpSession session) {
+	public ModelAndView projectAuditUpdate(String auditType, String projectId, String projectAuditTypeId,
+					HttpSession session) {
 		logger.debug("projectAuditUpdate {}", auditType);
 		logger.debug("projectAuditUpdate {}", projectId);
 		logger.debug("projectAuditUpdate {}", projectAuditTypeId);
@@ -241,11 +279,13 @@ public class ProjectAuditController extends BaseController {
 	/**
 	 * 删除审计科目
 	 * 
-	 * @param auditType
 	 * @param projectId
+	 *            项目编号
 	 * @param projectAuditTypeId
+	 *            项目审查类别编号
 	 * @param session
-	 * @return
+	 *            缓存
+	 * @return 模型和视图
 	 */
 	@RequestMapping("/audit-delete")
 	public ModelAndView projectAuditDelete(String projectId, String projectAuditTypeId, HttpSession session) {
@@ -263,11 +303,15 @@ public class ProjectAuditController extends BaseController {
 	/**
 	 * 审计科目（新增/修改保存）
 	 *
-	 * @param profileId
-	 * @return
+	 * @param projectAuditView
+	 *            页面传过来的项目审计视图
+	 * @param session
+	 *            缓存
+	 * @return 返回给页面的信息
 	 */
 	@RequestMapping(value = "/audit-update-save", method = RequestMethod.POST)
-	public ResponseEntity<ProjectAuditView> projectAuditUpdateAndSave(@RequestBody ProjectAuditView projectAuditView, HttpSession session) {
+	public ResponseEntity<ProjectAuditView> projectAuditUpdateAndSave(@RequestBody ProjectAuditView projectAuditView,
+					HttpSession session) {
 		logger.debug("auditUpdateAndSave projectAuditView {}", projectAuditView);
 		if (null == projectAuditView || "".equals(projectAuditView.getId())) {
 			session.setAttribute("operateType", "add");
@@ -285,10 +329,11 @@ public class ProjectAuditController extends BaseController {
 	/**
 	 * 基于功能（增删改查）的权限在这里控制，基于数据的权限通过CSS在页面进行控制（判断登陆workId与创建的auditWorkId是否相等）
 	 * 
-	 * @param projectAuditView
 	 * @param session
+	 *            缓存
 	 * @param mav
-	 * @return
+	 *            模型和视图
+	 * @return 权限ID列表
 	 */
 	private List<Integer> setProjectAuditPower(HttpSession session, ModelAndView mav) {
 		logger.debug("setPower", mav);

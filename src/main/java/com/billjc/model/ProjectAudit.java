@@ -16,7 +16,7 @@ public class ProjectAudit {
 
 	private String auditContent;
 
-	private Date auditDate;
+	private Date auditCreateDate;
 
 	private String projectId;
 
@@ -60,12 +60,12 @@ public class ProjectAudit {
 		this.auditContent = auditContent == null ? null : auditContent.trim();
 	}
 
-	public Date getAuditDate() {
-		return auditDate;
+	public Date getAuditCreateDate() {
+		return auditCreateDate;
 	}
 
-	public void setAuditDate(Date auditDate) {
-		this.auditDate = auditDate;
+	public void setAuditCreateDate(Date auditCreateDate) {
+		this.auditCreateDate = auditCreateDate;
 	}
 
 	public String getProjectId() {

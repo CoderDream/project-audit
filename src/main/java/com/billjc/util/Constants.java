@@ -1,7 +1,13 @@
 package com.billjc.util;
 
+/**
+ * 常量类
+ * 
+ * @author xulin28709
+ *
+ */
 public class Constants {
-	
+
 	public static final String ENCODING = "utf-8";
 
 	/** 专业 */
@@ -53,5 +59,30 @@ public class Constants {
 
 	/** 数据准确性 */
 	public static final String ACCURATE_DATA_INFO = "AccurateDataInfo";
+
+	/**
+	 * 81=audit:* 82=audit:create 83=audit:update 84=audit:delete 85=audit:view
+	 */
+	public static final String AUDIT_ALL = "audit:*";
+
+	/**
+	 * 81=audit:* 82=audit:create 83=audit:update 84=audit:delete 85=audit:view
+	 */
+	public static final String AUDIT_CREATE = "audit:create";
+
+	/**
+	 * 81=audit:* 82=audit:create 83=audit:update 84=audit:delete 85=audit:view
+	 */
+	public static final String AUDIT_UPDATE = "audit:update";
+
+	/**
+	 * 81=audit:* 82=audit:create 83=audit:update 84=audit:delete 85=audit:view
+	 */
+	public static final String AUDIT_DELETE = "audit:delete";
+
+	/**
+	 * 81=audit:* 82=audit:create 83=audit:update 84=audit:delete 85=audit:view
+	 */
+	public static final String AUDIT_VIEW = "audit:view";
 
 }

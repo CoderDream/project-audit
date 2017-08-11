@@ -7,13 +7,15 @@
 		<result column="Audit_State" jdbcType="INTEGER" property="auditState" />
 		<result column="Audit_Work_Id" jdbcType="VARCHAR" property="auditWorkId" />
 		<result column="Audit_Content" jdbcType="VARCHAR" property="auditContent" />
-		<result column="Audit_Date" jdbcType="TIMESTAMP" property="auditDate" />
+		<result column="Audit_Create_Date" jdbcType="TIMESTAMP" property="auditCreateDate" />
+		<result column="Audit_Update_Date" jdbcType="TIMESTAMP" property="auditUpdateDate" />
 		<result column="Project_Id" jdbcType="VARCHAR" property="projectId" />
+		<result column="Delete_Flag" jdbcType="INTEGER" property="deleteFlag" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		ID, Audit_Type_Id, Audit_State, Audit_Work_Id, Audit_Content,
-		Audit_Date,
-		Project_Id
+		Audit_Create_Date,Audit_Update_Date,
+		Project_Id,Delete_Flag
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
@@ -74,12 +76,12 @@
 	<insert id="insert" parameterType="com.billjc.model.ProjectAudit">
 		insert into ProjectAudit
 		(ID, Audit_Type_Id, Audit_State,
-		Audit_Work_Id, Audit_Content, Audit_Date,
+		Audit_Work_Id, Audit_Content, Audit_Create_Date,
 		Project_Id)
 		values (#{id,jdbcType=CHAR}, #{auditTypeId,jdbcType=INTEGER},
 		#{auditState,jdbcType=INTEGER},
 		#{auditWorkId,jdbcType=VARCHAR},
-		#{auditContent,jdbcType=VARCHAR}, #{auditDate,jdbcType=TIMESTAMP},
+		#{auditContent,jdbcType=VARCHAR}, #{auditCreateDate,jdbcType=TIMESTAMP},
 		#{projectId,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.billjc.model.ProjectAudit">
@@ -100,8 +102,8 @@
 			<if test="auditContent != null">
 				Audit_Content,
 			</if>
-			<if test="auditDate != null">
-				Audit_Date,
+			<if test="auditCreateDate != null">
+				Audit_Create_Date,
 			</if>
 			<if test="projectId != null">
 				Project_Id,
@@ -123,8 +125,8 @@
 			<if test="auditContent != null">
 				#{auditContent,jdbcType=VARCHAR},
 			</if>
-			<if test="auditDate != null">
-				#{auditDate,jdbcType=TIMESTAMP},
+			<if test="auditCreateDate != null">
+				#{auditCreateDate,jdbcType=TIMESTAMP},
 			</if>
 			<if test="projectId != null">
 				#{projectId,jdbcType=VARCHAR},
@@ -146,11 +148,17 @@
 			<if test="auditContent != null">
 				Audit_Content = #{auditContent,jdbcType=VARCHAR},
 			</if>
-			<if test="auditDate != null">
-				Audit_Date = #{auditDate,jdbcType=TIMESTAMP},
+			<if test="auditCreateDate != null">
+				Audit_Create_Date = #{auditCreateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditUpdateDate != null">
+				Audit_Update_Date = #{auditUpdateDate,jdbcType=TIMESTAMP},
 			</if>
 			<if test="projectId != null">
 				Project_Id = #{projectId,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteFlag != null">
+				Delete_Flag = #{deleteFlag,jdbcType=INTEGER},
 			</if>
 		</set>
 		where ID = #{id,jdbcType=CHAR}
@@ -164,10 +172,13 @@
 		#{auditWorkId,jdbcType=VARCHAR},
 		Audit_Content =
 		#{auditContent,jdbcType=VARCHAR},
-		Audit_Date =
-		#{auditDate,jdbcType=TIMESTAMP},
+		Audit_Create_Date =
+		#{auditCreateDate,jdbcType=TIMESTAMP},
+		Audit_Update_Date =
+		#{auditUpdateDate,jdbcType=TIMESTAMP},
 		Project_Id =
-		#{projectId,jdbcType=VARCHAR}
+		#{projectId,jdbcType=VARCHAR},
+		Delete_Flag = #{deleteFlag,jdbcType=INTEGER},
 		where ID = #{id,jdbcType=CHAR}
 	</update>
 </mapper>

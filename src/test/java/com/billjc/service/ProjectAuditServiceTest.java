@@ -118,7 +118,7 @@ public class ProjectAuditServiceTest extends BaseTest {
 	private void createProjectAudit(Integer auditTypeId, Integer auditState,
 			String workId, String projectId) {
 		String auditContent = "这里填写给该项目的审核意见";
-		Date auditDate = new Date();
+		Date auditCreateDate = new Date();
 
 		ProjectAudit projectAudit = new ProjectAudit();
 		String projectAuditTypeId = UUID.randomUUID().toString();
@@ -127,7 +127,7 @@ public class ProjectAuditServiceTest extends BaseTest {
 		projectAudit.setAuditTypeId(auditTypeId);
 		projectAudit.setAuditContent(auditContent);
 		projectAudit.setAuditState(auditState);
-		projectAudit.setAuditDate(auditDate);
+		projectAudit.setAuditCreateDate(auditCreateDate);
 		projectAudit.setAuditWorkId(workId);
 		projectAudit.setProjectId(projectId);
 
