@@ -19,9 +19,16 @@ public class BaseController {
 
 	private static Logger logger = LoggerFactory.getLogger(BaseController.class);
 
+	/**
+	 * @param session
+	 *            缓存
+	 * @param mav
+	 *            模型和视图
+	 * @return 权限列表
+	 */
 	public List<Integer> setPower(HttpSession session, ModelAndView mav) {
 		logger.debug("setPower", mav);
-		String workId = (String) session.getAttribute("workId"); // TODO
+		String workId = (String) session.getAttribute("workId");
 		List<Integer> resourceIds = PowerUtil.findResourceIds(workId);
 		mav.addObject("resourceIds", resourceIds);
 		return resourceIds;
