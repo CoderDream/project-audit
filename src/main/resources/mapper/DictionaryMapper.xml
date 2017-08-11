@@ -17,7 +17,7 @@
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from [Dictionary]
+		from [DataDict]
 		where id =
 		#{id,jdbcType=INTEGER}
 	</select>	
@@ -25,25 +25,25 @@
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from [Dictionary]
+		from [DataDict]
 		where parentID =
 		#{parentID,jdbcType=INTEGER}
 	</select>	
 	<select id="findAll" resultMap="BaseResultMap">
 		SELECT * FROM
-		[Dictionary]
+		[DataDict]
 	</select>	
 	<select id="selectByValue" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from [Dictionary]
+		from [DataDict]
 		where value LIKE
 		'%${value}%' and Type = #{type} and ParentID is not null;
 	</select>
 	<select id="selectByType" resultMap="BaseResultMap" parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
-		from [Dictionary]
+		from [DataDict]
 		where Type = #{type} and ParentID is not null;
 	</select>
 </mapper>

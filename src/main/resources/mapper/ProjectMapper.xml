@@ -226,7 +226,7 @@
 
 	<select id="selectByParams" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
-		select TOP 5 
+		select
 		<include refid="Base_Column_List" />
 		from Project
 		where
@@ -236,7 +236,7 @@
 
 	<select id="selectByQueryCondition" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
-		select TOP 5 
+		select
 		<include refid="Base_Column_List" />
 		from Project
 		where
