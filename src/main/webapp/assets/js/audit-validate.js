@@ -29,7 +29,7 @@ $(function() {
 		showErrors : function(errorMap, errorList) {
 			var msg = "";
 			$.each(errorList, function(i, v) {
-				msg += (v.message + "\r\n");
+				msg += (v.message + "<br>");
 			});
 			if (msg != "") {
 				alert(msg);

@@ -60,7 +60,7 @@
 		pa.Audit_Type_Id Audit_Type_Id		
 		FROM
 		ProjectAudit pa,
-		Dictionary d
+		[DataDict] d
 		WHERE
 		pa.Project_Id = '${param1}'
 		AND pa.Audit_Work_Id =
