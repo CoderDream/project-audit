@@ -40,7 +40,7 @@ public class ConnectionFactory {
 		return con;
 	}
 
-	public static void release(Connection con, PreparedStatement ps, ResultSet rs) {
+	public void release(Connection con, PreparedStatement ps, ResultSet rs) {
 		try {
 			if (null != con) {
 				con.close();
@@ -70,7 +70,7 @@ public class ConnectionFactory {
 	/**
 	 * @return
 	 */
-	public static Connection getConnection() {
+	public Connection getConnection() {
 		Properties prop = new Properties();// 属性集合对象
 		InputStream fis;
 		try {
@@ -98,14 +98,15 @@ public class ConnectionFactory {
 		}
 		return con;
 	}
-	
+
 	public static void main(String[] args) {
 		Statement st = null;
 		ResultSet rs = null;
 
 		Connection con = null;
 		try {
-			con = getConnection();
+			ConnectionFactory connectionFactory = new ConnectionFactory();
+			con = connectionFactory.getConnection();
 			st = con.createStatement();
 			String sql = "SELECT * from openquery([10.100.254.101],'select * from BJC_Finance.dbo.ISBG_Project')";
 			rs = st.executeQuery(sql);
