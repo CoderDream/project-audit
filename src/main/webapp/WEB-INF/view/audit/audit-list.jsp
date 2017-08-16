@@ -30,7 +30,7 @@
 									href="${pageContext.request.contextPath}/audit/audit?projectId=${projectAuditView.projectId}"
 									rel="external"><span class="pdrc-title-span-left">${projectAuditView.projectName}</span><span class="pdrc-title-span-right"><span>详情</span></span></a></li>
 							<li class="pdrc-li"><span>项目经理</span><span
-									class="pdrc-span"><span>[${projectAuditView.projectmgrWorkId}]${projectAuditView.projectmgrName}</span></span></li>
+									class="pdrc-span"><span>[${projectAuditView.projectMgrWorkId}]${projectAuditView.projectMgrName}</span></span></li>
 							<li class="pdrc-li"><span>项目计划开始日期</span><span
 									class="pdrc-span"><span>${projectAuditView.projectStartDateString}</span></span></li>
 							<li class="pdrc-li"><span>项目计划结束日期</span><span

@@ -20,6 +20,10 @@ public class ProjectAudit {
 
 	private String projectId;
 
+	private Date auditUpdateDate;
+
+	private Integer deleteFlag;
+
 	public String getId() {
 		return id;
 	}
@@ -75,4 +79,21 @@ public class ProjectAudit {
 	public void setProjectId(String projectId) {
 		this.projectId = projectId == null ? null : projectId.trim();
 	}
+
+	public Date getAuditUpdateDate() {
+		return auditUpdateDate;
+	}
+
+	public void setAuditUpdateDate(Date auditUpdateDate) {
+		this.auditUpdateDate = auditUpdateDate;
+	}
+
+	public Integer getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+
 }

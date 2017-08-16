@@ -29,7 +29,7 @@ public class ProjectServiceTest extends BaseTest {
 				.selectByQueryCondition("201704");
 		for (Project project : projectList) {
 			System.out.println(project.getId() + "\t" + project.getProjectName()
-					+ "\t" + project.getProjectnewno());
+					+ "\t" + project.getProjectNo());
 		}
 	}
 

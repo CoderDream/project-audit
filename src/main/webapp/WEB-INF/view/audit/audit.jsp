@@ -36,7 +36,7 @@
 			<ul data-role="listview" data-inset="true">
 				<li class="pdrc-li"><span>项目名称</span><span
 					class="pdrc-span"><span>${projectAuditView.projectName}</span></span></li>
-				<li class="pdrc-li"><span>项目经理</span><span	class="pdrc-span"><span>[${projectAuditView.projectmgrWorkId}]${projectAuditView.projectmgrName}</span></span></li>
+				<li class="pdrc-li"><span>项目经理</span><span	class="pdrc-span"><span>[${projectAuditView.projectMgrWorkId}]${projectAuditView.projectMgrName}</span></span></li>
 				<li class="pdrc-li"><span>项目计划开始日期</span><span
 					class="pdrc-span"><span>${projectAuditView.projectStartDateString}</span></span></li>
 				<li class="pdrc-li"><span>项目计划结束日期</span><span

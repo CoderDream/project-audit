@@ -165,19 +165,19 @@ public class ProjectAuditImpl implements ProjectAuditService {
 				.selectByPrimaryKey(projectAuditView.getProjectId());
 		if (null != project) {
 			projectAuditView.setProjectName(project.getProjectName());
-			projectAuditView.setProjectmgrWorkId(project.getProjectmgrWorkId());
-			projectAuditView.setProjectmgrName(project.getProjectmgrName());
+			projectAuditView.setProjectMgrWorkId(project.getProjectMgrWorkId());
+			projectAuditView.setProjectMgrName(project.getProjectMgrName());
 
-			Date projectStartDateTime = project.getProjectstartdatetime();
+			Date projectStartDateTime = project.getProjectStartDate();
 
 			projectAuditView
 					.setProjectStartDateString(projectStartDateTime == null ? ""
 							: sf.format(projectStartDateTime));
 			projectAuditView.setProjectEndDateString(
-					project.getProjectenddatetime() == null ? ""
-							: sf.format(project.getProjectenddatetime()));
+					project.getProjectEndDate() == null ? ""
+							: sf.format(project.getProjectEndDate()));
 
-			String projectStateString = project.getProstate();
+			String projectStateString = project.getProState();
 			projectAuditView.setProjectStateString(projectStateString);
 		}
 
@@ -299,6 +299,8 @@ public class ProjectAuditImpl implements ProjectAuditService {
 			projectAudit.setAuditCreateDate(auditCreateDate);
 			result = projectAuditMapper.insertSelective(projectAudit);
 		} else {
+			Date auditUpdateDate = new Date();
+			projectAudit.setAuditUpdateDate(auditUpdateDate);
 			result = projectAuditMapper
 					.updateByPrimaryKeySelective(projectAudit);
 		}

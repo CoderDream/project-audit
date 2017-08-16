@@ -28,9 +28,9 @@ public class ProjectAuditView {
 
 	private String projectName;
 
-	private String projectmgrWorkId;
+	private String projectMgrWorkId;
 
-	private String projectmgrName;
+	private String projectMgrName;
 
 	private String projectStartDateString;
 
@@ -143,20 +143,20 @@ public class ProjectAuditView {
 		this.projectName = projectName;
 	}
 
-	public String getProjectmgrWorkId() {
-		return projectmgrWorkId;
+	public String getProjectMgrWorkId() {
+		return projectMgrWorkId;
 	}
 
-	public void setProjectmgrWorkId(String projectmgrWorkId) {
-		this.projectmgrWorkId = projectmgrWorkId;
+	public void setProjectMgrWorkId(String projectMgrWorkId) {
+		this.projectMgrWorkId = projectMgrWorkId;
 	}
 
-	public String getProjectmgrName() {
-		return projectmgrName;
+	public String getProjectMgrName() {
+		return projectMgrName;
 	}
 
-	public void setProjectmgrName(String projectmgrName) {
-		this.projectmgrName = projectmgrName;
+	public void setProjectMgrName(String projectMgrName) {
+		this.projectMgrName = projectMgrName;
 	}
 
 	public String getProjectStartDateString() {

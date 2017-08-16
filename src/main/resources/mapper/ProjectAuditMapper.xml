@@ -22,14 +22,16 @@
 		select
 		<include refid="Base_Column_List" />
 		from ProjectAudit
-		where ID = #{id,jdbcType=CHAR}
+		where (Delete_Flag != 1 OR Delete_Flag IS NULL)
+		AND ID = #{id,jdbcType=CHAR}
 	</select>
 	<select id="selectByAuditWorkId" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from ProjectAudit
-		where Audit_Work_Id =
+		where (Delete_Flag != 1 OR Delete_Flag IS NULL)
+		AND Audit_Work_Id =
 		#{auditWorkId,jdbcType=CHAR}
 	</select>
 	<select id="selectByProjectId" parameterType="java.lang.String"
@@ -37,7 +39,8 @@
 		select
 		<include refid="Base_Column_List" />
 		from ProjectAudit
-		where Project_Id = #{projectId,jdbcType=CHAR}
+		where (Delete_Flag != 1 OR Delete_Flag IS NULL)
+		AND Project_Id = #{projectId,jdbcType=CHAR}
 		ORDER BY Audit_Type_Id, Audit_Work_Id;
 	</select>
 	<select id="selectByAuditTypeIds" parameterType="java.util.List"
@@ -45,7 +48,8 @@
 		select
 		<include refid="Base_Column_List" />
 		from ProjectAudit
-		where Audit_Type_Id in
+		where (Delete_Flag != 1 OR Delete_Flag IS NULL)
+		AND Audit_Type_Id in
 		<foreach item="item" index="index" collection="list" open="("
 			separator="," close=")">
 			#{item}
@@ -62,15 +66,17 @@
 		ProjectAudit pa,
 		[DataDict] d
 		WHERE
-		pa.Project_Id = '${param1}'
+		(pa.Delete_Flag != 1 OR pa.Delete_Flag IS NULL)
+		AND pa.Project_Id = '${param1}'
 		AND pa.Audit_Work_Id =
 		'${param2}'
 		AND pa.Audit_Type_Id = d.ID
 		AND d.Type = '${param3}';
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-		delete from
+		update
 		ProjectAudit
+		set Delete_Flag = 1
 		where ID = #{id,jdbcType=CHAR}
 	</delete>
 	<insert id="insert" parameterType="com.billjc.model.ProjectAudit">

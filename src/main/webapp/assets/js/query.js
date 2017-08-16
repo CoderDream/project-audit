@@ -55,14 +55,14 @@ $(function() {
 					var projectId = projectitem.id;
 					var projectName = projectitem.projectName;
 	
-					var projectmgrWorkId = projectitem.projectmgrWorkId;
-					var projectmgrName = projectitem.projectmgrName;
-					var projectstartdatetime = new Date(projectitem.projectstartdatetime);
-					var projectenddatetime = new Date(projectitem.projectenddatetime);
+					var projectMgrWorkId = projectitem.projectMgrWorkId;
+					var projectMgrName = projectitem.projectMgrName;
+					var projectstartdatetime = new Date(projectitem.projectStartDate);
+					var projectenddatetime = new Date(projectitem.projectEndDate);
 					var projectStartDateString = projectstartdatetime.formatToString("yyyy-MM-dd");
 					var projectEndDateString = projectenddatetime.formatToString("yyyy-MM-dd");
 					
-					$("#projectName").text('['+projectmgrWorkId+']'+projectmgrName);
+					$("#projectName").text('['+projectMgrWorkId+']'+projectMgrName);
 					$("#projectStartDateString").text(projectStartDateString);
 					$("#projectEndDateString").text(projectEndDateString);
 					

@@ -12,9 +12,9 @@ public class ProjectView {
 
 	private String projectName;
 
-	private String projectmgrWorkId;
+	private String projectMgrWorkId;
 
-	private String projectmgrName;
+	private String projectMgrName;
 
 	private String company;
 
@@ -270,22 +270,22 @@ public class ProjectView {
 		this.projectName = projectName == null ? null : projectName.trim();
 	}
 
-	public String getProjectmgrWorkId() {
-		return projectmgrWorkId;
+	public String getProjectMgrWorkId() {
+		return projectMgrWorkId;
 	}
 
-	public void setProjectmgrWorkId(String projectmgrWorkId) {
-		this.projectmgrWorkId = projectmgrWorkId == null ? null
-				: projectmgrWorkId.trim();
+	public void setProjectMgrWorkId(String projectMgrWorkId) {
+		this.projectMgrWorkId = projectMgrWorkId == null ? null
+				: projectMgrWorkId.trim();
 	}
 
-	public String getProjectmgrName() {
-		return projectmgrName;
+	public String getProjectMgrName() {
+		return projectMgrName;
 	}
 
-	public void setProjectmgrName(String projectmgrName) {
-		this.projectmgrName = projectmgrName == null ? null
-				: projectmgrName.trim();
+	public void setProjectMgrName(String projectMgrName) {
+		this.projectMgrName = projectMgrName == null ? null
+				: projectMgrName.trim();
 	}
 
 	public String getCompany() {
@@ -1207,8 +1207,8 @@ public class ProjectView {
 	public String toString() {
 		return "Project [id=" + id + ", parentid=" + parentid + ", projectno="
 				+ projectno + ", projectName=" + projectName
-				+ ", projectmgrWorkId=" + projectmgrWorkId + ", projectmgrName="
-				+ projectmgrName + ", company=" + company + ", departmentid="
+				+ ", projectMgrWorkId=" + projectMgrWorkId + ", projectMgrName="
+				+ projectMgrName + ", company=" + company + ", departmentid="
 				+ departmentid + ", departmentname=" + departmentname
 				+ ", projecttype=" + projecttype + ", projectsubtype="
 				+ projectsubtype + ", projectstartdate=" + projectstartdate
