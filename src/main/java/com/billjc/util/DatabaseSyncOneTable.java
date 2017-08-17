@@ -33,11 +33,11 @@ public class DatabaseSyncOneTable {
 
 	private AtomicLong currentSynCount = new AtomicLong(0L); // 当前已同步的条数
 
+	private AtomicLong insertSynCount = new AtomicLong(0L); // 当前已同步的条数
+
+	private AtomicLong updateSynCount = new AtomicLong(0L); // 当前已同步的条数
+
 	private int syncThreadNum; // 同步的线程数
-
-	private int insertCount; // 同步的线程数
-
-	private int updateCount; // 同步的线程数
 
 	public void syncData(int businessType) throws Exception {
 
@@ -123,7 +123,8 @@ public class DatabaseSyncOneTable {
 		// 休眠一会儿让数据库有机会commit剩余的批处理(只针对JUnit单元测试,因为单元测试完成后会关闭虚拟器，使线程里的代码没有机会作提交操作);
 		// Thread.sleep(1000 * 3);
 		log.info("核心库" + "表数据同步完成，共同步了" + currentSynCount.get() + "条数据，更新 "
-						+ updateCount + "条，新增" + insertCount + "条！");
+						+ updateSynCount.get() + "条，新增" + insertSynCount.get()
+						+ "条！");
 	}// end for loop
 
 	public void setConnectionFactory(ConnectionFactory connectionFactory) {
@@ -132,22 +133,6 @@ public class DatabaseSyncOneTable {
 
 	public void setSyncThreadNum(int syncThreadNum) {
 		this.syncThreadNum = syncThreadNum;
-	}
-
-	public int getInsertCount() {
-		return insertCount;
-	}
-
-	public void setInsertCount(int insertCount) {
-		this.insertCount = insertCount;
-	}
-
-	public int getUpdateCount() {
-		return updateCount;
-	}
-
-	public void setUpdateCount(int updateCount) {
-		this.updateCount = updateCount;
 	}
 
 	// 数据同步线程
@@ -198,13 +183,13 @@ public class DatabaseSyncOneTable {
 			PreparedStatement updatePstmt = targetConn
 							.prepareStatement(stringBuilder.toString());
 
-			//log.error(Thread.currentThread().getName() + "'s Query SQL::"
-			//				+ queryStr);
+			// log.error(Thread.currentThread().getName() + "'s Query SQL::"
+			// + queryStr);
 			ResultSet coreRs = coreStmt.executeQuery(queryStr);
-			//log.error("ids: " + ids);
-			//for (String id : ids) {
-			//	log.error("id: " + id);
-			//}
+			// log.error("ids: " + ids);
+			// for (String id : ids) {
+			// log.error("id: " + id);
+			// }
 			int batchInsertCounter = 0; // 累加的批处理数量
 			int batchUpdateCounter = 0; // 累加的批处理数量
 			while (coreRs.next()) {
@@ -232,6 +217,7 @@ public class DatabaseSyncOneTable {
 					updatePstmt.addBatch();
 					batchUpdateCounter++;
 					currentSynCount.incrementAndGet();// 递增
+					updateSynCount.incrementAndGet();// 递增
 					if (batchUpdateCounter % 100 == 0) { // 1万条数据一提交
 						updatePstmt.executeBatch();
 						updatePstmt.clearBatch();
@@ -250,6 +236,7 @@ public class DatabaseSyncOneTable {
 					insertPstmt.addBatch();
 					batchInsertCounter++;
 					currentSynCount.incrementAndGet();// 递增
+					insertSynCount.incrementAndGet();// 递增
 					if (batchInsertCounter % 100 == 0) { // 1万条数据一提交
 						insertPstmt.executeBatch();
 						insertPstmt.clearBatch();
@@ -264,9 +251,6 @@ public class DatabaseSyncOneTable {
 			insertPstmt.executeBatch();
 			insertPstmt.clearBatch();
 			targetConn.commit();
-
-			insertCount = batchInsertCounter;
-			updateCount = batchUpdateCounter;
 
 			// 释放连接
 			connectionFactory.release(targetConn, updatePstmt, coreRs);

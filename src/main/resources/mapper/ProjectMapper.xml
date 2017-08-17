@@ -48,5 +48,6 @@
 		<!-- OR
 		(ProjectNewNo LIKE '%${param1}%')
 		 -->
+		ORDER BY Project_Start_Date DESC
 	</select>
 </mapper>
