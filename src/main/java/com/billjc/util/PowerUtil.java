@@ -19,11 +19,11 @@ public class PowerUtil {
 			.getLogger(PowerUtil.class);
 
 	@SuppressWarnings("unchecked")
-	public static List<Integer> findResourceIds(String username) {
+	public static List<Integer> findResourceIds(String workId) {
 		RestTemplate restTemplate = new RestTemplate();
-		logger.debug("findResourceIds username {}", username);
+		logger.debug("findResourceIds workId {}", workId);
 		String url = UriComponentsBuilder
-				.fromHttpUrl(Constants.BASE_URL + "findResourceIds/" + username)
+				.fromHttpUrl(Constants.BASE_URL + "getFunctionIdsByWorkId/" + workId)
 				.build().toUriString();
 
 		ResponseEntity<?> responseEntity = restTemplate.getForEntity(url,

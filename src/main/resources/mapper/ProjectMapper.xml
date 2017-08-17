@@ -43,11 +43,11 @@
 		where 
 		Project_Start_Date IS NOT NULL
 		AND Project_Start_Date > N'2017-2-1'
-		AND
-		(Project_Name LIKE '%${param1}%')
-		<!-- OR
-		(ProjectNewNo LIKE '%${param1}%')
-		 -->
+		AND Project_Name LIKE '%${param1}%'
+		<!-- 
+		OR
+		(ProjectNewNo LIKE '%${param1}%'))
+		 -->		
 		ORDER BY Project_Start_Date DESC
 	</select>
 </mapper>

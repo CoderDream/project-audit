@@ -32,6 +32,16 @@ public class ProjectServiceTest extends BaseTest {
 					+ "\t" + project.getProjectNo());
 		}
 	}
+	
+	@Test
+	public void selectByQueryCondition02() {
+		List<Project> projectList = projectService
+				.selectByQueryCondition("icap");
+		for (Project project : projectList) {
+			System.out.println(project.getId() + "\t" + project.getProjectName()
+					+ "\t" + project.getProjectNo());
+		}
+	}
 
 	@Test
 	public void testSelectByPrimaryKey() {

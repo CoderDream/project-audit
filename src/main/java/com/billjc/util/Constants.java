@@ -17,7 +17,7 @@ public class Constants {
 
 	public static final String COMPLEX_DATE_FORMAT2 = "yyyyMMddHHmmssSSS";
 
-	public static final String BASE_URL = "http://localhost:10086/common-rbac/rest/";
+	public static final String BASE_URL = "http://localhost:10086/common-rbac/function/";
 
 	/** 目标合理性 */
 	public static final String REASONABLE_OBJECTIVE_INFO = "ReasonableObjectiveInfo";

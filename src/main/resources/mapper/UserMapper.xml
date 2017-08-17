@@ -4,22 +4,10 @@
 	<resultMap id="BaseResultMap" type="com.billjc.model.User">
 		<id column="ID" jdbcType="VARCHAR" property="id" />
 		<result column="UserName" jdbcType="VARCHAR" property="username" />
-		<result column="UserPWD" jdbcType="VARCHAR" property="userPwd" />
-		<result column="CreateDate" jdbcType="VARCHAR" property="createDate" />
-		<result column="DepartID" jdbcType="INTEGER" property="departId" />
-		<result column="Email" jdbcType="VARCHAR" property="email" />
 		<result column="WorkId" jdbcType="VARCHAR" property="workId" />
-		<result column="DepartName" jdbcType="VARCHAR" property="departName" />
-		<result column="IsIntro" jdbcType="INTEGER" property="isIntro" />
-		<result column="IsLock" jdbcType="INTEGER" property="isLock" />
-		<result column="UserImage" jdbcType="BLOB" property="userImage" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID, UserName, UserPWD, CreateDate, DepartID, Email, WorkId,
-		DepartName,
-		IsIntro,
-		IsLock,
-		UserImage
+		ID, UserName, WorkId
 	</sql>
 
 	<select id="selectByWorkId" parameterType="java.lang.String"
@@ -47,7 +35,8 @@
 		<where>
 			<choose>
 				<when test="_parameter!=null and _parameter!=''">
-					and ( WorkId LIKE '%${_parameter}%' or Username LIKE '%${_parameter}%')
+					and ( WorkId LIKE '%${_parameter}%' or Username LIKE
+					'%${_parameter}%')
 				</when>
 			</choose>
 		</where>

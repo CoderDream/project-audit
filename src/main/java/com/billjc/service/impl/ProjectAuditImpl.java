@@ -168,11 +168,11 @@ public class ProjectAuditImpl implements ProjectAuditService {
 			projectAuditView.setProjectMgrWorkId(project.getProjectMgrWorkId());
 			projectAuditView.setProjectMgrName(project.getProjectMgrName());
 
-			Date projectStartDateTime = project.getProjectStartDate();
+			Date projectStartDate = project.getProjectStartDate();
 
 			projectAuditView
-					.setProjectStartDateString(projectStartDateTime == null ? ""
-							: sf.format(projectStartDateTime));
+					.setProjectStartDateString(projectStartDate == null ? ""
+							: sf.format(projectStartDate));
 			projectAuditView.setProjectEndDateString(
 					project.getProjectEndDate() == null ? ""
 							: sf.format(project.getProjectEndDate()));

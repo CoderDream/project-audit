@@ -89,7 +89,7 @@ public class DatabaseSyncOneTable {
 			// .append((i * ownerRecordNum + ownerRecordNum));
 
 			sqlBuilder.append(
-							"SELECT [ID],[ProjectNewNo],[ProjectName],[ProjectMgr_WorkID],[ProjectMgr_Name],[ProjectStartDate],[ProjectEndDate],[IsFinish],[ProState]");
+							"SELECT [ID],[ProjectNewNo],[ProjectName],[ProjectMgr_WorkID],[ProjectMgr_Name],[ProjectStartDateTime],[ProjectEndDateTime],[IsFinish],[ProState]");
 			sqlBuilder.append("FROM ");
 			sqlBuilder.append("(");
 			sqlBuilder.append("  SELECT ROW_NUMBER( ) OVER( ORDER BY id ASC )");
