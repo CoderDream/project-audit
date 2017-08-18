@@ -1,0 +1,484 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+body {
+	background: #f0eff4;
+	overflow-y: auto;
+}
+
+a {
+	color: #000;
+}
+
+.header {
+	z-index: 999;
+	width: 100%;
+	height: 2.2rem;
+	background-color: #1D81D2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0px;
+	color: #fff;
+	line-height: 2.2rem;
+}
+
+.header a {
+	font-size: 0.9rem;
+	color: #fff;
+	margin-left: 0.4rem;
+}
+
+.back span {
+	margin-right: 0.4rem;
+}
+
+.content {
+	width: 100%;
+	margin-top: 2.2rem;
+}
+
+.list-frist {
+	height: 52px;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 10px;
+	box-shadow: 0 2px 6px #dfdfdf;
+}
+
+.list-block {
+	height: 38px;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 10px;
+	box-shadow: 0 2px 6px #dfdfdf;
+}
+
+.list-middle {
+	height: 30px;
+	width: 100%;
+	background: #f0eff8;
+}
+
+.list-text {
+	height: 72px;
+	width: 100%;
+	background: #fff;
+	box-shadow: 0 2px 6px #dfdfdf;
+}
+
+.ftitle {
+	text-indent: 22px;
+	line-height: 24px;
+	font-size: 14px;
+	float: left;
+}
+
+.mtitle {
+	text-indent: 22px;
+	line-height: 38px;
+	font-size: 14px;
+	float: left;
+}
+
+.rtitle {
+	line-height: 38px;
+	font-size: 14px;
+	float: right;
+	color: #999;
+	margin-right: 10px;
+}
+
+.mark {
+	color: red;
+	padding: 0 5px;
+	font-size: 20px;
+	vertical-align: middle;
+}
+
+.ttitle {
+	text-indent: 22px;
+	line-height: 34px;
+	font-size: 14px;
+	float: left;
+}
+
+.stitle {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	text-indent: 20px;
+	padding-top: 10px;
+}
+
+.bottom {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: #f0eff4;
+}
+
+.bclick {
+	background: #1D81D2;
+	color: #fff;
+	border-radius: 8px;
+	font-size: 14px;
+	width: 80%;
+	margin: 0 10%;
+	display: block;
+	text-align: center;
+	padding: 10px 0;
+}
+/*我的申请首页*/
+.applist {
+	width: 100%;
+}
+
+.applist li {
+	float: left;
+	width: 33%;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.positionnews {
+	position: relative;
+	width: 76px;
+	transform: translateX(-50%);
+	left: 50%;
+	display: block;
+}
+
+
+
+.iconimg {
+	width: 76px;
+	height: 76px;
+	background: #FFF;
+	border-radius: 8px;
+}
+
+.iconimg img {
+	width: 80%;
+	margin-top: 8px;
+}
+
+.positionnews p {
+	margin-top: 10px;
+}
+
+/*待办事项首页*/
+.news {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: red;
+	text-align: center;
+	line-height: 16px;
+	position: absolute;
+	top: -5px;
+	right: -7px;
+}
+
+.written {
+	color: #fff;
+	font-size: 12px;
+}
+/*待办事项列表*/
+ul.tab {
+	width: 100%;
+	height: 40px;
+	margin: 20px auto;
+	margin-bottom: 0px;
+	border-bottom: 1px solid #dfdfdf;
+	background: #fff;
+}
+
+ul.tab li {
+	width: 33%;
+	height: 40px;
+	float: left;
+}
+
+ul.tab li a {
+	display: block;
+	line-height: 40px;
+	text-align: center;
+	color: #000;
+	font-size: 14px;
+}
+
+ul.tab li.active a {
+	color: #1D81D2;
+	border-bottom: 2px solid #1D81D2;
+}
+
+ul.content {
+	width: 100%;
+	margin: 0px auto;
+	overflow: hidden;
+}
+
+ul.content li {
+	overflow: hidden;
+	display: none;
+}
+
+.listbottom {
+	border-bottom: 2px solid #dfdfdf;
+	overflow: hidden;
+	padding: 10px 0;
+	display: block;
+	background: #fff;
+}
+
+.listleft {
+	float: left;
+	width: 20%;
+	text-align: center;
+}
+
+.listright {
+	float: left;
+	width: 80%;
+}
+
+.listright_titleb {
+	color: #000;
+	line-height: 33px;
+	font-size: 14px;
+}
+
+.listright_titleg {
+	color: #999;
+	line-height: 33px;
+	font-size: 12px;
+	float: right;
+	margin-right: 10px;
+}
+
+.listright_titley {
+	color: #f39856;
+	line-height: 16px;
+	font-size: 14px;
+}
+/*详情页面*/
+.info {
+	overflow: hidden;
+	border-bottom: 1px solid #dfdfdf;
+	font-size: 14px;
+	padding: 10px 0;
+}
+
+.infoleft {
+	float: left;
+	width: 30%;
+	text-align: center;
+}
+
+.infoleft img {
+	width: 70%;
+	border-radius: 50%;
+}
+
+.inforight {
+	float: left;
+	width: 65%;
+}
+
+.inforight_name {
+	line-height: 28px;
+}
+
+.inforight_num {
+	font-size: 12px;
+	color: #999;
+	line-height: 24px;
+}
+
+.inforight_num span {
+	margin-left: 28px;
+}
+
+.state {
+	overflow: hidden;
+	border-bottom: 1px solid #dfdfdf;
+	text-align: center;
+	padding: 3px 0;
+}
+
+.stateone {
+	width: 50%;
+	float: left;
+	display: block;
+}
+
+.stateone img {
+	width: 42px;
+}
+
+.stateone p {
+	font-size: 12px;
+	color: #999;
+	margin-bottom: 4px;
+	margin-top: -7px;
+}
+
+ul.tabs {
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px solid #dfdfdf;
+	background: #fff;
+}
+
+ul.tabs li {
+	width: 50%;
+	height: 40px;
+	float: left;
+}
+
+ul.tabs li a {
+	display: block;
+	line-height: 40px;
+	text-align: center;
+	color: #000;
+	font-size: 14px;
+}
+
+ul.tabs li.active a {
+	color: #1D81D2;
+	border-bottom: 2px solid #1D81D2;
+}
+
+ul.contents {
+	width: 100%;
+	margin: 0px auto;
+	overflow: hidden;
+}
+
+.contentsli {
+	overflow: hidden;
+	display: none;
+}
+
+.wrap {
+	width: 100%;
+	background: #fff;
+	font-size: 14px;
+	line-height: 30px;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.special span {
+	float: left;
+}
+
+.special img {
+	float: left;
+}
+
+.special a {
+	float: left;
+	color: #1D81D2
+}
+/*审批详情*/
+.main {
+	width: 100%;
+	float: left;
+	position: relative;
+	margin: 20px 0;
+}
+
+.main:before {
+	left: 38%;
+	position: absolute;
+	width: 4px;
+	background: #dfdfdf;
+	height: 100%;
+	content: "";
+}
+
+.maincontent {
+	width: 55%;
+	background: white;
+	float: right;
+}
+
+.maincontain {
+	float: left;
+	width: 45%;
+}
+
+.mainul {
+	width: 100%;
+}
+
+.mainli {
+	overflow: hidden;
+	padding-bottom: 10px;
+	width: 98%;
+	margin: 0 1%;
+}
+
+.maincontent h2 {
+	line-height: 20px;
+	font-size: 12px;
+	padding: 5px;
+	padding-left: 1em;
+	font-weight: normal;
+	background: #dfdfdf;
+	border-radius: 4px;
+	color: #000;
+	position: relative;
+}
+
+.main span {
+	color: green;
+	font-size: 14px;
+	float: right;
+}
+
+.maincontain h3 {
+	font-size: 12px;
+	color: #000;
+	font-weight: normal;
+	line-height: 30px;
+}
+
+.maincontent h2:before {
+	width: 0px;
+	height: 0px;
+	border: 10px solid transparent;
+	position: absolute;
+	content: "";
+	z-index: 88;
+	top: 4px;
+}
+
+.maincontent h2:after {
+	content: "";
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	position: absolute;
+	background-color: #dfdfdf;
+	top: 4px;
+	background-image: url(../images/time.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.maincontent h2:before {
+	border-right: 10 px solid #dfdfdf;
+	left: -20px;
+}
+
+.maincontent h2:after {
+	left: -40px;
+}

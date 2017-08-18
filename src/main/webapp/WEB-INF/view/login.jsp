@@ -21,8 +21,6 @@
 <script src="${pageContext.request.contextPath}/assets/js/query.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/login.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/power.js"></script>
-<script
-	src="${pageContext.request.contextPath}/assets/js/profile-validate.js"></script>
 </head>
 <body onload="load()">
 	<div data-role="page" id="profile">

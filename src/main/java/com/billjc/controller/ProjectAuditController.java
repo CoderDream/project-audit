@@ -42,7 +42,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RequestMapping("/audit")
 public class ProjectAuditController extends BaseController {
 
-	private static Logger logger = LoggerFactory.getLogger(ProjectAuditController.class);
+	private static Logger logger = LoggerFactory
+					.getLogger(ProjectAuditController.class);
 
 	@Autowired
 	private ProjectAuditService projectAuditService;
@@ -65,7 +66,8 @@ public class ProjectAuditController extends BaseController {
 	 * @return 模型视图对象
 	 */
 	@RequestMapping("/query-by-project")
-	public ModelAndView queryByProject(ModelMap model, String workId, HttpSession session) {
+	public ModelAndView queryByProject(ModelMap model, String workId,
+					HttpSession session) {
 		logger.debug("queryBySkill encodeWorkId {}", workId);
 		// 解密workId
 		workId = QEncodeUtil.decrypt(workId);
@@ -73,10 +75,12 @@ public class ProjectAuditController extends BaseController {
 		session.setAttribute("workId", workId);
 		ModelAndView mav = new ModelAndView("/audit/query-by-project");
 		List<Integer> resourceIds = setProjectAuditPower(session, mav);
-		if (null == resourceIds || !hasPower(Constants.AUDIT_VIEW, resourceIds)) {
+		if (null == resourceIds || (hasPower(Constants.AUDIT_VIEW, resourceIds)
+						&& hasPower(Constants.AUDIT_ALL, resourceIds))) {
 			mav = new ModelAndView("error");
 		}
-		SimpleDateFormat sf = new SimpleDateFormat(Constants.COMPLEX_DATE_FORMAT2);
+		SimpleDateFormat sf = new SimpleDateFormat(
+						Constants.COMPLEX_DATE_FORMAT2);
 		mav.addObject("currentTime", sf.format(new Date()));
 		return mav;
 	}
@@ -112,7 +116,8 @@ public class ProjectAuditController extends BaseController {
 	 * @return 模型视图对象
 	 */
 	@RequestMapping("/query-by-audititem")
-	public ModelAndView queryByAudititem(ModelMap model, String workId, HttpSession session) {
+	public ModelAndView queryByAudititem(ModelMap model, String workId,
+					HttpSession session) {
 		logger.debug("queryByAudititem encodeWorkId {}", workId);
 		// 解密workId
 		workId = QEncodeUtil.decrypt(workId);
@@ -121,10 +126,14 @@ public class ProjectAuditController extends BaseController {
 		ModelAndView mav = new ModelAndView("/audit/query-by-audititem");
 
 		List<Dictionary> dictionaryList = new ArrayList<Dictionary>();
-		dictionaryList.addAll(dictionaryService.selectByType(Constants.REASONABLE_OBJECTIVE_INFO));
-		dictionaryList.addAll(dictionaryService.selectByType(Constants.OPERATION_STANDARD_INFO));
-		dictionaryList.addAll(dictionaryService.selectByType(Constants.ACCURATE_DATA_INFO));
-		SimpleDateFormat sf = new SimpleDateFormat(Constants.COMPLEX_DATE_FORMAT2);
+		dictionaryList.addAll(dictionaryService
+						.selectByType(Constants.REASONABLE_OBJECTIVE_INFO));
+		dictionaryList.addAll(dictionaryService
+						.selectByType(Constants.OPERATION_STANDARD_INFO));
+		dictionaryList.addAll(dictionaryService
+						.selectByType(Constants.ACCURATE_DATA_INFO));
+		SimpleDateFormat sf = new SimpleDateFormat(
+						Constants.COMPLEX_DATE_FORMAT2);
 		mav.addObject("currentTime", sf.format(new Date()));
 		model.addAttribute("dictionaryList", dictionaryList);
 		logger.debug("dictionaryList size {}", dictionaryList.size());
@@ -145,7 +154,8 @@ public class ProjectAuditController extends BaseController {
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/audit-list")
-	public ModelAndView myAuditList(String queryCondition, String workId, HttpSession session) {
+	public ModelAndView myAuditList(String queryCondition, String workId,
+					HttpSession session) {
 		logger.debug("myAuditList encodeWorkId {}", workId);
 		// 解密workId
 		workId = QEncodeUtil.decrypt(workId);
@@ -154,15 +164,18 @@ public class ProjectAuditController extends BaseController {
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<Integer> queryList = new ArrayList<Integer>();
 		try {
-			List<LinkedHashMap<String, Object>> list = objectMapper.readValue("[" + queryCondition + "]", List.class);
+			List<LinkedHashMap<String, Object>> list = objectMapper
+							.readValue("[" + queryCondition + "]", List.class);
 			queryList = (List<Integer>) list.get(0).get("queryString");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		List<ProjectAuditView> projectAuditViewList = projectAuditService.selectByAuditTypeIds(queryList);
+		List<ProjectAuditView> projectAuditViewList = projectAuditService
+						.selectByAuditTypeIds(queryList);
 		ModelMap model = new ModelMap();
 		model.addAttribute("projectAuditViewList", projectAuditViewList);
-		logger.debug("projectAuditViewList size {}", projectAuditViewList.size());
+		logger.debug("projectAuditViewList size {}",
+						projectAuditViewList.size());
 
 		ModelAndView mav = new ModelAndView("audit/audit-list");
 		mav.addObject("projectAuditViewList", projectAuditViewList);
@@ -186,18 +199,22 @@ public class ProjectAuditController extends BaseController {
 		workId = QEncodeUtil.decrypt(workId);
 		logger.debug("myAudit decodeWorkId {}", workId);
 		session.setAttribute("workId", workId);
-		List<ProjectAuditView> projectAuditViewList = projectAuditService.selectByAuditWorkId(workId);
+		List<ProjectAuditView> projectAuditViewList = projectAuditService
+						.selectByAuditWorkId(workId);
 		ModelMap model = new ModelMap();
 		model.addAttribute("projectAuditViewList", projectAuditViewList);
-		logger.debug("projectAuditViewList size {}", projectAuditViewList.size());
+		logger.debug("projectAuditViewList size {}",
+						projectAuditViewList.size());
 		ModelAndView mav = new ModelAndView("audit/audit-list");
 		mav.addObject("projectAuditViewList", projectAuditViewList);
 
 		List<Integer> resourceIds = setProjectAuditPower(session, mav);
-		if (null == resourceIds || !hasPower(Constants.AUDIT_ALL, resourceIds)) {
+		if (null == resourceIds
+						|| !hasPower(Constants.AUDIT_ALL, resourceIds)) {
 			mav = new ModelAndView("error");
 		}
-		SimpleDateFormat sf = new SimpleDateFormat(Constants.COMPLEX_DATE_FORMAT2);
+		SimpleDateFormat sf = new SimpleDateFormat(
+						Constants.COMPLEX_DATE_FORMAT2);
 		mav.addObject("currentTime", sf.format(new Date()));
 		return mav;
 	}
@@ -217,7 +234,8 @@ public class ProjectAuditController extends BaseController {
 
 		// 根据不同的角色，进入不同的页面 TODO
 		ModelAndView mav = new ModelAndView("audit/audit");
-		List<ProjectAuditView> projectAuditViewList = projectAuditService.selectByProjectId(projectId);
+		List<ProjectAuditView> projectAuditViewList = projectAuditService
+						.selectByProjectId(projectId);
 		if (null != projectAuditViewList) {
 			mav.addObject("projectAuditView", projectAuditViewList.get(0));
 		} else {
@@ -242,15 +260,16 @@ public class ProjectAuditController extends BaseController {
 	 * @return 模型和视图
 	 */
 	@RequestMapping("/audit-update")
-	public ModelAndView projectAuditUpdate(String auditType, String projectId, String projectAuditTypeId,
-					HttpSession session) {
+	public ModelAndView projectAuditUpdate(String auditType, String projectId,
+					String projectAuditTypeId, HttpSession session) {
 		logger.debug("projectAuditUpdate {}", auditType);
 		logger.debug("projectAuditUpdate {}", projectId);
 		logger.debug("projectAuditUpdate {}", projectAuditTypeId);
 		ModelAndView mav = new ModelAndView("audit/audit-update");
 
 		ProjectAuditView projectAuditView = null;
-		if (null == projectAuditTypeId || "".equals(projectAuditTypeId.trim())) {
+		if (null == projectAuditTypeId
+						|| "".equals(projectAuditTypeId.trim())) {
 			mav.addObject("operateType", "add");
 			projectAuditView = new ProjectAuditView();
 			projectAuditView.setProjectId(projectId);
@@ -261,13 +280,17 @@ public class ProjectAuditController extends BaseController {
 			projectAuditView.setAuditState(1);
 		} else {
 			mav.addObject("operateType", "edit");
-			projectAuditView = projectAuditService.selectByPrimaryKey(projectAuditTypeId);
+			projectAuditView = projectAuditService
+							.selectByPrimaryKey(projectAuditTypeId);
 		}
 
 		String auditWorkId = (String) session.getAttribute("workId");
-		List<Integer> auditTypeIds = projectAuditService.selectAuditTypeIdsByParams(projectId, auditWorkId, auditType);
+		List<Integer> auditTypeIds = projectAuditService
+						.selectAuditTypeIdsByParams(projectId, auditWorkId,
+										auditType);
 
-		SimpleDateFormat sf = new SimpleDateFormat(Constants.COMPLEX_DATE_FORMAT2);
+		SimpleDateFormat sf = new SimpleDateFormat(
+						Constants.COMPLEX_DATE_FORMAT2);
 		mav.addObject("currentTime", sf.format(new Date()));
 		mav.addObject("auditType", auditType);
 		mav.addObject("auditTypeIds", auditTypeIds);
@@ -288,13 +311,16 @@ public class ProjectAuditController extends BaseController {
 	 * @return 模型和视图
 	 */
 	@RequestMapping("/audit-delete")
-	public ModelAndView projectAuditDelete(String projectId, String projectAuditTypeId, HttpSession session) {
+	public ModelAndView projectAuditDelete(String projectId,
+					String projectAuditTypeId, HttpSession session) {
 		logger.debug("projectAuditDelete {}", projectId);
 		logger.debug("projectAuditDelete {}", projectAuditTypeId);
-		int deleteResult = projectAuditService.deleteByPrimaryKey(projectAuditTypeId);
+		int deleteResult = projectAuditService
+						.deleteByPrimaryKey(projectAuditTypeId);
 		logger.debug("projectAuditDelete deleteResult {}", deleteResult);
 		ModelAndView mav = new ModelAndView("audit/audit");
-		List<ProjectAuditView> projectAuditViewList = projectAuditService.selectByProjectId(projectId);
+		List<ProjectAuditView> projectAuditViewList = projectAuditService
+						.selectByProjectId(projectId);
 		mav.addObject("projectAuditView", projectAuditViewList.get(0));
 		// setProjectAuditPower(projectAuditViewList.get(0), session, mav);
 		return mav;
@@ -310,9 +336,11 @@ public class ProjectAuditController extends BaseController {
 	 * @return 返回给页面的信息
 	 */
 	@RequestMapping(value = "/audit-update-save", method = RequestMethod.POST)
-	public ResponseEntity<ProjectAuditView> projectAuditUpdateAndSave(@RequestBody ProjectAuditView projectAuditView,
+	public ResponseEntity<ProjectAuditView> projectAuditUpdateAndSave(
+					@RequestBody ProjectAuditView projectAuditView,
 					HttpSession session) {
-		logger.debug("auditUpdateAndSave projectAuditView {}", projectAuditView);
+		logger.debug("auditUpdateAndSave projectAuditView {}",
+						projectAuditView);
 		if (null == projectAuditView || "".equals(projectAuditView.getId())) {
 			session.setAttribute("operateType", "add");
 		} else {
@@ -323,7 +351,8 @@ public class ProjectAuditController extends BaseController {
 		projectAuditView.setAuditWorkId(workId);
 		projectAuditService.saveAndUpdate(projectAuditView);
 
-		return new ResponseEntity<ProjectAuditView>(projectAuditView, HttpStatus.OK);
+		return new ResponseEntity<ProjectAuditView>(projectAuditView,
+						HttpStatus.OK);
 	}
 
 	/**
@@ -335,7 +364,8 @@ public class ProjectAuditController extends BaseController {
 	 *            模型和视图
 	 * @return 权限ID列表
 	 */
-	private List<Integer> setProjectAuditPower(HttpSession session, ModelAndView mav) {
+	private List<Integer> setProjectAuditPower(HttpSession session,
+					ModelAndView mav) {
 		logger.debug("setPower", mav);
 		String workId = (String) session.getAttribute("workId");
 		List<Integer> resourceIds = PowerUtil.findResourceIds(workId);

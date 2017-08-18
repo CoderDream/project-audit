@@ -10,10 +10,10 @@ function initPower(rootdom) {
 		}
 	}
 	var PowerData = JSON.parse(sessionStorage.PowerData);
-	rootdom.find("[data-poweraction]").each(function() {
+	rootdom.find("[data-powercode]").each(function() {
 		var ctrl = $(this), poweraction = ctrl.attr("data-poweraction"), 
 			powercode = ctrl.attr("data-powercode");
-		
+		poweraction=poweraction || "class:pdrc-canedit,pdrc-cannotedit";
 		if (!poweraction && !powercode) {
 			alert("非法的权限标记");
 			return;

@@ -11,6 +11,8 @@
 	href="${pageContext.request.contextPath}/assets/css/jquery.mobile-1.4.5.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/pdrc.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/out.css" />
 <script
 	src="${pageContext.request.contextPath}/assets/js/jquery-1.11.1.js"></script>
 <script
@@ -19,51 +21,68 @@
 	src="${pageContext.request.contextPath}/assets/js/jquery.validate.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/query.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/power.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/profile.js"></script>
-<script
-	src="${pageContext.request.contextPath}/assets/js/profile-validate.js"></script>
 <script type="text/javascript">
 	var powers = ${resourceIds};
 	var decodeWorkId = "${decodeWorkId}";
 </script>
+<style>
+.pa-shortcutview {
+	display: flex;
+	flex-flow: wrap;
+	justify-content: center;
+}
+
+.pa-shortcutview>a {
+	display: flex;
+	flex-direction: column;
+	margin: 2em 1em 0em 1em;
+}
+
+.pa-shortcutview>a:after {
+	content: attr(data-text);
+	margin-top: 1em;
+	display: flex;
+	justify-content: center;
+	width: 96px;
+	text-align: center;
+}
+
+.pa-shortcutview>a>img {
+	width: 96px;
+	height: 96px;
+}
+
+.pa-shortcutview>a.pdrc-cannotedit {
+	display: none !important;
+	padding-right: 0px;
+}
+</style>
 </head>
 <body>
-	<div data-role="page" id="index">
-		<div role="main" class="ui-context">
-			<ul data-role="listview">
-				<li class="pdrc-li"><a
-					data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="85" class="pdrc-cannotedit"
+	<div class="total">
+		<div class="content" style="margin: 0;">
+			<div class="pa-shortcutview">
+				<a data-text="新增项目审计" data-powercode="81" class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-project?workId=${decodeWorkId}"
-					rel="external">查看项目审计(按项目信息)</a></li>
-				<li class="pdrc-li"><a
-					data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="85" class="pdrc-cannotedit"
-					href="${pageContext.request.contextPath}/audit/query-by-audititem?workId=${decodeWorkId}"
-					rel="external">查看项目审计(按审计科目)</a></li>
-				<li class="pdrc-li"><a
-					data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="81" class="pdrc-cannotedit"
-					href="${pageContext.request.contextPath}/audit/query-by-project?workId=${decodeWorkId}"
-					rel="external">新增项目审计</a></li>
-				<li class="pdrc-li"><a
-					data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="81" class="pdrc-cannotedit"
+					rel="external"><img
+					src="${pageContext.request.contextPath}/assets/image/new_audit.png" /></a>
+				<a data-text="查看我的审计" data-powercode="81" class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/my-audit?workId=${decodeWorkId}"
-					rel="external">查看我的审计</a></li>
-			</ul>
-		</div>
-
-		<div class="user-ui-btn" data-role="controlgroup"
-			data-type="horizontal">
-			<a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="85" class="pdrc-cannotedit"
+					rel="external"><img
+					src="${pageContext.request.contextPath}/assets/image/my_audit.png" /></a>
+				<a data-text="查看项目审计(按项目信息)" data-powercode="85"
+					class="pdrc-cannotedit"
+					href="${pageContext.request.contextPath}/audit/query-by-audititem?workId=${decodeWorkId}"
+					rel="external"><img
+					src="${pageContext.request.contextPath}/assets/image/search_by_project.png" /></a>
+				<a data-text="查看项目审计(按审计科目)" data-powercode="85"
+					class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-project?workId=${decodeWorkId}"
-					rel="external">使用说明</a> <a
-				data-role="button" data-icon="my-audit" data-iconpos="top">查看我的审计</a> <a
-				data-role="button" data-icon="new-audit" data-iconpos="top">新增项目审计</a> <a
-				data-role="button" data-icon="search-by-item" data-iconpos="top">查看项目审计(按审计科目)</a> <a
-				data-role="button" data-icon="search-by-project" data-iconpos="top">查看项目审计(按项目信息)</a>
+					rel="external"><img
+					src="${pageContext.request.contextPath}/assets/image/search_by_item.png" /></a>
+				<a data-text="操作说明"><img
+					src="${pageContext.request.contextPath}/assets/image/help.png" /></a>
+			</div>
 		</div>
 	</div>
 </body>

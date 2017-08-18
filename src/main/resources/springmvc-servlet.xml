@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	     http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -30,7 +29,8 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		id="internalResourceViewResolver">
 		<!--指定视图渲染类 -->
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
 		<!--自动添加到路径中的前缀 -->
 		<property name="prefix" value="/WEB-INF/view/" />
 		<!--自动添加到路径中的后缀 -->
@@ -39,6 +39,46 @@
 		<property name="contentType" value="text/html;charset=UTF-8" />
 		<!-- 优先级，越小越前 -->
 		<property name="order" value="2" />
+	</bean>
+
+	<!-- 要执行任务的任务类。 -->
+	<bean id="syncDatabaseQuartz" class="com.billjc.job.SyncDatabaseJob">
+	</bean>
+
+	<!-- 将需要执行的定时任务注入JOB中。 -->
+	<bean id="syncDatabaseJob"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="syncDatabaseQuartz"></property>
+		<!-- 任务类中需要执行的方法 -->
+		<property name="targetMethod" value="syncDatabase"></property>
+		<!-- 上一次未执行完成的，要等待有再执行。 -->
+		<property name="concurrent" value="false"></property>
+	</bean>
+
+	<!-- 基本的定时器，会绑定具体的任务。 -->
+	<bean id="testTrigger"
+		class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail" ref="syncDatabaseJob"></property>
+		<property name="startDelay" value="3000"></property>
+		<property name="repeatInterval" value="30000"></property>
+	</bean>
+
+	<!-- Run the job every 5 seconds -->
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="syncDatabaseJob" />
+		<!-- 整点执行一次 -->
+		<property name="cronExpression" value="0 0/10 * * * ? *" />
+
+	</bean>
+
+	<bean id="schedulerFactoryBean"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger"></ref>
+			</list>
+		</property>
 	</bean>
 
 </beans>

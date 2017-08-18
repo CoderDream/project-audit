@@ -13,8 +13,10 @@ public class Constants {
 	/** yyyy-MM-dd */
 	public static final String SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
 
+	/** yyyy-MM-dd HH:mm:ss:SSS */
 	public static final String COMPLEX_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss:SSS";
 
+	/** yyyyMMddHHmmssSSS */
 	public static final String COMPLEX_DATE_FORMAT2 = "yyyyMMddHHmmssSSS";
 
 	public static final String BASE_URL = "http://localhost:10086/common-rbac/function/";

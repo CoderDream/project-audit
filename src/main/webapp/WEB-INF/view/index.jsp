@@ -19,9 +19,6 @@
 	src="${pageContext.request.contextPath}/assets/js/jquery.validate.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/query.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/power.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/profile.js"></script>
-<script
-	src="${pageContext.request.contextPath}/assets/js/profile-validate.js"></script>
 <script type="text/javascript">
 	var powers = ${resourceIds};
 	var decodeWorkId = "${decodeWorkId}";
@@ -32,22 +29,22 @@
 		<div role="main" class="ui-context">
 			<ul data-role="listview">
 				<li class="pdrc-li"><a
-					data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="85" class="pdrc-cannotedit"
+					data-poweraction
+					data-powercode="81" class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-project?workId=${decodeWorkId}"
 					rel="external">查看项目审计(按项目信息)</a></li>
 				<li class="pdrc-li"><a
-					data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
+					data-poweraction
 					data-powercode="85" class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-audititem?workId=${decodeWorkId}"
 					rel="external">查看项目审计(按审计科目)</a></li>
 				<li class="pdrc-li"><a
-					data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
+					data-poweraction
 					data-powercode="81" class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-project?workId=${decodeWorkId}"
 					rel="external">新增项目审计</a></li>
 				<li class="pdrc-li"><a
-					data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
+					data-poweraction
 					data-powercode="81" class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/my-audit?workId=${decodeWorkId}"
 					rel="external">查看我的审计</a></li>
