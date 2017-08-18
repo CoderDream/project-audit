@@ -22,6 +22,9 @@ public class IndexController {
 
 	private static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
+	/**
+	 * @return 页面名称
+	 */
 	@RequestMapping("/resource/mybrothers")
 	public String login() {
 		return "login";

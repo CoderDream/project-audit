@@ -63,10 +63,10 @@
 						<legend>是否通过</legend>
 						<c:set var="auditState" scope="session"
 							value="${projectAuditView.auditState}" />
-						<label for="pass">通过</label> <input type="radio" name="auditState"
+						<label id="label_pass" for="pass">通过</label> <input type="radio" name="auditState"
 							id="pass" value="1" alt="${projectAuditView.auditState}==1"
 							<c:if test="${projectAuditView.auditState==1}">checked</c:if> />
-						<label for="fail">不通过</label> <input type="radio"
+						<label id="label_fail" for="fail">不通过</label> <input type="radio"
 							name="auditState" id="fail" value="0"
 							alt="${projectAuditView.auditState}==0"
 							<c:if test="${projectAuditView.auditState==0}">checked</c:if> />

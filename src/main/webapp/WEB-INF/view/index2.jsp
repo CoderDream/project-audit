@@ -62,25 +62,25 @@
 	<div class="total">
 		<div class="content" style="margin: 0;">
 			<div class="pa-shortcutview">
-				<a data-text="新增项目审计" data-powercode="81" class="pdrc-cannotedit"
+				<a id="new_audit" data-text="新增项目审计" data-powercode="81" class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-project?workId=${decodeWorkId}"
 					rel="external"><img
 					src="${pageContext.request.contextPath}/assets/image/new_audit.png" /></a>
-				<a data-text="查看我的审计" data-powercode="81" class="pdrc-cannotedit"
+				<a id="my_audit" data-text="查看我的审计" data-powercode="81" class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/my-audit?workId=${decodeWorkId}"
 					rel="external"><img
 					src="${pageContext.request.contextPath}/assets/image/my_audit.png" /></a>
-				<a data-text="查看项目审计(按项目信息)" data-powercode="85"
+				<a id="search_by_project" data-text="查看项目审计(按项目信息)" data-powercode="85"
 					class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-audititem?workId=${decodeWorkId}"
 					rel="external"><img
 					src="${pageContext.request.contextPath}/assets/image/search_by_project.png" /></a>
-				<a data-text="查看项目审计(按审计科目)" data-powercode="85"
+				<a id="search_by_item" data-text="查看项目审计(按审计科目)" data-powercode="85"
 					class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-project?workId=${decodeWorkId}"
 					rel="external"><img
 					src="${pageContext.request.contextPath}/assets/image/search_by_item.png" /></a>
-				<a data-text="操作说明"><img
+				<a id="help" data-text="操作说明"><img
 					src="${pageContext.request.contextPath}/assets/image/help.png" /></a>
 			</div>
 		</div>

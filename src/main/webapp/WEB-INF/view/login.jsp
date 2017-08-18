@@ -29,7 +29,7 @@
 				<option value=''>--请选择角色--</option>
 			</select> <select class='staff' id='staff'>
 				<option value=''>--请选择工号--</option>
-			</select> <input type="button" value="提交" onclick="check()">
+			</select> <input id="submit" type="button" value="提交" onclick="check()">
 		</div>
 	</div>
 	<script>
