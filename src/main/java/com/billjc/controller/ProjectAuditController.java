@@ -75,8 +75,8 @@ public class ProjectAuditController extends BaseController {
 		session.setAttribute("workId", workId);
 		ModelAndView mav = new ModelAndView("/audit/query-by-project");
 		List<Integer> resourceIds = setProjectAuditPower(session, mav);
-		if (null == resourceIds || (hasPower(Constants.AUDIT_VIEW, resourceIds)
-						&& hasPower(Constants.AUDIT_ALL, resourceIds))) {
+		if (null == resourceIds || !(hasPower(Constants.AUDIT_VIEW, resourceIds)
+						|| hasPower(Constants.AUDIT_ALL, resourceIds))) {
 			mav = new ModelAndView("error");
 		}
 		SimpleDateFormat sf = new SimpleDateFormat(
