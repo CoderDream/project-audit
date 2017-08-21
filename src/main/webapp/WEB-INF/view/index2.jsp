@@ -70,12 +70,12 @@
 					href="${pageContext.request.contextPath}/audit/my-audit?workId=${decodeWorkId}"
 					rel="external"><img
 					src="${pageContext.request.contextPath}/assets/image/my_audit.png" /></a>
-				<a id="search_by_project" data-text="查看项目审计(按项目信息)" data-powercode="85"
+				<a id="search_by_item" data-text="查看项目审计(按审计科目)" data-powercode="85"
 					class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-audititem?workId=${decodeWorkId}"
 					rel="external"><img
 					src="${pageContext.request.contextPath}/assets/image/search_by_project.png" /></a>
-				<a id="search_by_item" data-text="查看项目审计(按审计科目)" data-powercode="85"
+				<a id="search_by_project" data-text="查看项目审计(按项目信息)" data-powercode="85"
 					class="pdrc-cannotedit"
 					href="${pageContext.request.contextPath}/audit/query-by-project?workId=${decodeWorkId}"
 					rel="external"><img
