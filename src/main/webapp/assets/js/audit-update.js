@@ -9,7 +9,7 @@ $(function() {
 	var auditItem = $("#auditItem");
 	var operateType = $("#operateType").val();
 	// alert("auditType: " + auditType);
-	var url = "/dictionary/audit";
+	var url = "/audit/dictionary/audit";
 	$.ajax({
 		url: url,
 		dataType: "json",

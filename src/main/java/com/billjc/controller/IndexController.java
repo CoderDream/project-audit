@@ -1,5 +1,8 @@
 package com.billjc.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -7,9 +10,12 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.billjc.model.Dictionary;
+import com.billjc.util.Constants;
 import com.billjc.util.PowerUtil;
 import com.billjc.util.QEncodeUtil;
 
@@ -20,7 +26,8 @@ import com.billjc.util.QEncodeUtil;
 @Controller
 public class IndexController {
 
-	private static Logger logger = LoggerFactory.getLogger(IndexController.class);
+	private static Logger logger = LoggerFactory
+					.getLogger(IndexController.class);
 
 	/**
 	 * @return 页面名称
@@ -40,13 +47,22 @@ public class IndexController {
 		return "alert";
 	}
 
+	@RequestMapping("/help")
+	public String help() {
+		return "help";
+	}
+
 	@RequestMapping("/login")
-	public String index(String workId, HttpSession session, ModelAndView mav) {
+	public ModelAndView index(String workId, HttpSession session,
+					ModelAndView mav) {
 		logger.debug("workId {} " + workId);
 		// 解密workId
 		String decodeWorkId = QEncodeUtil.decrypt(workId);
 		setProfilePower(session, mav, decodeWorkId);
-		return "index2";
+
+		mav = new ModelAndView("index2");
+
+		return mav;
 	}
 
 	@RequestMapping("/login2")
@@ -74,7 +90,8 @@ public class IndexController {
 	 * @param workId
 	 *            员工号
 	 */
-	private void setProfilePower(HttpSession session, ModelAndView mav, String workId) {
+	private void setProfilePower(HttpSession session, ModelAndView mav,
+					String workId) {
 		logger.debug("setPower", mav);
 		List<Integer> resourceIds = PowerUtil.findResourceIds(workId);
 		String decodeWorkId = QEncodeUtil.encrypt(workId);

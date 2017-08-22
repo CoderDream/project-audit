@@ -27,7 +27,7 @@
 					<li>
 						<ul data-role="listview" data-inset="true">
 							<li class="pdrc-li"><a 
-									href="${pageContext.request.contextPath}/audit/audit?projectId=${projectAuditView.projectId}"
+									href="${pageContext.request.contextPath}/audit?projectId=${projectAuditView.projectId}"
 									rel="external"><span class="pdrc-title-span-left">${projectAuditView.projectName}</span><span class="pdrc-title-span-right"><span>详情</span></span></a></li>
 							<li class="pdrc-li"><span>项目经理</span><span
 									class="pdrc-span"><span>[${projectAuditView.projectMgrWorkId}]${projectAuditView.projectMgrName}</span></span></li>

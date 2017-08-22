@@ -13,55 +13,54 @@
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
 
-	<!-- druid -->
-	<filter>
-		<filter-name>DruidWebStatFilter</filter-name>
-		<filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+	<listener>
+		<description>Spring容器加载监听器</description>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<description>设置Spring加载时的配置文件位置，默认位置在WEB-INF/lib目录下</description>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:applicationContext.xml</param-value>
+	</context-param>
+
+	<!--Spring MVC 前置Servlet，中心控制器 -->
+	<servlet>
+		<!--名称 -->
+		<servlet-name>springmvc</servlet-name>
+		<!-- Servlet类 -->
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
-			<param-name>exclusions</param-name>
-			<param-value>/static/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+			<!--SpringMVC配置参数文件的位置 -->
+			<param-name>contextConfigLocation</param-name>
+			<!--默认名称为ServletName-servlet.xml -->
+			<param-value>classpath*:springmvc-servlet.xml</param-value>
+		</init-param>
+		<!-- 启动顺序，数字越小，启动越早 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!--所有请求都会被springmvc拦截 -->
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>DruidWebStatFilter</filter-name>
+		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-	<!-- druid监控 -->
-	<servlet>
-		<servlet-name>DruidStatView</servlet-name>
-		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>DruidStatView</servlet-name>
-		<url-pattern>/druid/*</url-pattern>
-	</servlet-mapping>
-
-
-	<!-- SpringMVC拦截器 -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			classpath:applicationContext.xml
-		</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<servlet>
-		<servlet-name>dispatcherServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:springmvc-servlet.xml</param-value>
-		</init-param>
-		<load-on-startup>2</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>dispatcherServlet</servlet-name>
-		<url-pattern>/</url-pattern> <!-- 此处一定要用"/"，用"/*"不会报错，但是拦截不到请求 -->
-	</servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file></welcome-file>

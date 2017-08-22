@@ -39,7 +39,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  */
 @Controller
-@RequestMapping("/audit")
+//@RequestMapping("/")
 public class ProjectAuditController extends BaseController {
 
 	private static Logger logger = LoggerFactory
@@ -65,7 +65,7 @@ public class ProjectAuditController extends BaseController {
 	 *            缓存
 	 * @return 模型视图对象
 	 */
-	@RequestMapping("/query-by-project")
+	@RequestMapping("query-by-project")
 	public ModelAndView queryByProject(ModelMap model, String workId,
 					HttpSession session) {
 		logger.debug("queryBySkill encodeWorkId {}", workId);
@@ -265,7 +265,7 @@ public class ProjectAuditController extends BaseController {
 		logger.debug("projectAuditUpdate {}", auditType);
 		logger.debug("projectAuditUpdate {}", projectId);
 		logger.debug("projectAuditUpdate {}", projectAuditTypeId);
-		ModelAndView mav = new ModelAndView("audit/audit-update");
+		ModelAndView mav = new ModelAndView("/audit/audit-update");
 
 		ProjectAuditView projectAuditView = null;
 		if (null == projectAuditTypeId
@@ -318,7 +318,7 @@ public class ProjectAuditController extends BaseController {
 		int deleteResult = projectAuditService
 						.deleteByPrimaryKey(projectAuditTypeId);
 		logger.debug("projectAuditDelete deleteResult {}", deleteResult);
-		ModelAndView mav = new ModelAndView("audit/audit");
+		ModelAndView mav = new ModelAndView("/audit/audit");
 		List<ProjectAuditView> projectAuditViewList = projectAuditService
 						.selectByProjectId(projectId);
 		mav.addObject("projectAuditView", projectAuditViewList.get(0));

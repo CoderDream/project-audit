@@ -27,7 +27,7 @@ $(function() {
 		$("#project").hide(); // 隐藏项目详情
 		$ul.html("");
 		if(value && value.length > 1) {			
-			var url = "/project/query";
+			var url = "/audit/project/query";
 			$ul.html("<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>");
 			$ul.listview("refresh");
 			$.ajax({

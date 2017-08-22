@@ -43,7 +43,7 @@
 					class="pdrc-span"><span>${projectAuditView.projectEndDateString}</span></span></li>
 				<li><a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
 					data-powercode="81" class="pdrc-cannotedit pdrc-iconPlus"
-					href="${pageContext.request.contextPath}/audit/audit-update?auditType=ReasonableObjectiveInfo&projectId=${projectAuditView.projectId}"
+					href="${pageContext.request.contextPath}/audit-update?auditType=ReasonableObjectiveInfo&projectId=${projectAuditView.projectId}"
 					rel="external"><h2>目标合理性</h2></a></li>
 				<li><c:forEach var="ropav"
 						items="${projectAuditView.reasonableObjectives}">
@@ -52,7 +52,7 @@
 								data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
 								data-powercode="$fn.checkPMPower('${ropav.auditWorkId}');"
 								class="pdrc-cannotedit"
-								href="${pageContext.request.contextPath}/audit/audit-update?auditType=ReasonableObjectiveInfo&projectAuditTypeId=${ropav.id}&projectId=${ropav.projectId}"
+								href="${pageContext.request.contextPath}/audit-update?auditType=ReasonableObjectiveInfo&projectAuditTypeId=${ropav.id}&projectId=${ropav.projectId}"
 								rel="external"><span>${ropav.auditName}</span></a></li>
 							<li class="pdrc-li"><span>审计人员</span><span class="pdrc-span"><span>[${ropav.auditWorkId}]${ropav.auditStaffName}</span></span></li>
 							<li class="pdrc-li"><span>审计内容</span><span class="pdrc-span"><span>${ropav.auditContent}</span></span></li>
@@ -61,7 +61,7 @@
 					</c:forEach></li>
 				<li><a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
 					data-powercode="81" class="pdrc-cannotedit pdrc-iconPlus"
-					href="${pageContext.request.contextPath}/audit/audit-update?auditType=OperationStandardInfo&projectId=${projectAuditView.projectId}"
+					href="${pageContext.request.contextPath}/audit-update?auditType=OperationStandardInfo&projectId=${projectAuditView.projectId}"
 					rel="external"><h2>操作规范性</h2></a></li>
 				<li><c:forEach var="ospav"
 						items="${projectAuditView.operationStandards}">
@@ -70,7 +70,7 @@
 								data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
 								data-powercode="$fn.checkPMPower('${ospav.auditWorkId}');"
 								class="pdrc-cannotedit"
-								href="${pageContext.request.contextPath}/audit/audit-update?auditType=OperationStandardInfo&projectAuditTypeId=${ospav.id}&projectId={ospav.projectId}"
+								href="${pageContext.request.contextPath}/audit-update?auditType=OperationStandardInfo&projectAuditTypeId=${ospav.id}&projectId={ospav.projectId}"
 								rel="external"><span>${ospav.auditName}</span></a></li>
 							<li class="pdrc-li"><span>审计人员</span><span class="pdrc-span"><span>[${ospav.auditWorkId}]${ospav.auditStaffName}</span></span></li>
 							<li class="pdrc-li"><span>审计内容</span><span class="pdrc-span"><span>${ospav.auditContent}</span></span></li>
@@ -79,7 +79,7 @@
 					</c:forEach></li>
 				<li><a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
 					data-powercode="81" class="pdrc-cannotedit pdrc-iconPlus"
-					href="${pageContext.request.contextPath}/audit/audit-update?auditType=AccurateDataInfo&projectId=${projectAuditView.projectId}"
+					href="${pageContext.request.contextPath}/audit-update?auditType=AccurateDataInfo&projectId=${projectAuditView.projectId}"
 					rel="external"><h2>数据准确性</h2></a></li>
 				<li><c:forEach var="adpav"
 						items="${projectAuditView.accurateDatas}">
@@ -88,7 +88,7 @@
 								data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
 								data-powercode="$fn.checkPMPower('${adpav.auditWorkId}');"
 								class="pdrc-cannotedit"
-								href="${pageContext.request.contextPath}/audit/audit-update?auditType=AccurateDataInfo&projectAuditTypeId=${adpav.id}&projectId=${adpav.projectId}"
+								href="${pageContext.request.contextPath}/audit-update?auditType=AccurateDataInfo&projectAuditTypeId=${adpav.id}&projectId=${adpav.projectId}"
 								rel="external"><span>${adpav.auditName}</span></a></li>
 							<li class="pdrc-li"><span>审计人员</span><span class="pdrc-span"><span>[${adpav.auditWorkId}]${adpav.auditStaffName}</span></span></li>
 							<li class="pdrc-li"><span>审计内容</span><span class="pdrc-span"><span>${adpav.auditContent}</span></span></li>
