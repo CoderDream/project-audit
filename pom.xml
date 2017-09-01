@@ -242,7 +242,7 @@
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<httpConnector>
-						<port>8099</port>
+						<port>8088</port>
 						<idleTimeout>60000</idleTimeout>
 					</httpConnector>
 					<webApp>

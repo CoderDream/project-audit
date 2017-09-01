@@ -1,7 +1,5 @@
 package com.billjc.model;
 
-import java.util.Arrays;
-
 public class User {
 	private String id;
 

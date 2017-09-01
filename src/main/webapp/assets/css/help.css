@@ -1,0 +1,142 @@
+﻿body {
+    counter-reset: A;
+    padding: 0em 1em;
+}
+
+* {
+    font-family: "微软雅黑";
+    box-sizing: border-box;
+}
+
+h1 {
+    counter-reset: B;
+}
+
+h2 {
+    counter-reset: C;
+}
+
+h3 {
+    counter-reset: D;
+}
+
+h1:before, h2:before, h3:before, h4:before {
+    margin-right: 0.5em;
+}
+
+h1:before {
+    content: counter(A);
+    counter-increment: A;
+}
+
+h2:before {
+    content: counter(A)"."counter(B);
+    counter-increment: B;
+}
+
+h3:before {
+    content: counter(A)"."counter(B)"."counter(C);
+    counter-increment: C;
+}
+
+h4:before {
+    content: counter(A)"."counter(B)"."counter(C)"."counter(D);
+    counter-increment: D;
+}
+
+p {
+    padding: 0em 1em 0em 1em;
+    font-size: 1.5em;
+}
+
+p>img.ph {
+    width: 100%;
+    margin: 1em 0em 1em 0em;
+}
+
+p>img.ph+span {
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+.index {
+    counter-reset: IA;
+}
+
+.index1 {
+    counter-reset: IB;
+}
+
+.index2 {
+    counter-reset: IC;
+}
+
+.index3 {
+    counter-reset: ID;
+}
+
+.index1:before, .index2:before, .index3:before, .index4:before {
+    margin-right: 0.5em;
+    min-width: 3em;
+}
+
+.index1:after, .index2:after, .index3:after, .index4:after {
+    content: "";
+    flex: 1;
+    border-bottom: dotted 2px #0f38e4;
+    height: 0.7em;
+    margin: 0em 0.5em;
+}
+
+.index1, .index2, .index3, .index4 {
+    font-size: 1.5em;
+    display: flex;
+    width: 100%;
+    padding: 0.5em 0em;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.index1:before {
+    content: counter(IA);
+    counter-increment: IA;
+}
+
+.index2:before {
+    content: counter(IA)"."counter(IB);
+    counter-increment: IB;
+}
+
+.index3:before {
+    content: counter(IA)"."counter(IB)"."counter(IC);
+    counter-increment: IC;
+}
+
+.index4:before {
+    content: counter(IA)"."counter(IB)"."counter(IC)"."counter(ID);
+    counter-increment: ID;
+}
+
+.title {
+    display: flex;
+    font-size: 3em;
+    justify-content: center;
+    padding: 1em;
+}
+.back{
+	width: 3em;
+    height: 3em;
+    background: rgba(0,0,0,0.3);
+    position: fixed;
+    bottom: 2em;
+    right: 1em;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.5em;
+}

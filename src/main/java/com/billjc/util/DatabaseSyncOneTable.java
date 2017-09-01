@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -27,7 +26,6 @@ public class DatabaseSyncOneTable {
 		}
 	}
 
-	private List<String> coreTBNames; // 要同步的核心库表名
 	private ConnectionFactory connectionFactory;
 	private Logger log = Logger.getLogger(getClass());
 

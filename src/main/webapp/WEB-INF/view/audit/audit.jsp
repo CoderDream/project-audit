@@ -42,7 +42,7 @@
 				<li class="pdrc-li"><span>项目计划结束日期</span><span
 					class="pdrc-span"><span>${projectAuditView.projectEndDateString}</span></span></li>
 				<li><a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="81" class="pdrc-cannotedit pdrc-iconPlus"
+					data-powercode="48" class="pdrc-cannotedit pdrc-iconPlus"
 					href="${pageContext.request.contextPath}/audit-update?auditType=ReasonableObjectiveInfo&projectId=${projectAuditView.projectId}"
 					rel="external"><h2>目标合理性</h2></a></li>
 				<li><c:forEach var="ropav"
@@ -60,7 +60,7 @@
 						</ul>
 					</c:forEach></li>
 				<li><a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="81" class="pdrc-cannotedit pdrc-iconPlus"
+					data-powercode="48" class="pdrc-cannotedit pdrc-iconPlus"
 					href="${pageContext.request.contextPath}/audit-update?auditType=OperationStandardInfo&projectId=${projectAuditView.projectId}"
 					rel="external"><h2>操作规范性</h2></a></li>
 				<li><c:forEach var="ospav"
@@ -70,7 +70,7 @@
 								data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
 								data-powercode="$fn.checkPMPower('${ospav.auditWorkId}');"
 								class="pdrc-cannotedit"
-								href="${pageContext.request.contextPath}/audit-update?auditType=OperationStandardInfo&projectAuditTypeId=${ospav.id}&projectId={ospav.projectId}"
+								href="${pageContext.request.contextPath}/audit-update?auditType=OperationStandardInfo&projectAuditTypeId=${ospav.id}&projectId=${ospav.projectId}"
 								rel="external"><span>${ospav.auditName}</span></a></li>
 							<li class="pdrc-li"><span>审计人员</span><span class="pdrc-span"><span>[${ospav.auditWorkId}]${ospav.auditStaffName}</span></span></li>
 							<li class="pdrc-li"><span>审计内容</span><span class="pdrc-span"><span>${ospav.auditContent}</span></span></li>
@@ -78,7 +78,7 @@
 						</ul>
 					</c:forEach></li>
 				<li><a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="81" class="pdrc-cannotedit pdrc-iconPlus"
+					data-powercode="48" class="pdrc-cannotedit pdrc-iconPlus"
 					href="${pageContext.request.contextPath}/audit-update?auditType=AccurateDataInfo&projectId=${projectAuditView.projectId}"
 					rel="external"><h2>数据准确性</h2></a></li>
 				<li><c:forEach var="adpav"

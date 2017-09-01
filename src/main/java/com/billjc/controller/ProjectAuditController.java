@@ -39,7 +39,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  */
 @Controller
-//@RequestMapping("/")
 public class ProjectAuditController extends BaseController {
 
 	private static Logger logger = LoggerFactory
@@ -75,8 +74,9 @@ public class ProjectAuditController extends BaseController {
 		session.setAttribute("workId", workId);
 		ModelAndView mav = new ModelAndView("/audit/query-by-project");
 		List<Integer> resourceIds = setProjectAuditPower(session, mav);
-		if (null == resourceIds || !(hasPower(Constants.AUDIT_VIEW, resourceIds)
-						|| hasPower(Constants.AUDIT_ALL, resourceIds))) {
+		if (null == resourceIds || !(hasPower(Constants.AUDIT_QUERY_BY_PROJECT,
+						resourceIds)
+						|| hasPower(Constants.AUDIT_ADD_AUDIT, resourceIds))) {
 			mav = new ModelAndView("error");
 		}
 		SimpleDateFormat sf = new SimpleDateFormat(
@@ -210,7 +210,7 @@ public class ProjectAuditController extends BaseController {
 
 		List<Integer> resourceIds = setProjectAuditPower(session, mav);
 		if (null == resourceIds
-						|| !hasPower(Constants.AUDIT_ALL, resourceIds)) {
+						|| !hasPower(Constants.AUDIT_MY_AUDIT, resourceIds)) {
 			mav = new ModelAndView("error");
 		}
 		SimpleDateFormat sf = new SimpleDateFormat(
