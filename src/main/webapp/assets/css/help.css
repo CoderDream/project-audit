@@ -62,6 +62,7 @@ p>img.ph+span {
 
 .index {
     counter-reset: IA;
+    counter-increment: IA;
 }
 
 .index1 {
@@ -139,4 +140,10 @@ p>img.ph+span {
     font-weight: bold;
     color: #fff;
     font-size: 1.5em;
+}
+.index>a{
+	color: #3962b1;
+}
+.index>a:visited{
+	color: #3962b1;
 }
