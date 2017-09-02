@@ -30,31 +30,16 @@
 <body>
 	<a name="home"></a>
 	<div class="title">操作手册</div>
-	<h1>目录</h1>
+	目录
 	<div class="index"></div>
 	<div class="content">
 		<h1>新增项目审计</h1>
 		<h2>登录</h2>
-		<h2>选择项目信息</h2>
-		<h2>1.3. 新增审计科目</h2>
-		<h2>1.4. 修改审计科目</h2>
-		<h2>1.5. 删除审计科目</h2>
-		<h1>2. 查看我的审计</h1>
-		<h2>2.1. 登录</h2>
-		<h2>2.2. 查看项目信息列表</h2>
-		<h1>3. 查看项目审计（按审计科目）</h1>
-		<h2>3.1. 登录</h2>
-		<h2>3.2. 选择【查看项目审计（按审计科目）】</h2>
-		<h1>4. 查看项目审计（按项目信息）</h1>
-		<h2>4.1. 登录</h2>
-		<h2>4.2. 选择【查看项目审计（按项目信息）】</h2>
-		<h1>1. 新增项目审计</h1>
-		<h2>1.1.登录</h2>
 		<p>
 			根据使用者的角色，登陆后看到如下界面： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image001.png">
 		</p>
-		<h2>1.2. 选择项目信息</h2>
+		<h2>选择项目信息</h2>
 		<p>
 			(1) 点击【新增项目审计】图标后，进入项目查询界面： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image002.png">
@@ -67,12 +52,11 @@
 			(3) 选择需要的审计的项目： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image004.png">
 		</p>
-		<p>(4) 点击【查询】按钮，进入项目审计页面，如下图所示：		
-
-		<img class="ph"
-			src="${pageContext.request.contextPath}/assets/image/image005.png">
+		<p>
+			(4) 点击【查询】按钮，进入项目审计页面，如下图所示： <img class="ph"
+				src="${pageContext.request.contextPath}/assets/image/image005.png">
 		</p>
-		<h2>1.3. 新增审计科目</h2>
+		<h2>新增审计科目</h2>
 		<p>
 			(1) 进入审计科目页面： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image006.png">
@@ -109,7 +93,7 @@
 			(9) 页面校验二：如果用户已评价此项目的项目科目，则不能再次新增评价该审计科目，只能修改审计科目： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image014.png">
 		</p>
-		<h2>1.4. 修改审计科目</h2>
+		<h2>修改审计科目</h2>
 		<p>(1) 点击需要修改的审计科目（质量目标合理性）右边的向右图片：</p>
 		<p>
 			(2) 进入该审计科目的详情页面： <img class="ph"
@@ -129,7 +113,7 @@
 				src="${pageContext.request.contextPath}/assets/image/image018.png">
 		</p>
 		<p>(6) 修改后返回</p>
-		<h2>1.5. 删除审计科目</h2>
+		<h2>删除审计科目</h2>
 		<p>(1) 点击需要修改的审计科目（质量目标合理性）右边的向右图片：</p>
 		<p>(2) 进入该审计科目的详情页面：</p>
 		<p>
@@ -141,13 +125,13 @@
 				src="${pageContext.request.contextPath}/assets/image/image020.png">
 		</p>
 		<p>如果点击【取消】按钮，则不删除该审计科目。</p>
-		<h1>2. 查看我的审计</h1>
-		<h2>2.1.登录</h2>
+		<h1>查看我的审计</h1>
+		<h2>登录</h2>
 		<p>
 			根据使用者的角色，登陆后看到如下界面： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image001.png">
 		</p>
-		<h2>2.2. 查看项目信息列表</h2>
+		<h2>查看项目信息列表</h2>
 		<p>
 			(1) 点击【查看我的审计】图标后，进入项目查询界面： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image021.png">
@@ -158,13 +142,13 @@
 				src="${pageContext.request.contextPath}/assets/image/image022.png">
 		</p>
 		<p>在这个页面，可以进行审计科目的增删改查操作 。操作方法请参考【新增项目审计】章节。</p>
-		<h1>3. 查看项目审计（按审计科目）</h1>
-		<h2>3.1.登录</h2>
+		<h1>查看项目审计（按审计科目）</h1>
+		<h2>登录</h2>
 		<p>
 			根据使用者的角色，登陆后看到如下界面： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image023.png">
 		</p>
-		<h2>3.2. 选择【查看项目审计（按审计科目）】</h2>
+		<h2>选择【查看项目审计（按审计科目）】</h2>
 		<p>
 			(1) 点击【查看项目审计（按审计科目）】图标后，进入审计科目多选查询界面： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image024.png">
@@ -183,13 +167,13 @@
 				src="${pageContext.request.contextPath}/assets/image/image027.png">
 		</p>
 		<p>可通过微信自带的转发功能，将该项目审计信息发送给需要查看的人。</p>
-		<h1>4. 查看项目审计（按项目信息）</h1>
-		<h2>4.1.登录</h2>
+		<h1>查看项目审计（按项目信息）</h1>
+		<h2>登录</h2>
 		<p>
 			根据使用者的角色，登陆后看到如下界面： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image023.png">
 		</p>
-		<h2>4.2. 选择【查看项目审计（按项目信息）】</h2>
+		<h2>选择【查看项目审计（按项目信息）】</h2>
 		<p>
 			(1) 点击【查看项目审计（按项目信息）】图标后，进项目信息查询界面： <img class="ph"
 				src="${pageContext.request.contextPath}/assets/image/image002.png">
