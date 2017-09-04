@@ -29,8 +29,8 @@
 </head>
 <body>
 	<a name="home"></a>
-	<div class="title">操作手册</div>
-	目录
+	<div class="title">项目审计操作手册</div>
+	<span class="index-title">目录</span>
 	<div class="index"></div>
 	<div class="content">
 		<h1>新增项目审计</h1>
