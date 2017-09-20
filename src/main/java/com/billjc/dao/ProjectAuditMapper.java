@@ -23,9 +23,9 @@ public interface ProjectAuditMapper {
 
 	List<ProjectAudit> selectByProjectId(String projectId);
 
-	List<ProjectAudit> selectByAuditTypeIds(List<Integer> auditTypeIds);
+	List<ProjectAudit> selectByAuditTypeKeys(List<Integer> auditTypeKeys);
 
-	List<Integer> selectAuditTypeIdsByParams(@Param("projectId") String projectId,
+	List<String> selectAuditTypeKeysByParams(@Param("projectId") String projectId,
 			@Param("auditWorkId") String auditWorkId,
 			@Param("type") String type);
 }

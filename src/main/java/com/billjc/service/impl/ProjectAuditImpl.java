@@ -30,10 +30,10 @@ import com.billjc.vo.ProjectAuditView;
 public class ProjectAuditImpl implements ProjectAuditService {
 
 	private static Logger logger = LoggerFactory
-			.getLogger(ProjectAuditImpl.class);
+					.getLogger(ProjectAuditImpl.class);
 
 	private SimpleDateFormat sf = new SimpleDateFormat(
-			Constants.SIMPLE_DATE_FORMAT);
+					Constants.SIMPLE_DATE_FORMAT);
 
 	@Autowired
 	private ProjectAuditMapper projectAuditMapper;
@@ -77,7 +77,7 @@ public class ProjectAuditImpl implements ProjectAuditService {
 		List<ProjectAuditView> projectAuditViewList = new ArrayList<ProjectAuditView>();
 
 		List<ProjectAudit> projectAuditList = projectAuditMapper
-				.selectByAuditWorkId(auditWorkId);
+						.selectByAuditWorkId(auditWorkId);
 		logger.debug("size: " + projectAuditList.size());
 
 		return setViewListInfo(projectAuditViewList, projectAuditList);
@@ -88,7 +88,7 @@ public class ProjectAuditImpl implements ProjectAuditService {
 		List<ProjectAuditView> projectAuditViewList = new ArrayList<ProjectAuditView>();
 
 		List<ProjectAudit> projectAuditList = projectAuditMapper
-				.selectByProjectId(projectId);
+						.selectByProjectId(projectId);
 		logger.debug("size: " + projectAuditList.size());
 		if (null == projectAuditList || 0 == projectAuditList.size()) {
 			projectAuditList = new ArrayList<ProjectAudit>();
@@ -104,10 +104,11 @@ public class ProjectAuditImpl implements ProjectAuditService {
 	}
 
 	@Override
-	public List<ProjectAuditView> selectByAuditTypeIds(List<Integer> domainList) {
+	public List<ProjectAuditView> selectByAuditTypeKeys(
+					List<Integer> domainList) {
 		List<ProjectAuditView> projectAuditViewList = new ArrayList<ProjectAuditView>();
 		List<ProjectAudit> projectAuditList = projectAuditMapper
-				.selectByAuditTypeIds(domainList);
+						.selectByAuditTypeKeys(domainList);
 		logger.debug("size: " + projectAuditList.size());
 
 		return setViewListInfo(projectAuditViewList, projectAuditList);
@@ -137,7 +138,7 @@ public class ProjectAuditImpl implements ProjectAuditService {
 	private void setViewInfo(ProjectAuditView projectAuditView) {
 		// 评价项
 		Dictionary auditDictionary = dictionaryService
-				.selectByPK(projectAuditView.getAuditTypeId());
+						.selectByKeyName(projectAuditView.getAuditTypeKey());
 		if (null != auditDictionary) {
 			projectAuditView.setAuditName(auditDictionary.getValue());
 		}
@@ -151,18 +152,19 @@ public class ProjectAuditImpl implements ProjectAuditService {
 
 		// Audit名称
 		User staffUser = userService
-				.selectByWorkId(projectAuditView.getAuditWorkId());
+						.selectByWorkId(projectAuditView.getAuditWorkId());
 		if (null != staffUser) {
 			projectAuditView.setAuditStaffName(staffUser.getUsername());
 		}
 
-		projectAuditView
-				.setAuditCreateDateString(projectAuditView.getAuditCreateDate() == null ? ""
-						: sf.format(projectAuditView.getAuditCreateDate()));
+		projectAuditView.setAuditCreateDateString(
+						projectAuditView.getAuditCreateDate() == null ? ""
+										: sf.format(projectAuditView
+														.getAuditCreateDate()));
 
 		// 设置项目名称
 		Project project = projectService
-				.selectByPrimaryKey(projectAuditView.getProjectId());
+						.selectByPrimaryKey(projectAuditView.getProjectId());
 		if (null != project) {
 			projectAuditView.setProjectName(project.getProjectName());
 			projectAuditView.setProjectMgrWorkId(project.getProjectMgrWorkId());
@@ -170,12 +172,12 @@ public class ProjectAuditImpl implements ProjectAuditService {
 
 			Date projectStartDate = project.getProjectStartDate();
 
-			projectAuditView
-					.setProjectStartDateString(projectStartDate == null ? ""
-							: sf.format(projectStartDate));
+			projectAuditView.setProjectStartDateString(projectStartDate == null
+							? "" : sf.format(projectStartDate));
 			projectAuditView.setProjectEndDateString(
-					project.getProjectEndDate() == null ? ""
-							: sf.format(project.getProjectEndDate()));
+							project.getProjectEndDate() == null ? ""
+											: sf.format(project
+															.getProjectEndDate()));
 
 			String projectStateString = project.getProState();
 			projectAuditView.setProjectStateString(projectStateString);
@@ -184,8 +186,8 @@ public class ProjectAuditImpl implements ProjectAuditService {
 	}
 
 	private List<ProjectAuditView> setViewListInfo(
-			List<ProjectAuditView> projectAuditViewList,
-			List<ProjectAudit> projectAuditList) {
+					List<ProjectAuditView> projectAuditViewList,
+					List<ProjectAudit> projectAuditList) {
 		ProjectAuditView projectAuditView = null;
 		for (ProjectAudit projectAudit : projectAuditList) {
 			projectAuditView = new ProjectAuditView();
@@ -204,31 +206,31 @@ public class ProjectAuditImpl implements ProjectAuditService {
 	}
 
 	private List<ProjectAuditView> mixViewList(
-			List<ProjectAuditView> projectAuditViewList) {
+					List<ProjectAuditView> projectAuditViewList) {
 		Map<String, List<ProjectAuditView>> projectAuditViewMap = new TreeMap<String, List<ProjectAuditView>>();
 
 		List<ProjectAuditView> tempProjectAuditViews = null;
 		for (ProjectAuditView projectAuditView : projectAuditViewList) {
 			tempProjectAuditViews = projectAuditViewMap
-					.get(projectAuditView.getProjectId());
+							.get(projectAuditView.getProjectId());
 			if (null == tempProjectAuditViews
-					|| 0 == tempProjectAuditViews.size()) {
+							|| 0 == tempProjectAuditViews.size()) {
 				tempProjectAuditViews = new ArrayList<ProjectAuditView>();
 			}
 
 			tempProjectAuditViews.add(projectAuditView);
 
 			projectAuditViewMap.put(projectAuditView.getProjectId(),
-					tempProjectAuditViews);
+							tempProjectAuditViews);
 		}
 
 		List<ProjectAuditView> mixViewList = new ArrayList<ProjectAuditView>();
 		ProjectAuditView newProjectAuditView = null;
 		for (Map.Entry<String, List<ProjectAuditView>> entry : projectAuditViewMap
-				.entrySet()) {
+						.entrySet()) {
 
 			System.out.println("Key = " + entry.getKey() + ", Value = "
-					+ entry.getValue());
+							+ entry.getValue());
 			newProjectAuditView = new ProjectAuditView();
 			String projectId = entry.getKey();
 			newProjectAuditView.setProjectId(projectId);
@@ -246,13 +248,13 @@ public class ProjectAuditImpl implements ProjectAuditService {
 			// 先将第一个实例的信息复制过去
 			if (null != projectAuditViews && 0 < projectAuditViews.size()) {
 				BeanUtils.copyProperties(projectAuditViews.get(0),
-						newProjectAuditView);
+								newProjectAuditView);
 			}
 
 			for (ProjectAuditView projectAuditView : projectAuditViews) {
 				// 评价项
-				Dictionary auditDictionary = dictionaryService
-						.selectByPK(projectAuditView.getAuditTypeId());
+				Dictionary auditDictionary = dictionaryService.selectByKeyName(
+								projectAuditView.getAuditTypeKey());
 				if (null != auditDictionary) {
 					projectAuditView.setAuditName(auditDictionary.getValue());
 
@@ -295,6 +297,7 @@ public class ProjectAuditImpl implements ProjectAuditService {
 		if (null == id || "".equals(id.trim())) {
 			id = UUID.randomUUID().toString();
 			projectAudit.setId(id);
+			projectAuditView.setId(id);
 			Date auditCreateDate = new Date();
 			projectAudit.setAuditCreateDate(auditCreateDate);
 			result = projectAuditMapper.insertSelective(projectAudit);
@@ -302,17 +305,17 @@ public class ProjectAuditImpl implements ProjectAuditService {
 			Date auditUpdateDate = new Date();
 			projectAudit.setAuditUpdateDate(auditUpdateDate);
 			result = projectAuditMapper
-					.updateByPrimaryKeySelective(projectAudit);
+							.updateByPrimaryKeySelective(projectAudit);
 		}
 
 		return result;
 	}
 
 	@Override
-	public List<Integer> selectAuditTypeIdsByParams(String projectId,
-			String auditWorkId, String type) {
-		return projectAuditMapper.selectAuditTypeIdsByParams(projectId, auditWorkId,
-				type);
+	public List<String> selectAuditTypeKeysByParams(String projectId,
+					String auditWorkId, String type) {
+		return projectAuditMapper.selectAuditTypeKeysByParams(projectId,
+						auditWorkId, type);
 	}
 
 }

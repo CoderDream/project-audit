@@ -1,6 +1,6 @@
 $(function() {
 	
-	$("#project-audit-query-condition-btn").on("click", function() {
+	$("#project-audit-query-btn").on("click", function() {
 		// jquery获取复选框值
 		var chk_value = [];
 		$('input[name="query-checkbox"]:checked').each(function() {
@@ -43,7 +43,7 @@ $(function() {
 				$ul.html("");
 				$.each(response, function(i, val) {
 					var projectName = val.projectName;
-					html = $('<li data-val="' + i + '">' + projectName + '</li>');
+					html = $('<li data-val="' + i + '"><span>' + projectName + '</span></li>');
 					html.data("_dataItem_", val);
 					$ul.append(html);
 				});

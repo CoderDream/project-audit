@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="7" total="8" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="2680" started-at="2017-09-20T09:36:07Z" finished-at="2017-09-20T09:36:10Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="2680" started-at="2017-09-20T09:36:07Z" finished-at="2017-09-20T09:36:10Z">
+      <class name="com.billjc.controller.ProjectAuditControllerTest">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.billjc.controller.ProjectAuditControllerTest@290dbf45]" name="springTestContextBeforeTestClass" is-config="true" duration-ms="8" started-at="2017-09-20T17:36:07Z" finished-at="2017-09-20T17:36:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.billjc.controller.ProjectAuditControllerTest@290dbf45]" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="1726" started-at="2017-09-20T17:36:07Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2017-09-20T17:36:09Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.billjc.controller.ProjectAuditControllerTest@290dbf45]" name="setup" is-config="true" duration-ms="86" started-at="2017-09-20T17:36:09Z" finished-at="2017-09-20T17:36:09Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.billjc.controller.ProjectAuditControllerTest@290dbf45]" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="2" started-at="2017-09-20T17:36:09Z" finished-at="2017-09-20T17:36:09Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.billjc.controller.ProjectAuditControllerTest.testQueryByAuditItem() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="testQueryByAuditItem()[pri:21, instance:com.billjc.controller.ProjectAuditControllerTest@290dbf45]" name="testQueryByAuditItem" duration-ms="841" started-at="2017-09-20T17:36:09Z" finished-at="2017-09-20T17:36:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testQueryByAuditItem -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.billjc.controller.ProjectAuditControllerTest@290dbf45]" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2017-09-20T17:36:10Z" finished-at="2017-09-20T17:36:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.billjc.controller.ProjectAuditControllerTest.testQueryByAuditItem() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.billjc.controller.ProjectAuditControllerTest@290dbf45]" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2017-09-20T17:36:10Z" finished-at="2017-09-20T17:36:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.billjc.controller.ProjectAuditControllerTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

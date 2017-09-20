@@ -14,12 +14,6 @@ public class DictionaryMapperTest extends BaseTest {
 	@Autowired
 	private DictionaryMapper dictionaryMapper;
 
-	@Test
-	public void testSelectByPrimaryKey() {
-		Integer id = 856;
-		Dictionary dictionary = dictionaryMapper.selectByKey(id);
-		System.out.println(dictionary);
-	}
 
 	@Test
 	public void testFindAll() {

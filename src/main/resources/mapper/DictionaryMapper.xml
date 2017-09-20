@@ -9,10 +9,10 @@
 		<result column="ParentID" property="parentId" jdbcType="INTEGER" />
 		<result column="SortIndex" property="sortIndex" jdbcType="INTEGER" />
 		<result column="Remark" property="remark" jdbcType="VARCHAR" />
-	</resultMap>	
+	</resultMap>
 	<sql id="Base_Column_List">
 		ID,Type,KeyName,Value,ParentID,SortIndex,Remark
-	</sql>	
+	</sql>
 	<select id="selectByKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
@@ -20,7 +20,7 @@
 		from [DataDict]
 		where id =
 		#{id,jdbcType=INTEGER}
-	</select>	
+	</select>
 	<select id="selectByParentID" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
@@ -28,22 +28,32 @@
 		from [DataDict]
 		where parentID =
 		#{parentID,jdbcType=INTEGER}
-	</select>	
+	</select>
 	<select id="findAll" resultMap="BaseResultMap">
 		SELECT * FROM
 		[DataDict]
-	</select>	
+	</select>
 	<select id="selectByValue" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from [DataDict]
 		where value LIKE
-		'%${value}%' and Type = #{type} and ParentID is not null;
+		'%${value}%' and Type = #{type} and
+		ParentID is not null;
 	</select>
-	<select id="selectByType" resultMap="BaseResultMap" parameterType="java.lang.String">
+	<select id="selectByType" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
 		from [DataDict]
 		where Type = #{type} and ParentID is not null;
+	</select>
+	<select id="selectByKeyName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from [DataDict]
+		where KeyName =
+		#{keyName,jdbcType=VARCHAR}
 	</select>
 </mapper>

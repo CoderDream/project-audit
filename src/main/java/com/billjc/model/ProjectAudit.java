@@ -8,7 +8,7 @@ public class ProjectAudit {
 	/**
 	 * 
 	 */
-	private Integer auditTypeId;
+	private String auditTypeKey;
 
 	private Integer auditState;
 
@@ -32,12 +32,12 @@ public class ProjectAudit {
 		this.id = id == null ? null : id.trim();
 	}
 
-	public Integer getAuditTypeId() {
-		return auditTypeId;
+	public String getAuditTypeKey() {
+		return auditTypeKey;
 	}
 
-	public void setAuditTypeId(Integer auditTypeId) {
-		this.auditTypeId = auditTypeId;
+	public void setAuditTypeKey(String auditTypeKey) {
+		this.auditTypeKey = auditTypeKey;
 	}
 
 	public Integer getAuditState() {

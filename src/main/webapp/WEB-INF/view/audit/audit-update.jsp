@@ -31,7 +31,7 @@
 <script type="text/javascript">
 	var workId = '${workId}';
 	var auditType = '${auditType}';
-	var auditTypeIds = ${auditTypeIds};
+	var auditTypeKeys = ${auditTypeKeys};
 	var operateType = '${operateType}';
 </script>
 </head>
@@ -42,8 +42,8 @@
 				<input type="hidden" id="id" value="${projectAuditView.id}">
 				<input type="hidden" id="projectId"
 					value="${projectAuditView.projectId}"> <input type="hidden"
-					id="auditTypeId" name="auditTypeId" value="${projectAuditView.auditTypeId}"> <input
-					type="hidden" id="auditTypeIds" value="${auditTypeIds}"> <input
+					id="auditTypeKey" name="auditTypeKey" value="${projectAuditView.auditTypeKey}"> <input
+					type="hidden" id="auditTypeKeys" value="${auditTypeKeys}"> <input
 					type="hidden" id="operateType" value="${operateType}">
 				<div class="ui-field-contain">
 					<label for="projectName">项目名称</label> <span id="projectName">${projectAuditView.projectName}</span>

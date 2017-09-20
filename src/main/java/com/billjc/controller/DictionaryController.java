@@ -37,8 +37,8 @@ public class DictionaryController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/audit", method = RequestMethod.GET)
-	public Map<Integer, String> queryAuditItemsByType(String type) {
-		Map<Integer, String> map = new HashMap<Integer, String>();
+	public Map<String, String> queryAuditItemsByType(String type) {
+		Map<String, String> map = new HashMap<String, String>();
 		List<Dictionary> dictionaryList = new ArrayList<Dictionary>();
 		switch (type) {
 		case Constants.REASONABLE_OBJECTIVE_INFO:
@@ -59,7 +59,7 @@ public class DictionaryController {
 
 		for (Dictionary dictionary : dictionaryList) {
 			logger.debug(dictionary.toString());
-			map.put(dictionary.getId(), dictionary.getValue());
+			map.put(dictionary.getKeyName(), dictionary.getValue());
 		}
 
 		return map;
@@ -70,8 +70,8 @@ public class DictionaryController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/audit-all", method = RequestMethod.GET)
-	public Map<Integer, String> selectAllAuditItems() {
-		Map<Integer, String> map = new HashMap<Integer, String>();
+	public Map<String, String> selectAllAuditItems() {
+		Map<String, String> map = new HashMap<String, String>();
 		List<Dictionary> dictionaryList = new ArrayList<Dictionary>();
 		dictionaryList.addAll(dictionaryService.selectByType(Constants.REASONABLE_OBJECTIVE_INFO));
 		dictionaryList.addAll(dictionaryService.selectByType(Constants.OPERATION_STANDARD_INFO));
@@ -79,7 +79,7 @@ public class DictionaryController {
 
 		for (Dictionary dictionary : dictionaryList) {
 			logger.debug(dictionary.toString());
-			map.put(dictionary.getId(), dictionary.getValue());
+			map.put(dictionary.getKeyName(), dictionary.getValue());
 		}
 
 		return map;

@@ -5,7 +5,6 @@ import java.util.List;
 import com.billjc.model.Dictionary;
 
 public interface DictionaryService {
-	Dictionary selectByPK(Integer id);
 
 	void save(Dictionary user);
 
@@ -14,4 +13,6 @@ public interface DictionaryService {
 	List<Dictionary> findAll();
 	
 	List<Dictionary> selectByValue(String value, String type);
+	
+	Dictionary selectByKeyName(String keyName);
 }

@@ -22,7 +22,7 @@ public interface DictionaryMapper {
 	List<Dictionary> selectByValue(@Param("value") String value,
 			@Param("type") String type);
 
-	Dictionary selectByKey(Integer id);
+	Dictionary selectByKeyName(String keyName);
 
 	int updateByPrimaryKeySelective(Dictionary record);
 

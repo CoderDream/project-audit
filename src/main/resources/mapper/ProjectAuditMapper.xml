@@ -3,7 +3,7 @@
 <mapper namespace="com.billjc.dao.ProjectAuditMapper">
 	<resultMap id="BaseResultMap" type="com.billjc.model.ProjectAudit">
 		<id column="ID" jdbcType="CHAR" property="id" />
-		<result column="Audit_Type_Id" jdbcType="INTEGER" property="auditTypeId" />
+		<result column="Audit_Type_Key" jdbcType="VARCHAR" property="auditTypeKey" />
 		<result column="Audit_State" jdbcType="INTEGER" property="auditState" />
 		<result column="Audit_Work_Id" jdbcType="VARCHAR" property="auditWorkId" />
 		<result column="Audit_Content" jdbcType="VARCHAR" property="auditContent" />
@@ -13,7 +13,7 @@
 		<result column="Delete_Flag" jdbcType="INTEGER" property="deleteFlag" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		ID, Audit_Type_Id, Audit_State, Audit_Work_Id, Audit_Content,
+		ID, Audit_Type_Key, Audit_State, Audit_Work_Id, Audit_Content,
 		Audit_Create_Date,Audit_Update_Date,
 		Project_Id,Delete_Flag
 	</sql>
@@ -41,27 +41,27 @@
 		from ProjectAudit
 		where (Delete_Flag != 1 OR Delete_Flag IS NULL)
 		AND Project_Id = #{projectId,jdbcType=CHAR}
-		ORDER BY Audit_Type_Id, Audit_Work_Id;
+		ORDER BY Audit_Type_Key, Audit_Work_Id;
 	</select>
-	<select id="selectByAuditTypeIds" parameterType="java.util.List"
+	<select id="selectByAuditTypeKeys" parameterType="java.util.List"
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from ProjectAudit
 		where (Delete_Flag != 1 OR Delete_Flag IS NULL)
-		AND Audit_Type_Id in
+		AND Audit_Type_Key in
 		<foreach item="item" index="index" collection="list" open="("
 			separator="," close=")">
 			#{item}
 		</foreach>
 	</select>
-	<resultMap id="AuditTypeIdResultMap" type="java.lang.Integer">
-		<result column="Audit_Type_Id" property="auditTypeId"/>
+	<resultMap id="AuditTypeKeyResultMap" type="java.lang.String">
+		<result column="Audit_Type_Key" property="auditTypeKey"/>
 	</resultMap>
-	<select id="selectAuditTypeIdsByParams" parameterType="java.lang.String"
-		resultMap="AuditTypeIdResultMap">
+	<select id="selectAuditTypeKeysByParams" parameterType="java.lang.String"
+		resultMap="AuditTypeKeyResultMap">
 		SELECT
-		pa.Audit_Type_Id Audit_Type_Id		
+		pa.Audit_Type_Key Audit_Type_Key		
 		FROM
 		ProjectAudit pa,
 		[DataDict] d
@@ -70,7 +70,7 @@
 		AND pa.Project_Id = '${param1}'
 		AND pa.Audit_Work_Id =
 		'${param2}'
-		AND pa.Audit_Type_Id = d.ID
+		AND pa.Audit_Type_Key = d.KeyName
 		AND d.Type = '${param3}';
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
@@ -81,10 +81,10 @@
 	</delete>
 	<insert id="insert" parameterType="com.billjc.model.ProjectAudit">
 		insert into ProjectAudit
-		(ID, Audit_Type_Id, Audit_State,
+		(ID, Audit_Type_Key, Audit_State,
 		Audit_Work_Id, Audit_Content, Audit_Create_Date,
 		Project_Id)
-		values (#{id,jdbcType=CHAR}, #{auditTypeId,jdbcType=INTEGER},
+		values (#{id,jdbcType=CHAR}, #{auditTypeKey,jdbcType=VARCHAR},
 		#{auditState,jdbcType=INTEGER},
 		#{auditWorkId,jdbcType=VARCHAR},
 		#{auditContent,jdbcType=VARCHAR}, #{auditCreateDate,jdbcType=TIMESTAMP},
@@ -96,8 +96,8 @@
 			<if test="id != null">
 				ID,
 			</if>
-			<if test="auditTypeId != null">
-				Audit_Type_Id,
+			<if test="auditTypeKey != null">
+				Audit_Type_Key,
 			</if>
 			<if test="auditState != null">
 				Audit_State,
@@ -119,8 +119,8 @@
 			<if test="id != null">
 				#{id,jdbcType=CHAR},
 			</if>
-			<if test="auditTypeId != null">
-				#{auditTypeId,jdbcType=INTEGER},
+			<if test="auditTypeKey != null">
+				#{auditTypeKey,jdbcType=VARCHAR},
 			</if>
 			<if test="auditState != null">
 				#{auditState,jdbcType=INTEGER},
@@ -142,8 +142,8 @@
 	<update id="updateByPrimaryKeySelective" parameterType="com.billjc.model.ProjectAudit">
 		update ProjectAudit
 		<set>
-			<if test="auditTypeId != null">
-				Audit_Type_Id = #{auditTypeId,jdbcType=INTEGER},
+			<if test="auditTypeKey != null">
+				Audit_Type_Key = #{auditTypeKey,jdbcType=VARCHAR},
 			</if>
 			<if test="auditState != null">
 				Audit_State = #{auditState,jdbcType=INTEGER},
@@ -172,7 +172,7 @@
 	<update id="updateByPrimaryKey" parameterType="com.billjc.model.ProjectAudit">
 		update
 		ProjectAudit
-		set Audit_Type_Id = #{auditTypeId,jdbcType=INTEGER},
+		set Audit_Type_Key = #{auditTypeKey,jdbcType=VARCHAR},
 		Audit_State = #{auditState,jdbcType=INTEGER},
 		Audit_Work_Id =
 		#{auditWorkId,jdbcType=VARCHAR},

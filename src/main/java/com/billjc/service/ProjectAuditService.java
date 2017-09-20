@@ -22,10 +22,10 @@ public interface ProjectAuditService {
 
 	List<ProjectAuditView> selectByProjectId(String projectId);
 
-	List<ProjectAuditView> selectByAuditTypeIds(List<Integer> domainList);
+	List<ProjectAuditView> selectByAuditTypeKeys(List<Integer> domainList);
 
 	int saveAndUpdate(ProjectAuditView projectAuditView);
 
-	List<Integer> selectAuditTypeIdsByParams(String projectId, String auditWorkId,
+	List<String> selectAuditTypeKeysByParams(String projectId, String auditWorkId,
 			String type);
 }

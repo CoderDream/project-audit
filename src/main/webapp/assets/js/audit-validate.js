@@ -10,7 +10,7 @@ $(function() {
 	// 新增或修改审批
 	$("#audit-form").validate({
 		rules : {
-			auditTypeId : { // 
+			auditTypeKey : { // 
 				required : true, // 必填，这里可以是一个匿名方法
 				rangelength : [ 1, 50 ], // 长度5-10之间
 			}, // 任务描述必填
@@ -21,7 +21,7 @@ $(function() {
 			}, // 任务描述必填
 		},
 		messages : { // 对应上面的错误信息
-			auditTypeId : "审计科目不能为空",
+			auditTypeKey : "审计科目不能为空",
 			auditContent : "评价内容不能为空，且不能超过100个字符！",
 		},
 
@@ -41,16 +41,16 @@ $(function() {
 		debug : false, // 如果修改为true则表单不会提交
 		submitHandler : function() {
 			var id = $("#id").val();
-			var auditTypeId  = $("#auditTypeId").val();
+			var auditTypeKey  = $("#auditTypeKey").val();
 			var projectId  = $("#projectId").val();
 			var auditWorkId  = $("#workId").val();
 			var auditContent  = $("#auditContent").val();
 			var auditState = $("input[name='auditState']:checked").val();
 			
-			var url = "/audit/audit-update-save";
+			var url = "/audit/audit-save";
 			var profileView = {
 				id : id,
-				auditTypeId : auditTypeId,
+				auditTypeKey : auditTypeKey,
 				auditWorkId : auditWorkId,
 				projectId : projectId,
 				auditState : auditState,

@@ -90,20 +90,20 @@ public class ProjectAuditServiceTest extends BaseTest {
 		projectIds.add("04e8522f-b4e4-483f-abff-338916f985e2");
 		projectIds.add("16f0ed84-2daa-48da-91cd-e6581807b8f0");
 
-		List<Integer> auditTypeIds = new ArrayList<Integer>();
-		auditTypeIds.add(3616);
-		auditTypeIds.add(3617);
-		auditTypeIds.add(3618);
-		auditTypeIds.add(3620);
-		auditTypeIds.add(3621);
-		auditTypeIds.add(3622);
-		auditTypeIds.add(3623);
-		auditTypeIds.add(3625);
-		auditTypeIds.add(3626);
+		List<String> auditTypeKeys = new ArrayList<>();
+		auditTypeKeys.add("RO01");
+		auditTypeKeys.add("RO02");
+		auditTypeKeys.add("RO03");
+		auditTypeKeys.add("OS01");
+		auditTypeKeys.add("OS02");
+		auditTypeKeys.add("OS03");
+		auditTypeKeys.add("OS04");
+		auditTypeKeys.add("AD01");
+		auditTypeKeys.add("AD02");
 
 		for (int i = 0; i < 100; i++) {
 			int randomNumber1 = MathUtil.getRandomByRange(0, 8);
-			Integer auditTypeId = auditTypeIds.get(randomNumber1);
+			String auditTypeKey = auditTypeKeys.get(randomNumber1);
 			int randomNumber2 = MathUtil.getRandomByRange(0, 2);
 			Integer auditState = randomNumber2;
 			int randomNumber3 = MathUtil.getRandomByRange(0, 8);
@@ -111,20 +111,20 @@ public class ProjectAuditServiceTest extends BaseTest {
 			int randomNumber4 = MathUtil.getRandomByRange(0, 19);
 			String projectId = projectIds.get(randomNumber4);
 
-			createProjectAudit(auditTypeId, auditState, workId, projectId);
+			createProjectAudit(auditTypeKey, auditState, workId, projectId);
 		}
 	}
 
-	private void createProjectAudit(Integer auditTypeId, Integer auditState,
+	private void createProjectAudit(String auditTypeKey, Integer auditState,
 			String workId, String projectId) {
 		String auditContent = "这里填写给该项目的审核意见";
 		Date auditCreateDate = new Date();
 
 		ProjectAudit projectAudit = new ProjectAudit();
-		String projectAuditTypeId = UUID.randomUUID().toString();
-		logger.debug("###projectAuditTypeId: {}", projectAuditTypeId);
-		projectAudit.setId(projectAuditTypeId);
-		projectAudit.setAuditTypeId(auditTypeId);
+		String projectAuditTypeKey = UUID.randomUUID().toString();
+		logger.debug("###projectAuditTypeKey: {}", projectAuditTypeKey);
+		projectAudit.setId(projectAuditTypeKey);
+		projectAudit.setAuditTypeKey(auditTypeKey);
 		projectAudit.setAuditContent(auditContent);
 		projectAudit.setAuditState(auditState);
 		projectAudit.setAuditCreateDate(auditCreateDate);
@@ -181,12 +181,12 @@ public class ProjectAuditServiceTest extends BaseTest {
 	}
 
 	@Test
-	public void testSelectByAuditTypeIds01() {
+	public void testSelectByAuditTypeKeys01() {
 		List<Integer> queryList = new ArrayList<Integer>();
 		queryList.add(3616);
 		queryList.add(3617);
 		List<ProjectAuditView> projectAuditViewList = projectAuditService
-				.selectByAuditTypeIds(queryList);
+				.selectByAuditTypeKeys(queryList);
 		logger.debug("###size: " + projectAuditViewList.size());
 		for (ProjectAuditView projectAuditView : projectAuditViewList) {
 			logger.debug("" + projectAuditView);
@@ -194,15 +194,15 @@ public class ProjectAuditServiceTest extends BaseTest {
 	}
 
 	@Test
-	public void testSelectAuditTypeIdsByParams01() {
+	public void testSelectAuditTypeKeysByParams01() {
 		String projectId = "349087d2-b4a0-4319-a9a4-f7c6d7a20d23";
 		String auditWorkId = "B-11332";
 		String type = "ReasonableObjectiveInfo";
-		List<Integer> auditTypeIds = projectAuditService
-				.selectAuditTypeIdsByParams(projectId, auditWorkId, type);
-		logger.debug("###size: " + auditTypeIds.size());
-		for (Integer auditTypeId : auditTypeIds) {
-			logger.debug("" + auditTypeId);
+		List<String> auditTypeKeys = projectAuditService
+				.selectAuditTypeKeysByParams(projectId, auditWorkId, type);
+		logger.debug("###size: " + auditTypeKeys.size());
+		for (String auditTypeKey : auditTypeKeys) {
+			logger.debug("" + auditTypeKey);
 		}
 	}
 

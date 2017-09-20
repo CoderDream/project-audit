@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!-- <suite name="Preserve order test runs"> -->
+<suite thread-count="3" name="Suite" parallel="tests">
+	<test name="Regression 1" preserve-order="true">
+		<classes>
+			<class name="com.billjc.controller.ProfileControllerTest">
+				<methods>
+					<include name="testMyProfile" />
+					<include name="testProfileUpdate" />
+					<include name="testProfileSave" />
+					<include name="testPmEvaluateUpdate" />
+					<include name="testPmEvaluateSave" />
+					<include name="testTmEvaluateUpdate" />
+					<include name="testTmEvaluateSave" />
+					<include name="testSkillUpdate" />
+					<include name="testSkillSave" />
+					<include name="testSkillDelete" />
+					<include name="testDomainUpdate" />
+					<include name="testDomainSave" />
+					<include name="testDomainDelete" />
+					<include name="testMyProjectList" />
+					<include name="testProfileQuery" />
+					<include name="testQueryProfileListBySkill" />
+					<include name="testQueryProfileListByDomain" />
+					<include name="testQueryProfileListByWorkPlace" />
+				</methods>
+			</class>
+
+			<class name="com.billjc.controller.TaskControllerTest">
+				<methods>
+					<include name="testTaskCreate" />
+					<include name="testTaskSave" />
+					<include name="testTaskUpdate" />
+					<include name="testTaskItemCreateAndSave" />
+					<include name="testTaskItemSkillCreateAndSave" />
+					<include name="testTaskItemDomainCreateAndSave" />
+					<include name="testTaskItemDomainCreateAndSaveAndDelete" />
+					<include name="testMyTask" />
+					<include name="testTask" />
+					<include name="testTaskItem" />
+					<include name="testTaskQuery" />
+					<include name="testQueryTaskListBySkill" />
+					<include name="testQueryTaskListByDomain" />
+					<include name="testQueryTaskListByWorkPlace" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

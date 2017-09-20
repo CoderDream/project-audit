@@ -23,7 +23,7 @@ $(function() {
 			var index = 0;
 			var html = '<option value="">--请选择审计科目--</option>';
 			for(var key in response){
-				//if(!auditTypeIds.find(function(obj,index,list){return obj == key;})) {
+				//if(!auditTypeKeys.find(function(obj,index,list){return obj == key;})) {
 					html += '<option value="' + key + '">' + response[key] + '</option>';
 				//}
 			}
@@ -31,17 +31,17 @@ $(function() {
 		}
 		
 		if('edit' == operateType) {
-			var auditTypeId = $("#auditTypeId").val();
+			var auditTypeKey = $("#auditTypeKey").val();
 			
 			var index = 0;
 			var html = '';
 			for(var key in response){
-				if(auditTypeId == key) {
+				if(auditTypeKey == key) {
 					html += '<option value="' + key + '">' + response[key] + '</option>';
 				}
 			}
 			
-			auditItem.html(html).val(auditTypeId).trigger("change");
+			auditItem.html(html).val(auditTypeKey).trigger("change");
 			auditItem.selectmenu({disabled: true});
 			//auditItem.attr("disabled","disabled");  
 		}
@@ -63,7 +63,7 @@ $(function() {
 				if(result=="ok"){
 					var id = $("#id").val();
 					var projectId = $("#projectId").val();
-					var url = "/audit/audit-delete?projectId=" + projectId + "&projectAuditTypeId=" + id;
+					var url = "/audit/audit-delete?projectId=" + projectId + "&projectAuditTypeKey=" + id;
 					window.location = url;
 				}else{
 					return;
@@ -79,21 +79,21 @@ $(function() {
 		//var maxIndex = $("#auditItem option:last").attr("index"); // 获取Select最大的索引值
 		var auditItem = $("#auditItem");
 		 
-		if('add' == operateType && auditTypeIds.find(function(obj,index,list){return obj == checkValue;})) {
+		if('add' == operateType && auditTypeKeys.find(function(obj,index,list){return obj == checkValue;})) {
 			alert({message:"该审计科目已评价，请评价其他科目！",callback:function(){
 				$("#auditItem").val('').selectmenu("refresh");
 			}});
 			
 		} else {
-			$("#auditTypeId").val(checkValue);
+			$("#auditTypeKey").val(checkValue);
 		}
 		//alert(checkText);
 		//alert(checkValue);
 		//alert(checkIndex);
 		//alert(maxIndex);
 		
-		//alert('window.auditTypeIds ' + window.auditTypeIds);
-		//alert('window.auditTypeIds length' + window.auditTypeIds.length);
+		//alert('window.auditTypeKeys ' + window.auditTypeKeys);
+		//alert('window.auditTypeKeys length' + window.auditTypeKeys.length);
 	});
 	
 	pushHistory(); 

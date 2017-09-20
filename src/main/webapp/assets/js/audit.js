@@ -34,7 +34,7 @@ $(function() {
 		})
 		.then(function(response) {
 			$.each(response, function(i, val) {
-				html += '<li data-val="'+i+'">' + val + '</li>';
+				html += '<li data-val="'+i+'"><span>' + val + '</span></li>';
 			});
 			
 			$ul.html(html);
@@ -86,7 +86,7 @@ $(function() {
 		})
 		.then(function(response) {
 			$.each(response, function(i, val) {
-				html += '<li data-val="'+i+'">' + val + '</li>';
+				html += '<li data-val="'+i+'"><span>' + val + '</span></li>';
 			});
 			
 			$ul.html(html);
@@ -104,8 +104,8 @@ $(function() {
 				var key = $(this).attr("data-val");
 				var value = $(this).text();
 				//alert('value ' + value);
-				$("#stateId").attr("value", key);//填充内容 
-				$("#stateId").val(key);//填充内容 
+				$("#stateKey").attr("value", key);//填充内容 
+				$("#stateKey").val(key);//填充内容 
 				$("#autocomplete_input_employee-state").val(value);//.attr("value", value);//填充内容 
 				//alert('employee-state ' + $("#employee-state").val());
 				//alert('autocomplete_input_employee-state ' + $("#autocomplete_input_employee-state").val());
@@ -137,7 +137,7 @@ $(function() {
 		})
 		.then(function(response) {
 			$.each(response, function(i, val) {
-				html += '<li data-val="' + i + '">' + val + '</li>';
+				html += '<li data-val="' + i + '"><span>' + val + '</span></li>';
 			});
 			
 			$ul.html(html);

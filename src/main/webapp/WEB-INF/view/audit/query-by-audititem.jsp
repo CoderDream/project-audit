@@ -27,14 +27,14 @@
 			<form method="post">
 				<fieldset data-role="controlgroup">
 					<c:forEach var="item" items="${dictionaryList}">
-						<input type="checkbox" name="query-checkbox" id="${item.id}"
-							value="${item.id}">
-						<label for="${item.id}">${item.value}</label>
+						<input type="checkbox" name="query-checkbox" id="${item.keyName}"
+							value="${item.keyName}">
+						<label for="${item.keyName}">${item.value}</label>
 					</c:forEach>
 				</fieldset>
 				<div class="ui-field-contain pdrc-btnrow">
 					<input type="button" value="查询"
-						id="project-audit-query-condition-btn">
+						id="project-audit-query-btn">
 				</div>
 			</form>
 		</div>

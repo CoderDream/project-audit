@@ -6,7 +6,7 @@ import java.util.List;
 public class ProjectAuditView {
 	private String id;
 
-	private Integer auditTypeId;
+	private String auditTypeKey;
 
 	private String auditName;
 
@@ -55,12 +55,12 @@ public class ProjectAuditView {
 		this.id = id;
 	}
 
-	public Integer getAuditTypeId() {
-		return auditTypeId;
+	public String getAuditTypeKey() {
+		return auditTypeKey;
 	}
 
-	public void setAuditTypeId(Integer auditTypeId) {
-		this.auditTypeId = auditTypeId;
+	public void setAuditTypeKey(String auditTypeKey) {
+		this.auditTypeKey = auditTypeKey;
 	}
 
 	public String getAuditName() {
@@ -209,7 +209,7 @@ public class ProjectAuditView {
 
 	@Override
 	public String toString() {
-		return "ProjectAuditView [id=" + id + ", auditTypeId=" + auditTypeId + ", auditName=" + auditName + ", auditState=" + auditState
+		return "ProjectAuditView [id=" + id + ", auditTypeKey=" + auditTypeKey + ", auditName=" + auditName + ", auditState=" + auditState
 				+ ", auditStateString=" + auditStateString + ", auditWorkId=" + auditWorkId + ", auditStaffName=" + auditStaffName + ", auditContent="
 						+ auditContent + ", auditCreateDate=" + auditCreateDate + ", auditCreateDateString="
 						+ auditCreateDateString + ", projectId=" + projectId + ", projectName="

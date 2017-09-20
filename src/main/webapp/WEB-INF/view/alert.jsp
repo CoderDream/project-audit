@@ -76,7 +76,7 @@ $(function(){
 				if(result=="ok"){
 					var id = $("#id").val();
 					var projectId = $("#projectId").val();
-					var url = "/audit/audit-delete?projectId=" + projectId + "&projectAuditTypeId=" + id;
+					var url = "/audit/audit-delete?projectId=" + projectId + "&projectAuditTypeKey=" + id;
 					window.location = url;
 				}else{
 					return;

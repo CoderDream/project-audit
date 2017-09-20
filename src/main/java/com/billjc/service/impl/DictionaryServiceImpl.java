@@ -16,16 +16,8 @@ public class DictionaryServiceImpl implements DictionaryService {
 	private DictionaryMapper dictionaryMapper;
 
 	@Override
-	public Dictionary selectByPK(Integer id) {
-		Dictionary dictionary = dictionaryMapper.selectByKey(id);
-		return dictionary;
-	}
-
-	@Override
 	public void save(Dictionary dictionary) {
 		dictionaryMapper.insertSelective(dictionary);
-		// System.out.println(10 / 0); // 用于测试事务，不测试时注释
-		// dictionaryMapper.insertSelective(dictionary); // 用于测试事务，不测试时注释
 	}
 
 	@Override
@@ -41,6 +33,11 @@ public class DictionaryServiceImpl implements DictionaryService {
 	@Override
 	public List<Dictionary> selectByType(String type) {
 		return dictionaryMapper.selectByType(type.trim());
+	}
+	
+	@Override
+	public Dictionary selectByKeyName(String keyName) {
+		return dictionaryMapper.selectByKeyName(keyName);
 	}
 
 }
