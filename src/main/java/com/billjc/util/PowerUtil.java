@@ -19,11 +19,11 @@ public class PowerUtil {
 			.getLogger(PowerUtil.class);
 
 	@SuppressWarnings("unchecked")
-	public static List<Integer> findResourceIds(String workId) {
+	public static List<String> findResourceIds(String workId) {
 		RestTemplate restTemplate = new RestTemplate();
 		logger.debug("findResourceIds workId {}", workId);
 		String url = UriComponentsBuilder
-				.fromHttpUrl(Constants.BASE_URL + "getFunctionIdsByWorkId/" + workId)
+				.fromHttpUrl(Constants.BASE_URL + "getFunctionKeysByWorkId/" + workId)
 				.build().toUriString();
 
 		ResponseEntity<?> responseEntity = restTemplate.getForEntity(url,
@@ -31,7 +31,7 @@ public class PowerUtil {
 
 		String o = (String) responseEntity.getBody();
 		ObjectMapper mapper = new ObjectMapper();
-		List<Integer> result = null;
+		List<String> result = null;
 		try {
 			result = mapper.readValue(o, List.class);
 		} catch (JsonParseException e) {

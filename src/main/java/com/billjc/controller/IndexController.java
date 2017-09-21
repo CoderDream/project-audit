@@ -87,7 +87,7 @@ public class IndexController {
 	private void setProfilePower(HttpSession session, ModelAndView mav,
 					String workId) {
 		logger.debug("setPower", mav);
-		List<Integer> resourceIds = PowerUtil.findResourceIds(workId);
+		List<String> resourceIds = PowerUtil.findResourceIds(workId);
 		String decodeWorkId = QEncodeUtil.encrypt(workId);
 		mav.addObject("resourceIds", resourceIds);
 		mav.addObject("workId", workId);

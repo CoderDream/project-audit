@@ -26,10 +26,10 @@ public class BaseController {
 	 *            模型和视图
 	 * @return 权限列表
 	 */
-	public List<Integer> setPower(HttpSession session, ModelAndView mav) {
+	public List<String> setPower(HttpSession session, ModelAndView mav) {
 		logger.debug("setPower", mav);
 		String workId = (String) session.getAttribute("workId");
-		List<Integer> resourceIds = PowerUtil.findResourceIds(workId);
+		List<String> resourceIds = PowerUtil.findResourceIds(workId);
 		mav.addObject("resourceIds", resourceIds);
 		return resourceIds;
 	}

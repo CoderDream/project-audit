@@ -19,8 +19,8 @@ public class PowerUtilTest {
 	@Test
 	public void testFindResourceIds() {
 		String username = "B-28709";
-		List<Integer> result = PowerUtil.findResourceIds(username);
-		for (Integer long1 : result) {
+		List<String> result = PowerUtil.findResourceIds(username);
+		for (String long1 : result) {
 			logger.debug("" + long1);
 		}
 		//
@@ -29,8 +29,8 @@ public class PowerUtilTest {
 	@Test
 	public void testFindResourceIds02() {
 		String username = "B-34196";
-		List<Integer> result = PowerUtil.findResourceIds(username);
-		for (Integer long1 : result) {
+		List<String> result = PowerUtil.findResourceIds(username);
+		for (String long1 : result) {
 			logger.debug("" + long1);
 		}
 		//

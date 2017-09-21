@@ -3,10 +3,9 @@ package com.billjc.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,11 +26,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.billjc.model.Dictionary;
-import com.billjc.service.ProjectAuditService;
 import com.billjc.util.Constants;
 import com.billjc.util.MathUtil;
 import com.billjc.util.QEncodeUtil;
 import com.billjc.vo.ProjectAuditView;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ContextConfiguration(locations = { "classpath:applicationContext.xml",
@@ -48,9 +47,6 @@ public class ProjectAuditControllerTest
 	@Autowired
 	private ProjectController projectController;
 
-	@Autowired
-	private ProjectAuditService projectAuditService;
-
 	private MockMvc mockMvc;
 
 	private MockHttpSession session;
@@ -63,7 +59,7 @@ public class ProjectAuditControllerTest
 	}
 
 	/**
-	 * 登陆
+	 * 我的审计（列表）
 	 * 
 	 * @throws Exception
 	 */
@@ -118,6 +114,7 @@ public class ProjectAuditControllerTest
 	}
 
 	/**
+	 * 某个项目的审计信息
 	 * 
 	 * @throws Exception
 	 */
@@ -162,7 +159,7 @@ public class ProjectAuditControllerTest
 	}
 
 	/**
-	 * 登陆
+	 * 按项目信息查询
 	 * 
 	 * @throws Exception
 	 */
@@ -227,40 +224,83 @@ public class ProjectAuditControllerTest
 		return (String) (map.keySet().toArray())[0];
 	}
 
-	/**
-	 * 登陆
-	 * 
-	 * @throws Exception
-	 */
-	@Test(priority = 13)
-	public void testProjectAuditUpdate() throws Exception {
+	@Test(priority = 15)
+	public void testProjectAuditAddUpdateDelete() throws Exception {
 		queryByProject();
 		String projectId = queryProject();
 		logger.debug("=====客户端获得反馈数据 projectId:{}", projectId);
 		ProjectAuditView projectAuditView = enterAuditPage(projectId);
 		logger.debug("=====客户端获得反馈数据 projectAuditView:{}", projectAuditView);
 
+		// 新增 begin
 		// 目标合理性
 		String auditType = Constants.REASONABLE_OBJECTIVE_INFO;
-		String projectAuditTypeKey = "";
-		enterAuditUpdatePage(auditType, projectId, projectAuditTypeKey,
+		String projectAuditId = "";
+		ProjectAuditView projectAuditView2 = enterAuditUpdatePage(auditType,
+						projectId, projectAuditId, session);
+
+		String auditTypeKey = "RO01";
+		String auditContent = "评价内容";
+		Integer auditState = 1;
+		String loginWorkId = "B-7382";
+		session.setAttribute("workId", loginWorkId);
+		projectAuditView2.setAuditTypeKey(auditTypeKey);
+		projectAuditView2.setAuditContent(auditContent);
+		projectAuditView2.setAuditState(auditState);
+		logger.debug("=====客户端获得反馈数据 projectAuditView2:{}", projectAuditView2);
+
+		ProjectAuditView projectAuditView3 = auditSave(projectAuditView2,
 						session);
+		logger.debug("=====客户端获得反馈数据 projectAuditView3:{}", projectAuditView3);
+		// 新增 end
+
+		// 修改 begin
+		// 目标合理性
+		auditType = Constants.REASONABLE_OBJECTIVE_INFO;
+		projectAuditId = projectAuditView3.getId();
+		ProjectAuditView projectAuditView4 = enterAuditUpdatePage(auditType,
+						projectId, projectAuditId, session);
+
+		auditContent = "评价内容";
+		auditState = 1;
+		session.setAttribute("workId", loginWorkId);
+		projectAuditView4.setAuditContent(auditContent);
+		projectAuditView4.setAuditState(auditState);
+		logger.debug("=====客户端传入的数据 projectAuditView4:{}", projectAuditView4);
+		ProjectAuditView projectAuditView5 = auditSave(projectAuditView4,
+						session);
+
+		logger.debug("=====客户端获得反馈数据 projectAuditView5:{}", projectAuditView5);
+		// 修改 end
+
+		// 删除 begin
+		String projectIdDelete = projectAuditView5.getProjectId();
+		String projectAuditIdDelete = projectAuditView5.getId();
+		logger.debug("=====删除传入参数 :projectIdDelete {}", projectIdDelete);
+		logger.debug("=====删除传入参数 :projectAuditIdDelete{}",
+						projectAuditIdDelete);
+		ProjectAuditView projectAuditView6 = auditDelete(projectIdDelete,
+						projectAuditIdDelete, session);
+
+		logger.debug("=====客户端获得反馈数据 projectAuditView6:{}", projectAuditView6);
+		// 删除 end
 	}
 
+
 	private ProjectAuditView enterAuditUpdatePage(String auditType,
-					String projectId, String projectAuditTypeKey,
+					String projectId, String projectAuditId,
 					MockHttpSession session) throws Exception {
 		// 进入人力信息编辑页面
 		String paramNameA = "auditType";
 		String paramNameB = "projectId";
-		String paramNameC = "projectAuditTypeKey";
+		String paramNameC = "projectAuditId";
 		// String paramNameD = "session";
 		logger.debug("=====传入参数 projectId:" + projectId);
 		ResultActions resultActions2 = this.mockMvc
 						.perform(MockMvcRequestBuilders.post("/audit-update")
 										.param(paramNameA, auditType)
 										.param(paramNameB, projectId)
-										.param(paramNameC, projectAuditTypeKey)
+										.param(paramNameC, projectAuditId)
 										.session(session));
 		MvcResult mvcResult2 = resultActions2.andReturn();
 		ModelAndView mav2 = mvcResult2.getModelAndView();
@@ -278,35 +318,7 @@ public class ProjectAuditControllerTest
 		return projectAuditView;
 	}
 
-	@Test(priority = 14)
-	public void testProjectAuditSave() throws Exception {
-		queryByProject();
-		String projectId = queryProject();
-		logger.debug("=====客户端获得反馈数据 projectId:{}", projectId);
-		ProjectAuditView projectAuditView = enterAuditPage(projectId);
-		logger.debug("=====客户端获得反馈数据 projectAuditView:{}", projectAuditView);
-
-		// 目标合理性
-		String auditType = Constants.REASONABLE_OBJECTIVE_INFO;
-		String projectAuditTypeKey = "";
-		ProjectAuditView projectAuditView2 = enterAuditUpdatePage(auditType,
-						projectId, projectAuditTypeKey, session);
-
-		String auditTypeKey = "RO01";
-		String auditContent = "评价内容";
-		Integer auditState = 1;
-		String loginWorkId = "B-7382";
-		session.setAttribute("workId", loginWorkId);
-		projectAuditView2.setAuditTypeKey(auditTypeKey);
-		projectAuditView2.setAuditContent(auditContent);
-		projectAuditView2.setAuditState(auditState);
-		logger.debug("=====客户端获得反馈数据 projectAuditView2:{}", projectAuditView2);
-		ProjectAuditView projectAuditView3 = auditSave(projectAuditView2,
-						session);
-
-		logger.debug("=====客户端获得反馈数据 projectAuditView3:{}", projectAuditView3);
-	}
-
+	
 	private ProjectAuditView auditSave(ProjectAuditView projectAuditView,
 					MockHttpSession session) throws Exception {
 		// 进入人力信息编辑页面
@@ -337,45 +349,7 @@ public class ProjectAuditControllerTest
 		return projectAuditView2;
 	}
 
-	@Test(priority = 15)
-	public void testProjectAuditDelete() throws Exception {
-		queryByProject();
-		String projectId = queryProject();
-		logger.debug("=====客户端获得反馈数据 projectId:{}", projectId);
-		ProjectAuditView projectAuditView = enterAuditPage(projectId);
-		logger.debug("=====客户端获得反馈数据 projectAuditView:{}", projectAuditView);
-
-		// 目标合理性
-		String auditType = Constants.REASONABLE_OBJECTIVE_INFO;
-		String projectAuditTypeKey = "";
-		ProjectAuditView projectAuditView2 = enterAuditUpdatePage(auditType,
-						projectId, projectAuditTypeKey, session);
-
-		String auditTypeKey = "RO01";
-		String auditContent = "评价内容";
-		Integer auditState = 1;
-		String loginWorkId = "B-7382";
-		session.setAttribute("workId", loginWorkId);
-		projectAuditView2.setAuditTypeKey(auditTypeKey);
-		projectAuditView2.setAuditContent(auditContent);
-		projectAuditView2.setAuditState(auditState);
-		logger.debug("=====客户端获得反馈数据 projectAuditView2:{}", projectAuditView2);
-		ProjectAuditView projectAuditView3 = auditSave(projectAuditView2,
-						session);
-
-		logger.debug("=====客户端获得反馈数据 projectAuditView3:{}", projectAuditView3);
-
-		String projectIdDelete = projectAuditView3.getProjectId();
-		String projectAuditIdDelete = projectAuditView3.getId();
-		logger.debug("=====删除传入参数 :projectIdDelete {}", projectIdDelete);
-		logger.debug("=====删除传入参数 :projectAuditIdDelete{}",
-						projectAuditIdDelete);
-		ProjectAuditView projectAuditView4 = auditDelete(projectIdDelete,
-						projectAuditIdDelete, session);
-
-		logger.debug("=====客户端获得反馈数据 projectAuditView4:{}", projectAuditView4);
-	}
-
+	
 	private ProjectAuditView auditDelete(String projectId,
 					String projectAuditId, MockHttpSession session)
 					throws Exception {
@@ -454,37 +428,52 @@ public class ProjectAuditControllerTest
 	}
 
 	/**
-	 * 登陆
+	 * 通过审计科目查询项目审计列表
 	 * 
 	 * @throws Exception
 	 */
 	@Test(priority = 22)
 	public void testAuditList() throws Exception {
-
-		StringBuffer queryCondition = new StringBuffer("[\"queryString\"");
+		// {"queryString":["RO01","RO02","RO03"]}
+		StringBuffer queryCondition = new StringBuffer("{\"queryString\":");
 		List<Dictionary> dictionaryList = queryByAuditItem();
+		List<String> keyNames = new ArrayList<>();
 		for (Dictionary dictionary : dictionaryList) {
-			
+			keyNames.add(dictionary.getKeyName());
 		}
-		
-		String workId = "B-7382";
-		auditList(queryCondition.toString(), workId, session);
-		// String projectId = queryProject();
-		// logger.debug("=====客户端获得反馈数据 projectId:{}", projectId);
+
+		ObjectMapper mapper = new ObjectMapper();
+		String keyNamesStr = "";
+		try {
+			keyNamesStr = mapper.writeValueAsString(keyNames);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		queryCondition.append(keyNamesStr);
+		queryCondition.append("}");
+
+		logger.debug("=====传入参数 queryCondition:{}", queryCondition);
+		logger.debug("=====传入参数 keyNamesStr:{}", keyNamesStr);
+		String loginWorkId = "B-7382";
+		session.setAttribute("workId", loginWorkId);
+
+		List<ProjectAuditView> projectAuditViewList = auditList(
+						queryCondition.toString(), session);
+		for (ProjectAuditView projectAuditView2 : projectAuditViewList) {
+			logger.debug("=====客户端获得反馈数据 projectAuditView2:"
+							+ projectAuditView2);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	private List<ProjectAuditView> auditList(String queryCondition,
-					String workId, MockHttpSession session) throws Exception {
-		// 进入人力信息编辑页面
+					MockHttpSession session) throws Exception {
 		String paramNameA = "queryCondition";
-		String paramNameB = "workId";
 		logger.debug("=====传入参数 queryCondition:" + queryCondition);
-		logger.debug("=====传入参数 workId:" + workId);
 		ResultActions resultActions2 = this.mockMvc
 						.perform(MockMvcRequestBuilders.post("/audit-list")
 										.param(paramNameA, queryCondition)
-										.param(paramNameB, workId)
 										.session(session));
 		MvcResult mvcResult2 = resultActions2.andReturn();
 		ModelAndView mav2 = mvcResult2.getModelAndView();
@@ -492,10 +481,10 @@ public class ProjectAuditControllerTest
 
 		List<ProjectAuditView> projectAuditViewList = (List<ProjectAuditView>) modelMap2
 						.get("projectAuditViewList");
-		for (ProjectAuditView projectAuditView2 : projectAuditViewList) {
-			logger.debug("=====客户端获得反馈数据 projectAuditView2:"
-							+ projectAuditView2);
-		}
+		// for (ProjectAuditView projectAuditView2 : projectAuditViewList) {
+		// logger.debug("=====客户端获得反馈数据 projectAuditView2:"
+		// + projectAuditView2);
+		// }
 		String auditTypeReturn = (String) modelMap2.get("auditType");
 		String auditTypeKeys = (String) modelMap2.get("auditTypeKeys");
 		logger.debug("=====客户端获得反馈数据 auditTypeReturn:" + auditTypeReturn);

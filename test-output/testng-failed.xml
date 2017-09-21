@@ -5,9 +5,12 @@
     <classes>
       <class name="com.billjc.controller.ProjectAuditControllerTest">
         <methods>
+          <include name="testMyAudit"/>
           <include name="springTestContextBeforeTestClass"/>
           <include name="setup"/>
-          <include name="testProjectAuditDelete"/>
+          <include name="testAudit"/>
+          <include name="testProjectAuditAddUpdateDelete"/>
+          <include name="testQueryByProject"/>
           <include name="springTestContextPrepareTestInstance"/>
           <include name="springTestContextAfterTestClass"/>
           <include name="springTestContextBeforeTestMethod"/>
