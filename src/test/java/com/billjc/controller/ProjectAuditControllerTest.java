@@ -71,7 +71,7 @@ public class ProjectAuditControllerTest
 	@SuppressWarnings("unchecked")
 	private List<ProjectAuditView> myAudit() throws Exception {
 		String paramName1 = "workId";
-		// [B-30728]吕帅[B-7382]全荃
+		// [B-7382]全荃
 		String staffWorkId = "B-7382";
 		String paramValue1 = QEncodeUtil.encrypt(staffWorkId);
 		System.out.println("encryptString\t" + paramValue1);

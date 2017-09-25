@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.billjc.util.PowerUtil;
 import com.billjc.util.QEncodeUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * @author xulin28709
@@ -89,13 +91,31 @@ public class IndexController {
 		logger.debug("setPower", mav);
 		List<String> resourceIds = PowerUtil.findResourceIds(workId);
 		String decodeWorkId = QEncodeUtil.encrypt(workId);
-		mav.addObject("resourceIds", resourceIds);
-		mav.addObject("workId", workId);
-		mav.addObject("decodeWorkId", decodeWorkId);
+		
+		ObjectMapper mapper = new ObjectMapper();
 
+		String resourceIdsStr = "";
+		String workIdStr = "";
+		String decodeWorkIdStr = "";
+		try {
+			resourceIdsStr = mapper.writeValueAsString(resourceIds);
+			workIdStr = mapper.writeValueAsString(workId);
+			decodeWorkIdStr = mapper.writeValueAsString(decodeWorkId);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		mav.addObject("resourceIds", resourceIdsStr);
+		mav.addObject("workId", workIdStr);
+		mav.addObject("decodeWorkId", decodeWorkIdStr);
+		
+//		mav.addObject("resourceIds", resourceIds);
+//		mav.addObject("workId", workId);
+//		mav.addObject("decodeWorkId", decodeWorkId);
+
+		session.setAttribute("resourceIds", resourceIdsStr);
 		session.setAttribute("workId", workId);
 		session.setAttribute("decodeWorkId", decodeWorkId);
-		session.setAttribute("resourceIds", resourceIds);
 	}
 
 }

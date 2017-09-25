@@ -42,9 +42,9 @@
 				<li class="pdrc-li"><span>项目计划结束日期</span><span
 					class="pdrc-span"><span>${projectAuditView.projectEndDateString}</span></span></li>
 				<li><a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="48" class="pdrc-cannotedit pdrc-iconPlus"
+					data-powercode="PA03" class="pdrc-cannotedit pdrc-iconPlus"
 					href="${pageContext.request.contextPath}/audit-update?auditType=ReasonableObjectiveInfo&projectId=${projectAuditView.projectId}"
-					rel="external"><h2>目标合理性</h2></a></li>
+					rel="external"><h2><span>目标合理性</span></h2></a></li>
 				<li><c:forEach var="ropav"
 						items="${projectAuditView.reasonableObjectives}">
 						<ul data-role="listview" data-inset="true" class="pdrc-listpanel">
@@ -60,9 +60,9 @@
 						</ul>
 					</c:forEach></li>
 				<li><a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="48" class="pdrc-cannotedit pdrc-iconPlus"
+					data-powercode="PA03" class="pdrc-cannotedit pdrc-iconPlus"
 					href="${pageContext.request.contextPath}/audit-update?auditType=OperationStandardInfo&projectId=${projectAuditView.projectId}"
-					rel="external"><h2>操作规范性</h2></a></li>
+					rel="external"><h2><span>操作规范性</span></h2></a></li>
 				<li><c:forEach var="ospav"
 						items="${projectAuditView.operationStandards}">
 						<ul data-role="listview" data-inset="true" class="pdrc-listpanel">
@@ -78,9 +78,9 @@
 						</ul>
 					</c:forEach></li>
 				<li><a data-poweraction="class:pdrc-canedit,pdrc-cannotedit"
-					data-powercode="48" class="pdrc-cannotedit pdrc-iconPlus"
+					data-powercode="PA03" class="pdrc-cannotedit pdrc-iconPlus"
 					href="${pageContext.request.contextPath}/audit-update?auditType=AccurateDataInfo&projectId=${projectAuditView.projectId}"
-					rel="external"><h2>数据准确性</h2></a></li>
+					rel="external"><h2><span>数据准确性</span></h2></a></li>
 				<li><c:forEach var="adpav"
 						items="${projectAuditView.accurateDatas}">
 						<ul data-role="listview" data-inset="true" class="pdrc-listpanel">

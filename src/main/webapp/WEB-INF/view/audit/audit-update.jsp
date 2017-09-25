@@ -59,7 +59,7 @@
 					<textarea cols="40" rows="8" name="auditContent" id="auditContent" maxlength="100" placeholder="这里填写给该项目的审核意见">${projectAuditView.auditContent}</textarea>
 				</div>
 				<div class="ui-field-contain">
-					<fieldset data-role="controlgroup">
+					<fieldset data-role="controlgroup" data-type="horizontal">
 						<legend>是否通过</legend>
 						<c:set var="auditState" scope="session"
 							value="${projectAuditView.auditState}" />
