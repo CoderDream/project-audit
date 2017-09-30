@@ -113,7 +113,7 @@
 			if ('' == myselect.options[index].value) {
 				alert('请先选择一个员工');
 			} else {
-				var url = "${pageContext.request.contextPath}/login?workId="
+				var url = "${pageContext.request.contextPath}/index?workId="
 						+ myselect.options[index].value;
 				window.location = url;
 			}

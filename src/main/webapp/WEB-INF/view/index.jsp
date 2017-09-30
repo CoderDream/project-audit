@@ -25,9 +25,6 @@
 	var powers = ${resourceIds};
 	var decodeWorkId = "${decodeWorkId}";
 </script>
-<style>
-
-</style>
 </head>
 <body>
 	<div class="total">
